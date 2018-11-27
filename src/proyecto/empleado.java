@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Velasquez
+ * hola luis estuvo aqui
  */
 public class empleado extends javax.swing.JFrame {
 
