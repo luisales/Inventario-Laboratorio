@@ -216,20 +216,19 @@ public class empleado extends javax.swing.JFrame {
         
         try
         {
-            PreparedStatement obj=reg.prepareStatement("INSERT INTO emopleado(codigoEmpleado,primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado, telefonoEmpleado, correoEmpleado) values(?,?,?,?,?,?,?)");
-            obj.setString(1,this.txtid.getText());
-            obj.setString(2,this.txtnombre.getText());
-            obj.setString(3,this.txtinicio.getText());
-            obj.setString(4,this.txtdespido.getText());
-            obj.setString(5,this.txtsalario.getText());
-            obj.setString(6,Double.toString(this.prestaciones));
-            obj.setString(6,Double.toString(this.prestaciones));
+            PreparedStatement obj=reg.prepareStatement("INSERT INTO empleado(primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado, telefonoEmpleado, correoEmpleado) values(?,?,?,?,?,?)");
+            obj.setString(1,this.txtnombre1.getText());
+            obj.setString(2,this.txtnombre2.getText());
+            obj.setString(3,this.txtape1.getText());
+            obj.setString(4,this.txtape2.getText());
+            obj.setString(5,this.txttel.getText());
+            obj.setString(6,this.txtcorreo.getText());
             obj.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registrado con exito");
+            JOptionPane.showMessageDialog(null, "Guardadi con exito");
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(Prestaciones.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnguardarActionPerformed
 
