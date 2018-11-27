@@ -7,7 +7,9 @@ package proyecto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -51,5 +53,21 @@ public class Conectar {
         {
             System.out.println("Conexion desconectada");
         }
+    }
+    
+    public static ResultSet getTabla(String Consulta)
+    {
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        Statement st;
+        ResultSet datos=null;
+        try{
+            st=reg.createStatement();
+            datos=st.executeQuery(Consulta);
+        }
+        catch(Exception e){
+            System.out.print(e.toString());
+        }
+        return datos;
     }
 }
