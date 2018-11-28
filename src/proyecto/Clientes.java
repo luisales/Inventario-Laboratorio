@@ -51,36 +51,36 @@ public class Clientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Ingreso Clientes");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Primer nombre");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Segundo nombre");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Codigo facultad");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Segundo apellido");
 
-        txtprimerNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtprimerNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtprimerNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtprimerNombreKeyPressed(evt);
             }
         });
 
-        txtcodigoFacultad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcodigoFacultad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtcodigoFacultad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcodigoFacultadKeyPressed(evt);
             }
         });
 
-        txtsegundoNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtsegundoNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtsegundoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtsegundoNombreActionPerformed(evt);
@@ -92,39 +92,39 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
 
-        txtsegundoApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtsegundoApellido.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtsegundoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtsegundoApellidoKeyPressed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Primer apellido");
 
-        txtprimerApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtprimerApellido.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtprimerApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtprimerApellidoKeyPressed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Telefono");
 
-        txttelefonoCliente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txttelefonoCliente.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txttelefonoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txttelefonoClienteKeyPressed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setText("Correo");
 
-        txtcorreoCliente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcorreoCliente.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +208,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtcorreoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnguardar)
                 .addGap(55, 55, 55))
         );
