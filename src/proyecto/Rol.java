@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -57,6 +58,11 @@ public class Rol extends javax.swing.JFrame {
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombreActionPerformed(evt);
+            }
+        });
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
             }
         });
 
@@ -147,16 +153,20 @@ public class Rol extends javax.swing.JFrame {
     }//GEN-LAST:event_chkEmpleadosActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        if(this.txtnombre.getText().equals(""))
+       
+       if(this.txtnombre.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
-            return;
+          JOptionPane.showMessageDialog(null, "Llene todos los campos");
+          return;
         }
        if(this.chkEmpleados.isSelected()==false&&this.chkUsuarios.isSelected()==false&&this.chkInventario.isSelected()==false&&this.chkPrestamos.isSelected()==false)       
        {
           JOptionPane.showMessageDialog(null, "Seleccione por lo menos un tipo de permiso");
           return; 
        }
+      Conectar con=new Conectar();
+      Connection reg=con.getConnection();
+       
        if(this.chkEmpleados.isSelected())
            permisos=permisos+"A";
        if(this.chkUsuarios.isSelected())
@@ -166,22 +176,57 @@ public class Rol extends javax.swing.JFrame {
        if(this.chkPrestamos.isSelected())
            permisos=permisos+"D";
             
-        Conectar con=new Conectar();
-        Connection reg=con.getConnection();
+        
 
         try
-        {
+           {
+             String rol = this.txtnombre.getText().toUpperCase();
+             String nombreRol = "";
+             String sql = "select * FROM rol where nombreRol ='" +rol+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next())
+             {
+                 nombreRol = rs.getString("nombreRol");
+             }
+            
+            if(rol.equals(nombreRol))
+             {
+               JOptionPane.showMessageDialog(null, "Rol ya existente");
+             }
+        
+            else
+                 {  
+            if(this.chkEmpleados.isSelected())
+                permisos=permisos+"A";
+            if(this.chkUsuarios.isSelected())
+                permisos=permisos+"B";
+            if(this.chkInventario.isSelected())
+                permisos=permisos+"C";
+            if(this.chkPrestamos.isSelected())
+                permisos=permisos+"D";
+            
             PreparedStatement obj=reg.prepareStatement("INSERT INTO rol(nombreRol, permisosRol) values(?,?)");
-            obj.setString(1,this.txtnombre.getText());
-            obj.setString(2,this.permisos);
+            obj.setString(1,rol);
+            obj.setString(2,permisos);
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
-        }
+            permisos="";
+                 }
+           }
         catch(SQLException ex)
-        {
+           {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           }
+        
     }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z' )) evt.consume();
+    }//GEN-LAST:event_txtnombreKeyTyped
 
     /**
      * @param args the command line arguments
