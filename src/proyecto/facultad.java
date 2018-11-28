@@ -5,10 +5,15 @@
  */
 package proyecto;
 
-import clase.conexion;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class facultad extends javax.swing.JFrame {
 
     
@@ -41,6 +46,11 @@ public class facultad extends javax.swing.JFrame {
         jLabel2.setText("Nombre de la facultad");
 
         txtNombreFacultad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtNombreFacultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreFacultadActionPerformed(evt);
+            }
+        });
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnguardar.setText("Guardar");
@@ -87,7 +97,7 @@ public class facultad extends javax.swing.JFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         
-        conexion con=new conexion();
+        Conectar con=new Conectar();
         Connection reg=con.getConnection();
         
         try{
@@ -103,6 +113,10 @@ public class facultad extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void txtNombreFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFacultadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreFacultadActionPerformed
 
     /**
      * @param args the command line arguments
