@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -108,6 +109,11 @@ public class Usuario extends javax.swing.JFrame {
 
             }
         ));
+        empleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                empleadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(empleados);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -237,26 +243,62 @@ public class Usuario extends javax.swing.JFrame {
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
-        
+
         try
         {
+             String nombreUsuario = "";
+             String sql = "select * FROM usuario where nombreUsuario='" +this.txtusu.getText()+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next())
+             {
+                 nombreUsuario = rs.getString("nombreUsuario");
+             }
+            
+            if(this.txtusu.getText().equals(nombreUsuario))
+            {
+            JOptionPane.showMessageDialog(null, "Usuario ya existente");
+            }
+            else
+            {
             PreparedStatement obj=reg.prepareStatement("INSERT INTO usuario(nombreUsuario, contrasenaUsuario, codigoEmpleado) values(?,?,?)");
             obj.setString(1,this.txtusu.getText());
             obj.setString(2,this.txtcontra1.getText());
             obj.setString(3,this.txtcodigo.getText());
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
+            
+            
+            }
+            
         }
         catch(SQLException ex)
         {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        this.txtcodigo.setText("");
+        this.txtcontra1.setText("");
+        this.txtcontra2.setText("");
+        this.txtusu.setText("");
+        
+
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.jPanel1.setVisible(true);
         mostrar();        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void empleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empleadosMouseClicked
+        int fila=this.empleados.getSelectedRow();
+        if(fila>=0)
+        {
+            this.txtcodigo.setText(this.empleados.getValueAt(fila, 0).toString());
+        }
+        this.jPanel1.setVisible(false);
+    }//GEN-LAST:event_empleadosMouseClicked
     
     private void mostrar()
     {

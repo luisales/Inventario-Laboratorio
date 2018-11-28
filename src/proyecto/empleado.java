@@ -477,6 +477,7 @@ public class empleado extends javax.swing.JFrame {
         {
             this.txtrol.setText(this.dataRol.getValueAt(fila, 0).toString());
         }
+        this.jPanel1.setVisible(false);
     }//GEN-LAST:event_dataRolMouseClicked
 
     private void mostrar()
