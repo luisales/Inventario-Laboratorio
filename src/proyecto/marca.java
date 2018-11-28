@@ -162,7 +162,7 @@ public class marca extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
-     String nombre = this.txtCodigo.getText().toUpperCase(); 
+     String nombre = this.txtNombre.getText().toUpperCase(); 
      
         if(nombre.equals(""))
         {
