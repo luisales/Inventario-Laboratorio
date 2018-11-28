@@ -60,6 +60,7 @@ public class empleado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRol = new javax.swing.JTable();
+        btnguardar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,6 +135,11 @@ public class empleado extends javax.swing.JFrame {
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
 
         dataRol.setModel(new javax.swing.table.DefaultTableModel(
@@ -166,6 +172,15 @@ public class empleado extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 290, 150));
 
+        btnguardar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnguardar1.setText("Guardar");
+        btnguardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnguardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,6 +188,14 @@ public class empleado extends javax.swing.JFrame {
         mostrar();
         this.jPanel1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void btnguardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguardar1ActionPerformed
 
     private void mostrar()
     {
@@ -227,6 +250,7 @@ public class empleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnguardar1;
     private javax.swing.JTable dataRol;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
