@@ -67,8 +67,18 @@ public class Clientes extends javax.swing.JFrame {
         jLabel5.setText("Segundo apellido");
 
         txtprimerNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtprimerNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtprimerNombreKeyPressed(evt);
+            }
+        });
 
         txtcodigoFacultad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcodigoFacultad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcodigoFacultadKeyPressed(evt);
+            }
+        });
 
         txtsegundoNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtsegundoNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -76,18 +86,38 @@ public class Clientes extends javax.swing.JFrame {
                 txtsegundoNombreActionPerformed(evt);
             }
         });
+        txtsegundoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtsegundoNombreKeyPressed(evt);
+            }
+        });
 
         txtsegundoApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtsegundoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtsegundoApellidoKeyPressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Primer apellido");
 
         txtprimerApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtprimerApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtprimerApellidoKeyPressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Telefono");
 
         txttelefonoCliente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txttelefonoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txttelefonoClienteKeyPressed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Correo");
@@ -215,6 +245,90 @@ public class Clientes extends javax.swing.JFrame {
     private void txtsegundoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsegundoNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtsegundoNombreActionPerformed
+
+    private void txtprimerNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprimerNombreKeyPressed
+        char c=evt.getKeyChar(); 
+             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+              this.txtprimerNombre.setText(""); 
+          }
+    }//GEN-LAST:event_txtprimerNombreKeyPressed
+
+    private void txtsegundoNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsegundoNombreKeyPressed
+        char c=evt.getKeyChar(); 
+             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+              this.txtsegundoNombre.setText(""); 
+          }
+    }//GEN-LAST:event_txtsegundoNombreKeyPressed
+
+    private void txtprimerApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprimerApellidoKeyPressed
+        char c=evt.getKeyChar(); 
+             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+               this.txtprimerApellido.setText("");
+          }
+    }//GEN-LAST:event_txtprimerApellidoKeyPressed
+
+    private void txtsegundoApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsegundoApellidoKeyPressed
+        char c=evt.getKeyChar(); 
+             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+               this.txtsegundoApellido.setText("");
+          }
+    }//GEN-LAST:event_txtsegundoApellidoKeyPressed
+
+    private void txtcodigoFacultadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigoFacultadKeyPressed
+        char a=evt.getKeyChar();
+        if(Character.isLetter(a))
+        {
+           
+            getToolkit().beep(); 
+               
+            evt.consume(); 
+               
+            JOptionPane.showMessageDialog(null, "Ingrese solo Numeros");
+            this.txtcodigoFacultad.setText("");
+        }
+    }//GEN-LAST:event_txtcodigoFacultadKeyPressed
+
+    private void txttelefonoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoClienteKeyPressed
+        char a=evt.getKeyChar();
+        if(Character.isLetter(a))
+        {
+           
+            getToolkit().beep(); 
+               
+            evt.consume(); 
+               
+            JOptionPane.showMessageDialog(null, "Ingrese solo Numeros");
+            this.txttelefonoCliente.setText("");
+        }
+    }//GEN-LAST:event_txttelefonoClienteKeyPressed
 
     /**
      * @param args the command line arguments
