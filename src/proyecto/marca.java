@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -116,7 +117,9 @@ public class marca extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
-        if(this.txtNombre.getText().equals(""))
+     String nombre = this.txtNombre.getText().toUpperCase(); 
+     
+        if(nombre.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Llene el campo nombre");
             return;
@@ -124,23 +127,42 @@ public class marca extends javax.swing.JFrame {
         
          Conectar con=new Conectar();
         Connection reg=con.getConnection();
-        
+
         try
         {
+             String nombreMarca = "";
+             String sql = "select * FROM marca where nombreMarca ='" +nombre+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next())
+             {
+                 nombreMarca = rs.getString("nombreMarca");
+             }
+            
+            if(nombre.equals(nombreMarca))
+            {
+            JOptionPane.showMessageDialog(null, "Marca ya existente");
+            }
+            else
+            {
             PreparedStatement obj=reg.prepareStatement("INSERT INTO marca(nombreMarca, descripcionMarca) values(?,?)");
-            obj.setString(1,this.txtNombre.getText());
+            obj.setString(1,nombre);
             obj.setString(2,this.txtDescripcion.getText());
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Marca Ingresada");
+            
+            
             this.txtNombre.setText("");
             this.txtDescripcion.setText("");
-            
+            }
             
         }
         catch(SQLException ex)
         {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
         
     }//GEN-LAST:event_btnIngresarActionPerformed
 
