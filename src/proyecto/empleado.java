@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * hola luis estuvo aqui
+ * hola luis ya no  
  */
 public class empleado extends javax.swing.JFrame {
 
