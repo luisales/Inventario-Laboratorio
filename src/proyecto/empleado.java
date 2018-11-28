@@ -235,7 +235,7 @@ public class empleado extends javax.swing.JFrame {
 
         labelcod.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelcod.setText("Codigo de empleado: ");
-        getContentPane().add(labelcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
+        getContentPane().add(labelcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,7 +265,7 @@ public class empleado extends javax.swing.JFrame {
         Connection reg=con.getConnection();
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"'");
+            PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"' WHERE codigoEmpleado='"+this.txtcodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
         }
