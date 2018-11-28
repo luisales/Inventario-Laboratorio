@@ -24,6 +24,17 @@ public class marca extends javax.swing.JFrame {
      */
     public marca() {
         initComponents();
+        this.lblIngresar.setVisible(false);
+        this.lblModificar.setVisible(false);
+        this.lblCodigo.setVisible(false);
+        this.lblNombre.setVisible(false);
+        this.lblDescripcion.setVisible(false);
+        this.btnActualizar.setVisible(false);
+        this.btnIngresar.setVisible(false);
+        this.txtNombre.setVisible(false);
+        this.btnBuscar.setVisible(false);
+        this.txtDescripcion.setVisible(false);
+        this.txtCodigo.setVisible(false);
     }
 
     /**
@@ -35,35 +46,55 @@ public class marca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        lblModificar = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         btnIngresar = new javax.swing.JButton();
+        lblIngresar = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        txtNombre = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        btnIngresar1 = new javax.swing.JButton();
+        btnActualizar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel8.setText("Registrar Marca");
+        lblModificar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblModificar.setText("Modificar Marca");
+        getContentPane().add(lblModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Nombre: ");
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo.setText("Codigo Marca:");
+        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Descripcion:");
+        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblDescripcion.setText("Descripcion:");
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
 
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
             }
         });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 110, -1));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.setBorder(null);
         jScrollPane1.setViewportView(txtDescripcion);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 277, 126));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -72,52 +103,66 @@ public class marca extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))))
-                .addGap(64, 64, 64)
-                .addComponent(btnIngresar)
-                .addGap(37, 37, 37))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel8)
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblIngresar.setText("Registrar Marca");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 110, -1));
+
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 277, -1));
+
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre: ");
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+
+        btnIngresar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnIngresar1.setText("Modificar");
+        btnIngresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+
+        btnActualizar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar1.setText("Registrar");
+        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
-     String nombre = this.txtNombre.getText().toUpperCase(); 
+     String nombre = this.txtCodigo.getText().toUpperCase(); 
      
         if(nombre.equals(""))
         {
@@ -153,24 +198,92 @@ public class marca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Marca Ingresada");
             
             
-            this.txtNombre.setText("");
+            this.txtCodigo.setText("");
             this.txtDescripcion.setText("");
             }
             
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
         }
          
         
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
        char c = evt.getKeyChar();
         
-        if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z' )) evt.consume();
+        if((c < '0' || c > '9')) evt.consume();
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       ResultSet rx = Conectar.getTabla("select * from marca where codigoMarca='"+this.txtCodigo.getText()+"'");
+        try {
+            if(rx.next())
+            {
+                this.txtNombre.setText(rx.getString("nombreMarca"));
+                this.txtDescripcion.setText(rx.getString("descripcionMarca"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+       
+          Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            PreparedStatement obj=reg.prepareStatement("UPDATE marca SET nombreMarca='"+this.txtNombre.getText()+"',descripcionMarca='"+this.txtDescripcion.getText()+"'WHERE codigoMarca='"+this.txtCodigo.getText()+"'");
+            obj.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado con exito");
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
+        this.lblIngresar.setVisible(false);
+        this.lblModificar.setVisible(true);
+        this.lblCodigo.setVisible(true);
+        this.lblNombre.setVisible(true);
+        this.lblDescripcion.setVisible(true);
+        this.btnActualizar.setVisible(true);
+        this.btnIngresar.setVisible(false);
+        this.txtNombre.setVisible(true);
+        this.btnBuscar.setVisible(true);
+        this.txtDescripcion.setVisible(true);
+        this.txtCodigo.setVisible(true);
+    }//GEN-LAST:event_btnIngresar1ActionPerformed
+
+    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
+       
+       this.lblIngresar.setVisible(true);
+        this.lblModificar.setVisible(false);
+        this.lblCodigo.setVisible(false);
+        this.lblNombre.setVisible(true);
+        this.lblDescripcion.setVisible(true);
+        this.btnActualizar.setVisible(false);
+        this.btnIngresar.setVisible(true);
+        this.txtNombre.setVisible(true);
+        this.btnBuscar.setVisible(false);
+        this.txtDescripcion.setVisible(true);
+        this.txtCodigo.setVisible(false);
+    }//GEN-LAST:event_btnActualizar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,11 +321,18 @@ public class marca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnIngresar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblIngresar;
+    private javax.swing.JLabel lblModificar;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
