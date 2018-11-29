@@ -218,6 +218,9 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombre1KeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelemp">
       <Properties>
@@ -248,6 +251,9 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtape2KeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -271,6 +277,9 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtape1KeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -286,6 +295,9 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txttelKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtid">
       <Properties>
@@ -448,6 +460,9 @@
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombre3KeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnbuscar">
       <Properties>

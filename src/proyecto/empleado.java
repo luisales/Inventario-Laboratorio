@@ -80,6 +80,11 @@ public class empleado extends javax.swing.JFrame {
         jLabel1.setText("Primer nombre: ");
 
         txtnombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtnombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombre1KeyTyped(evt);
+            }
+        });
 
         labelemp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelemp.setText("Empleado");
@@ -90,6 +95,11 @@ public class empleado extends javax.swing.JFrame {
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         txtape2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtape2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtape2KeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Segundo apellido: ");
@@ -98,11 +108,21 @@ public class empleado extends javax.swing.JFrame {
         jLabel3.setText("Primer apellido:");
 
         txtape1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtape1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtape1KeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Telefono:");
 
         txttel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txttel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelKeyTyped(evt);
+            }
+        });
 
         txtid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
@@ -198,6 +218,11 @@ public class empleado extends javax.swing.JFrame {
         });
 
         txtnombre3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtnombre3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombre3KeyTyped(evt);
+            }
+        });
 
         btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnbuscar.setText("buscar");
@@ -478,6 +503,56 @@ public class empleado extends javax.swing.JFrame {
             this.txtrol.setText(this.dataRol.getValueAt(fila, 0).toString());
         }
     }//GEN-LAST:event_dataRolMouseClicked
+
+    private void txttelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelKeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }//validacion solo numeros
+    }//GEN-LAST:event_txttelKeyTyped
+
+    private void txtnombre1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre1KeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isDigit(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }//validacion solo letras
+    }//GEN-LAST:event_txtnombre1KeyTyped
+
+    private void txtnombre3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre3KeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isDigit(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }//validacion solo letras
+    }//GEN-LAST:event_txtnombre3KeyTyped
+
+    private void txtape1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtape1KeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isDigit(validar)){
+            getToolkit().beep();
+            evt.consume();
+        } //Validacion solo letras
+    }//GEN-LAST:event_txtape1KeyTyped
+
+    private void txtape2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtape2KeyTyped
+        // TODO add your handling code here:
+        char validar=evt.getKeyChar();
+        
+        if(Character.isDigit(validar)){
+            getToolkit().beep();
+            evt.consume();
+        }//Validacion solo letras
+    }//GEN-LAST:event_txtape2KeyTyped
 
     private void mostrar()
     {
