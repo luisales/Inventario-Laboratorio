@@ -104,7 +104,8 @@ public class facultad extends javax.swing.JFrame {
                 PreparedStatement obj = reg.prepareStatement("INSERT INTO facultad (nombreFacultad) values(?)");
                 
                 obj.setString(1,this.txtNombreFacultad.getText());
-                
+                obj.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Guardado con exito");
         }
         
         catch(SQLException ex)
