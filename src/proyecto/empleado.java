@@ -444,7 +444,7 @@ public class empleado extends javax.swing.JFrame {
 
         try
         {
-            PreparedStatement obj=reg.prepareStatement("INSERT INTO empleado(primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado,telefonoEmpleado, correoEmpleado, identidadEmpleado) values(?,?,?,?,?,?,?)");
+            PreparedStatement obj=reg.prepareStatement("INSERT INTO empleado(primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado,telefonoEmpleado, correoEmpleado, identidadEmpleado, codigoRol) values(?,?,?,?,?,?,?,?)");
             obj.setString(1,this.txtnombre1.getText().toUpperCase());
             obj.setString(2,this.txtnombre3.getText().toUpperCase());
             obj.setString(3,this.txtape1.getText().toUpperCase());
@@ -452,6 +452,7 @@ public class empleado extends javax.swing.JFrame {
             obj.setString(5,this.txttel.getText().toUpperCase());
             obj.setString(6,this.txtcorreo1.getText().toUpperCase());
             obj.setString(7,this.txtid.getText().toUpperCase());
+            obj.setString(8,this.txtrol.getText().toUpperCase());
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
         }
@@ -467,17 +468,6 @@ public class empleado extends javax.swing.JFrame {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try
-        {
-            PreparedStatement obj=reg.prepareStatement("INSERT INTO empleadorol(codigoEmpleado, codigoRol) values(?,?)");
-            obj.setString(1,this.cod);
-            obj.setString(2,this.txtrol.getText());
-            obj.executeUpdate();
-        }
-        catch(SQLException ex)
-        {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnguardarActionPerformed
