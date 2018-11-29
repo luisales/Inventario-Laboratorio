@@ -80,6 +80,11 @@ public class empleado extends javax.swing.JFrame {
         jLabel1.setText("Primer nombre: ");
 
         txtnombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtnombre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombre1ActionPerformed(evt);
+            }
+        });
         txtnombre1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnombre1KeyTyped(evt);
@@ -554,6 +559,10 @@ public class empleado extends javax.swing.JFrame {
             evt.consume();
         }//Validacion solo letras
     }//GEN-LAST:event_txtape2KeyTyped
+
+    private void txtnombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombre1ActionPerformed
 
     private void mostrar()
     {
