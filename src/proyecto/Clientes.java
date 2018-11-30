@@ -20,8 +20,9 @@ public class Clientes extends javax.swing.JFrame {
      * Creates new form Clientes
      */
     public Clientes() {
-        setLocationRelativeTo(null);
+        
         initComponents();
+        this.setLocationRelativeTo(this);
     }
 
     /**
@@ -53,6 +54,7 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRol = new javax.swing.JTable();
+        RegresarBtn_Clientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -177,22 +179,17 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        RegresarBtn_Clientes.setText("Regresar");
+        RegresarBtn_Clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtn_ClientesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(366, 366, 366)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel2)
-                .addGap(23, 23, 23)
-                .addComponent(txtprimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtsegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel6)
@@ -221,8 +218,22 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(98, 98, 98)
                 .addComponent(txttelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(460, 460, 460)
+                .addGap(14, 14, 14)
+                .addComponent(RegresarBtn_Clientes)
+                .addGap(349, 349, 349)
                 .addComponent(btnguardar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(366, 366, 366)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(jLabel2)
+                .addGap(23, 23, 23)
+                .addComponent(txtprimerNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(txtsegundoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,7 +283,9 @@ public class Clientes extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addComponent(txttelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45)
-                .addComponent(btnguardar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnguardar)
+                    .addComponent(RegresarBtn_Clientes)))
         );
 
         pack();
@@ -406,6 +419,17 @@ public class Clientes extends javax.swing.JFrame {
         this.jPanel1.setVisible(false);
     }//GEN-LAST:event_dataRolMouseClicked
 
+    private void RegresarBtn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtn_ClientesActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal men = new MenuPrincipal();
+      
+
+        men.setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_RegresarBtn_ClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -459,6 +483,7 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn_Clientes;
     private javax.swing.JButton btnguardar;
     private javax.swing.JTable dataRol;
     private javax.swing.JButton jButton1;

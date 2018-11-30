@@ -73,6 +73,7 @@ public class empleado extends javax.swing.JFrame {
         txtnombre3 = new javax.swing.JTextField();
         btnbuscar = new javax.swing.JButton();
         labelcod = new javax.swing.JLabel();
+        RegresarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +241,13 @@ public class empleado extends javax.swing.JFrame {
         labelcod.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelcod.setText("Codigo de empleado: ");
 
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -302,8 +310,13 @@ public class empleado extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(txtcorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(labelrol)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(240, 240, 240)
+                                .addComponent(labelrol))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(RegresarBtn)))
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -370,7 +383,9 @@ public class empleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(labelrol))
+                        .addComponent(labelrol)
+                        .addGap(36, 36, 36)
+                        .addComponent(RegresarBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,6 +579,14 @@ public class empleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombre1ActionPerformed
 
+    private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal men = new MenuPrincipal();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtnActionPerformed
+
     private void mostrar()
     {
         DefaultTableModel modelo2 = new DefaultTableModel();
@@ -623,6 +646,7 @@ public class empleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnconf;
     private javax.swing.JButton btnguardar;
