@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,17 +25,47 @@ public class marca extends javax.swing.JFrame {
      */
     public marca() {
         initComponents();
-        this.lblIngresar.setVisible(false);
-        this.lblModificar.setVisible(false);
-        this.lblCodigo.setVisible(false);
-        this.lblNombre.setVisible(false);
-        this.lblDescripcion.setVisible(false);
-        this.btnActualizar.setVisible(false);
-        this.btnIngresar.setVisible(false);
-        this.txtNombre.setVisible(false);
-        this.btnBuscar.setVisible(false);
-        this.txtDescripcion.setVisible(false);
-        this.txtCodigo.setVisible(false);
+        setLocationRelativeTo(null);
+        mostrarDatos("");
+       this.btnActualizar.setVisible(false);
+       
+    }
+    
+    
+    void mostrarDatos( String valor){
+        DefaultTableModel modelo  = new DefaultTableModel(); 
+        
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Descripcion");
+        tbMarcas.setModel(modelo);
+        String sql = "";
+        if(valor.equals(""))
+        {
+        sql = "Select * from marca";
+        }
+        else{
+        sql = "Select * from marca where nombreMarca like  '"+valor+"%' ";
+        }
+        String []datos = new String[3];
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            modelo.addRow(datos);
+            
+            }
+            tbMarcas.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -46,37 +77,58 @@ public class marca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblModificar = new javax.swing.JLabel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        lblIngresar = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
+        lblCodigo1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        lblDescripcion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         btnIngresar = new javax.swing.JButton();
-        lblIngresar = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
-        txtNombre = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
+        lblNombre1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMostrarT = new javax.swing.JButton();
+        btnBuscar1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
-        btnIngresar1 = new javax.swing.JButton();
-        btnActualizar1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbMarcas = new javax.swing.JTable();
+
+        jMenuItem1.setText("Modificar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblModificar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblModificar.setText("Modificar Marca");
-        getContentPane().add(lblModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblIngresar.setText("Mantenimiento Marcas");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setFocusable(false);
+        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblCodigo.setText("Codigo Marca:");
-        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
 
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblDescripcion.setText("Descripcion:");
-        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo1.setText("Codigo:");
+        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -87,14 +139,26 @@ public class marca extends javax.swing.JFrame {
                 txtCodigoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 110, -1));
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 110, -1));
+
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 277, -1));
+
+        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblDescripcion.setText("Descripcion:");
+        jPanel1.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         txtDescripcion.setBorder(null);
         jScrollPane1.setViewportView(txtDescripcion);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 277, 126));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 277, 126));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -103,28 +167,7 @@ public class marca extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, -1, -1));
-
-        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblIngresar.setText("Registrar Marca");
-        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
-
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 110, -1));
-
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 277, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -133,29 +176,54 @@ public class marca extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, -1, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
+
+        lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre1.setText("Nombre: ");
+        jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 520, 460));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMostrarT.setText("Mostrar Todo");
+        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblNombre.setText("Nombre: ");
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
-        btnIngresar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnIngresar1.setText("Modificar");
-        btnIngresar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+        tbMarcas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        btnActualizar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnActualizar1.setText("Registrar");
-        btnActualizar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar1ActionPerformed(evt);
+            },
+            new String [] {
+
             }
-        });
-        getContentPane().add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        ));
+        tbMarcas.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(tbMarcas);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 500, 400));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,8 +267,11 @@ public class marca extends javax.swing.JFrame {
             
             
             this.txtCodigo.setText("");
+            this.txtNombre.setText("");
             this.txtDescripcion.setText("");
             }
+            
+            mostrarDatos("");
             
         }
         catch(SQLException ex)
@@ -217,20 +288,6 @@ public class marca extends javax.swing.JFrame {
         if((c < '0' || c > '9')) evt.consume();
     }//GEN-LAST:event_txtCodigoKeyTyped
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       ResultSet rx = Conectar.getTabla("select * from marca where codigoMarca='"+this.txtCodigo.getText()+"'");
-        try {
-            if(rx.next())
-            {
-                this.txtNombre.setText(rx.getString("nombreMarca"));
-                this.txtDescripcion.setText(rx.getString("descripcionMarca"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -244,6 +301,15 @@ public class marca extends javax.swing.JFrame {
             PreparedStatement obj=reg.prepareStatement("UPDATE marca SET nombreMarca='"+this.txtNombre.getText()+"',descripcionMarca='"+this.txtDescripcion.getText()+"'WHERE codigoMarca='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
+            mostrarDatos("");
+            
+            this.txtCodigo.setText("");
+            this.txtNombre.setText("");
+            this.txtDescripcion.setText("");
+            this.txtBuscar.setText("");
+            this.btnActualizar.setVisible(false);
+            
+            
         }
         catch(SQLException ex)
         {
@@ -256,34 +322,33 @@ public class marca extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
-        this.lblIngresar.setVisible(false);
-        this.lblModificar.setVisible(true);
-        this.lblCodigo.setVisible(true);
-        this.lblNombre.setVisible(true);
-        this.lblDescripcion.setVisible(true);
-        this.btnActualizar.setVisible(true);
-        this.btnIngresar.setVisible(false);
-        this.txtNombre.setVisible(true);
-        this.btnBuscar.setVisible(true);
-        this.txtDescripcion.setVisible(true);
-        this.txtCodigo.setVisible(true);
-    }//GEN-LAST:event_btnIngresar1ActionPerformed
+    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
+        mostrarDatos("");
+        this.txtBuscar.setText("");
+        
+        
+    }//GEN-LAST:event_btnMostrarTActionPerformed
 
-    private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
-       
-       this.lblIngresar.setVisible(true);
-        this.lblModificar.setVisible(false);
-        this.lblCodigo.setVisible(false);
-        this.lblNombre.setVisible(true);
-        this.lblDescripcion.setVisible(true);
-        this.btnActualizar.setVisible(false);
-        this.btnIngresar.setVisible(true);
-        this.txtNombre.setVisible(true);
-        this.btnBuscar.setVisible(false);
-        this.txtDescripcion.setVisible(true);
-        this.txtCodigo.setVisible(false);
-    }//GEN-LAST:event_btnActualizar1ActionPerformed
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+       mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int fila = tbMarcas.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.enable(true);
+            this.txtCodigo.setText(tbMarcas.getValueAt(fila,0).toString());
+            this.txtNombre.setText(tbMarcas.getValueAt(fila,1).toString());
+            this.txtDescripcion.setText(tbMarcas.getValueAt(fila,2).toString());
+            
+            this.btnActualizar.setVisible(true);
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,20 +383,47 @@ public class marca extends javax.swing.JFrame {
                 new marca().setVisible(true);
             }
         });
+        
+        
     }
+    
+       /* 
+    eliminar click derecho
+    Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbMarcas.getSelectedRow();
+            String codigo ="";
+            codigo = tbMarcas.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from marca Where codigoMarca='"+codigo+"'");
+            obj.executeUpdate();
+            mostrarDatos("");
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnActualizar1;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnIngresar1;
+    private javax.swing.JButton btnMostrarT;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblIngresar;
-    private javax.swing.JLabel lblModificar;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JTable tbMarcas;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtNombre;
