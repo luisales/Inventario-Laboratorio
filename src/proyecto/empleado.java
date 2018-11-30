@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,11 +28,13 @@ public class empleado extends javax.swing.JFrame {
         this.jPanel1.setVisible(false);
         this.labelmod.setVisible(false);
         this.labelreg.setVisible(false);
-        this.btnconf.setVisible(false);
-        this.btnguardar.setVisible(false);
-        this.btnbuscar.setVisible(false);
+        this.btnActualizar.setVisible(false);
+        this.btnguardar.setVisible(true);
+        this.btnbuscar.setVisible(true);
         this.labelcod.setVisible(false);
         this.txtcodigo.setVisible(false);
+        
+        mostrarDatos("");
     }
 
     /**
@@ -43,6 +46,8 @@ public class empleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ModificarMenuItem = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         txtnombre1 = new javax.swing.JTextField();
         labelemp = new javax.swing.JLabel();
@@ -61,24 +66,41 @@ public class empleado extends javax.swing.JFrame {
         labelrol = new javax.swing.JLabel();
         txtrol = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        btnmodificar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRol = new javax.swing.JTable();
         labelmod = new javax.swing.JLabel();
         labelreg = new javax.swing.JLabel();
-        btnconf = new javax.swing.JButton();
-        btnregistrar = new javax.swing.JButton();
-        btnguardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         txtnombre3 = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
         labelcod = new javax.swing.JLabel();
         RegresarBtn = new javax.swing.JButton();
+        btnguardar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        btnMostrarT = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbEmpleado = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnbuscar = new javax.swing.JButton();
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        ModificarMenuItem.add(jMenuItem2);
+
+        ModificarMenuItem.getAccessibleContext().setAccessibleName("Modificar");
+        ModificarMenuItem.getAccessibleContext().setAccessibleDescription("ModificarMenuItem");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Primer nombre: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         txtnombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtnombre1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,14 +113,18 @@ public class empleado extends javax.swing.JFrame {
                 txtnombre1KeyTyped(evt);
             }
         });
+        getContentPane().add(txtnombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 130, -1));
 
         labelemp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelemp.setText("Empleado");
+        getContentPane().add(labelemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Segundo nombre: ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 70, -1));
 
         txtape2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtape2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -106,12 +132,15 @@ public class empleado extends javax.swing.JFrame {
                 txtape2KeyTyped(evt);
             }
         });
+        getContentPane().add(txtape2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Segundo apellido: ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Primer apellido:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 184, -1));
 
         txtape1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtape1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -119,9 +148,11 @@ public class empleado extends javax.swing.JFrame {
                 txtape1KeyTyped(evt);
             }
         });
+        getContentPane().add(txtape1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 130, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Telefono:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         txttel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txttel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -129,21 +160,28 @@ public class empleado extends javax.swing.JFrame {
                 txttelKeyTyped(evt);
             }
         });
+        getContentPane().add(txttel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 250, -1));
 
         txtid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 294, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Identidad:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel9.setText("Correo:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         txtcorreo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtcorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 294, -1));
 
         labelrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol.setText("Rol:");
+        getContentPane().add(labelrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         txtrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 59, -1));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -151,14 +189,7 @@ public class empleado extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        btnmodificar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnmodificar.setText("Modificar");
-        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmodificarActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 21, -1));
 
         dataRol.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,36 +215,53 @@ public class empleado extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 240, 110));
 
         labelmod.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelmod.setText("Modificar Empleado");
+        getContentPane().add(labelmod, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         labelreg.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelreg.setText("Registrar Empleado");
+        getContentPane().add(labelreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
-        btnconf.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnconf.setText("Actualizar");
-        btnconf.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnconfActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, -1, -1));
 
-        btnregistrar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnregistrar.setText("Registrar");
-        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnregistrarActionPerformed(evt);
+        txtnombre3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtnombre3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombre3KeyTyped(evt);
             }
         });
+        getContentPane().add(txtnombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 160, -1));
+
+        labelcod.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelcod.setText("Codigo de empleado: ");
+        getContentPane().add(labelcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 575, -1, -1));
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
@@ -222,209 +270,111 @@ public class empleado extends javax.swing.JFrame {
                 btnguardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 162, -1));
 
-        txtnombre3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtnombre3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnombre3KeyTyped(evt);
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 120, 160, 30));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre: ");
+        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, -1, -1));
+
+        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMostrarT.setText("Mostrar Todo");
+        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 170, -1, -1));
+
+        tbEmpleado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbEmpleado.setComponentPopupMenu(ModificarMenuItem);
+        jScrollPane2.setViewportView(tbEmpleado);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, 450, 400));
 
         btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnbuscar.setText("buscar");
+        btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscarActionPerformed(evt);
             }
         });
 
-        labelcod.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelcod.setText("Codigo de empleado: ");
-
-        RegresarBtn.setText("Regresar");
-        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelmod)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(labelemp))
-                            .addComponent(labelreg)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(btnregistrar)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnmodificar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelcod)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
-                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
-                        .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel1)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtnombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtape1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel4)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtape2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel5)
-                        .addGap(60, 60, 60)
-                        .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel7)
-                        .addGap(52, 52, 52)
-                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jLabel9)
-                        .addGap(51, 51, 51)
-                        .addComponent(txtcorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(240, 240, 240)
-                                .addComponent(labelrol))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(RegresarBtn)))
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtrol, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnconf)
-                                    .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(372, Short.MAX_VALUE)
+                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelmod)
-                    .addComponent(labelemp)
-                    .addComponent(labelreg))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnregistrar)
-                    .addComponent(btnmodificar))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelcod)
-                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2))
-                    .addComponent(txtnombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtape1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtape2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5))
-                    .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(txtcorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(labelrol)
-                        .addGap(36, 36, 36)
-                        .addComponent(RegresarBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton1)))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnconf)
-                            .addComponent(btnguardar)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnbuscar)
+                .addContainerGap(494, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 520, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        void mostrarDatos( String valor){
+        DefaultTableModel modelo  = new DefaultTableModel(); 
+        
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombre");
+        tbEmpleado.setModel(modelo);
+        String sql = "";
+        if(valor.equals(""))
+        {
+        sql = "Select * from empleado";
+        }
+        else{
+        sql = "Select * from empleado where primerNombreEmpleado like  '"+valor+"%' ";
+        }
+        String []datos = new String[2];
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            modelo.addRow(datos);
+            
+            }
+            tbEmpleado.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mostrar();
         this.jPanel1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
-        this.labelemp.setVisible(false);
-        this.labelreg.setVisible(false);
-        this.btnguardar.setVisible(false);
-        this.labelmod.setVisible(true);
-        this.btnconf.setVisible(true);
-        this.btnbuscar.setVisible(true);
-        this.labelcod.setVisible(true);
-        this.txtcodigo.setVisible(true);
-        this.labelrol.setVisible(false);
-        this.txtrol.setVisible(false);
-        this.jButton1.setVisible(false);
-        this.jPanel1.setVisible(false);
-        
-    }//GEN-LAST:event_btnmodificarActionPerformed
-
-    private void btnconfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
@@ -432,26 +382,25 @@ public class empleado extends javax.swing.JFrame {
             PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"' WHERE codigoEmpleado='"+this.txtcodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
+            
+            mostrarDatos("");
+            
+            this.txtnombre1.setText("");
+            this.txtnombre3.setText("");
+            this.txtape1.setText("");
+            this.txtape1.setText("");
+            this.txtape2.setText("");
+            this.txttel.setText("");
+            this.txtcorreo1.setText("");
+            this.txtid.setText("");            
+            this.txtBuscar.setText("");
+            this.btnActualizar.setVisible(false);
         }
         catch(SQLException ex)
         {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnconfActionPerformed
-
-    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-        this.labelemp.setVisible(false);
-        this.labelmod.setVisible(false);
-        this.btnconf.setVisible(false);
-        this.labelreg.setVisible(true);
-        this.btnguardar.setVisible(true);
-        this.btnbuscar.setVisible(false);
-        this.labelcod.setVisible(false);
-        this.txtcodigo.setVisible(false);
-        this.labelrol.setVisible(true);
-        this.txtrol.setVisible(true);
-        this.jButton1.setVisible(true);
-    }//GEN-LAST:event_btnregistrarActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         Conectar con=new Conectar();
@@ -470,12 +419,15 @@ public class empleado extends javax.swing.JFrame {
             obj.setString(8,this.txtrol.getText().toUpperCase());
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
+            
+            
         }
         catch(SQLException ex)
         {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         ResultSet rx = Conectar.getTabla("select * from Empleado where identidadEmpleado='"+this.txtid.getText()+"'");
+        
         try {
             if(rx.next())
             {
@@ -485,34 +437,16 @@ public class empleado extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        mostrarDatos("");
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        ResultSet rx = Conectar.getTabla("select * from Empleado where codigoEmpleado='"+this.txtcodigo.getText()+"'");
-        try {
-            if(rx.next())
-            {
-                this.txtnombre1.setText(rx.getString("primerNombreEmpleado"));
-                this.txtnombre3.setText(rx.getString("segundoNombreEmpleado"));
-                this.txtape1.setText(rx.getString("primerApellidoEmpleado"));
-                this.txtape2.setText(rx.getString("segundoApellidoEmpleado"));
-                this.txtcorreo1.setText(rx.getString("correoEmpleado"));
-                this.txtid.setText(rx.getString("identidadEmpleado"));
-                this.txttel.setText(rx.getString("telefonoEmpleado"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       mostrarDatos(txtBuscar.getText());
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void dataRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseClicked
-        int fila=this.dataRol.getSelectedRow();
-        if(fila>=0)
-        {
-            this.txtrol.setText(this.dataRol.getValueAt(fila, 0).toString());
-        }
-        this.jPanel1.setVisible(false);
+
     }//GEN-LAST:event_dataRolMouseClicked
 
     private void txttelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelKeyTyped
@@ -577,6 +511,35 @@ public class empleado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_RegresarBtnActionPerformed
 
+    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
+        mostrarDatos("");
+        this.txtBuscar.setText("");
+
+    }//GEN-LAST:event_btnMostrarTActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        int fila = tbEmpleado.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.enable(true);
+            this.txtcodigo.setText(tbEmpleado.getValueAt(fila,0).toString());
+            this.txtnombre1.setText(tbEmpleado.getValueAt(fila,1).toString());
+
+            
+            this.btnActualizar.setVisible(true);
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     private void mostrar()
     {
         DefaultTableModel modelo2 = new DefaultTableModel();
@@ -636,12 +599,12 @@ public class empleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu ModificarMenuItem;
     private javax.swing.JButton RegresarBtn;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnMostrarT;
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btnconf;
     private javax.swing.JButton btnguardar;
-    private javax.swing.JButton btnmodificar;
-    private javax.swing.JButton btnregistrar;
     private javax.swing.JTable dataRol;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -651,13 +614,19 @@ public class empleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelcod;
     private javax.swing.JLabel labelemp;
     private javax.swing.JLabel labelmod;
     private javax.swing.JLabel labelreg;
     private javax.swing.JLabel labelrol;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTable tbEmpleado;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtape1;
     private javax.swing.JTextField txtape2;
     private javax.swing.JTextField txtcodigo;
