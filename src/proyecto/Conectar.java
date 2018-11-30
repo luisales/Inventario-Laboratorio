@@ -26,7 +26,7 @@ public class Conectar {
     private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
         //private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
 
-    
+
     public Conectar()
     {
         conn=null;

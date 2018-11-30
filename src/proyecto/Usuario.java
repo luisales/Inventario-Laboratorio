@@ -21,9 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Usuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Usuario
-     */
+   
     public Usuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -55,11 +53,14 @@ public class Usuario extends javax.swing.JFrame {
         RegresarBtn_Usuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtcontra1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 186, 207, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Contraseña: ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 189, -1, -1));
 
         txtusu.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtusu.addActionListener(new java.awt.event.ActionListener() {
@@ -67,22 +68,29 @@ public class Usuario extends javax.swing.JFrame {
                 txtusuActionPerformed(evt);
             }
         });
+        getContentPane().add(txtusu, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 121, 207, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Nombre de usuario:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 124, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel8.setText("Registrar Usuario");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 35, -1, -1));
 
         txtcontra2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtcontra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 258, 207, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Confirmar contraseña: ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 261, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Codigo de empleado:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 325, -1, -1));
 
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 322, 207, -1));
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
@@ -91,6 +99,7 @@ public class Usuario extends javax.swing.JFrame {
                 btnguardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 389, -1, -1));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +107,7 @@ public class Usuario extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 322, 19, 35));
 
         empleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,11 +131,12 @@ public class Usuario extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -215,6 +226,7 @@ public class Usuario extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(116, 116, 116))))
         );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
