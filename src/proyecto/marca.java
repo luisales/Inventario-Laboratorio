@@ -114,7 +114,7 @@ public class marca extends javax.swing.JFrame {
         lblIngresar.setText("Mantenimiento Marcas");
         getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", 0, 0, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,7 +128,6 @@ public class marca extends javax.swing.JFrame {
         jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
