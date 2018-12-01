@@ -146,7 +146,6 @@ public class marca extends javax.swing.JFrame {
         jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);

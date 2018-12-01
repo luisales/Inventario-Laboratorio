@@ -37,34 +37,54 @@ public class Rol extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel8 = new javax.swing.JLabel();
+        btnguardar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtnombre = new javax.swing.JTextField();
         chkEmpleados = new javax.swing.JCheckBox();
         chkUsuarios = new javax.swing.JCheckBox();
         chkPrestamos = new javax.swing.JCheckBox();
         chkInventario = new javax.swing.JCheckBox();
-        btnguardar = new javax.swing.JButton();
+        txtnombre = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        lblCodigo1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMostrarT = new javax.swing.JButton();
+        btnBuscar1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbMarcas = new javax.swing.JTable();
+        btnActualizar = new javax.swing.JButton();
+
+        jMenuItem1.setText("Modificar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel8.setText("Registrar Rol");
+        jLabel8.setText("Mantenimiento Rol");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 47, -1, -1));
+
+        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Nombre del rol");
-
-        txtnombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
-            }
-        });
-        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnombreKeyTyped(evt);
-            }
-        });
+        jLabel1.setText("Nombre del rol:");
 
         chkEmpleados.setText("Registrar Empleados");
         chkEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -79,67 +99,138 @@ public class Rol extends javax.swing.JFrame {
 
         chkInventario.setText("Manejar Inventario");
 
-        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnguardar.setText("Guardar");
-        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+        txtnombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardarActionPerformed(evt);
+                txtnombreActionPerformed(evt);
+            }
+        });
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(chkEmpleados)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(chkUsuarios)
-                                        .addGap(34, 34, 34)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chkInventario)
-                                    .addComponent(chkPrestamos)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(btnguardar)))
-                .addContainerGap(286, Short.MAX_VALUE))
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCodigo.setEnabled(false);
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+
+        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo1.setText("Codigo:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(lblCodigo1)
+                .addGap(11, 11, 11)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(chkEmpleados)
+                .addGap(17, 17, 17)
+                .addComponent(chkPrestamos))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(chkUsuarios)
+                .addGap(27, 27, 27)
+                .addComponent(chkInventario))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel8)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCodigo1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkEmpleados)
                     .addComponent(chkPrestamos))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chkUsuarios)
-                    .addComponent(chkInventario))
-                .addGap(41, 41, 41)
-                .addComponent(btnguardar)
-                .addContainerGap(92, Short.MAX_VALUE))
+                    .addComponent(chkInventario)))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 410, 210));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMostrarT.setText("Mostrar Todo");
+        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre del rol: ");
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        tbMarcas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbMarcas.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(tbMarcas);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
+
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setEnabled(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -180,6 +271,7 @@ public class Rol extends javax.swing.JFrame {
 
         try
            {
+               
              String rol = this.txtnombre.getText().toUpperCase();
              String nombreRol = "";
              String sql = "select * FROM rol where nombreRol ='" +rol+"'"; 
@@ -212,6 +304,7 @@ public class Rol extends javax.swing.JFrame {
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             permisos="";
+            mostrarDatos("");
                  }
            }
         catch(SQLException ex)
@@ -227,6 +320,92 @@ public class Rol extends javax.swing.JFrame {
         
         if((c < 'a' || c > 'z') && (c < 'A' || c > 'Z' )) evt.consume();
     }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
+        mostrarDatos("");
+        this.txtBuscar.setText("");
+        this.txtCodigo.setEnabled(true);
+        this.btnActualizar.setEnabled(true);
+        this.btnguardar.setEnabled(false);
+    }//GEN-LAST:event_btnMostrarTActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        mostrarDatos(txtBuscar.getText());
+        this.txtCodigo.setEnabled(true);
+        this.btnActualizar.setEnabled(true);
+        this.btnguardar.setEnabled(false);
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        if(this.txtnombre.getText().equals(""))
+        {
+          JOptionPane.showMessageDialog(null, "Llene todos los campos");
+          return;
+        }
+       if(this.chkEmpleados.isSelected()==false&&this.chkUsuarios.isSelected()==false&&this.chkInventario.isSelected()==false&&this.chkPrestamos.isSelected()==false)       
+       {
+          JOptionPane.showMessageDialog(null, "Seleccione por lo menos un tipo de permiso");
+          return; 
+       }
+      
+       
+       if(this.chkEmpleados.isSelected())
+           permisos=permisos+"A";
+       if(this.chkUsuarios.isSelected())
+           permisos=permisos+"B";
+       if(this.chkInventario.isSelected())
+           permisos=permisos+"C";
+       if(this.chkPrestamos.isSelected())
+           permisos=permisos+"D";
+        
+        
+        
+        try
+        {
+            PreparedStatement obj=reg.prepareStatement("UPDATE rol SET nombreRol='"+this.txtnombre.getText()+"',permisosRol='"+permisos+"'WHERE codigoRol='"+this.txtCodigo.getText()+"'");
+            obj.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado con exito");
+            permisos="";
+            mostrarDatos("");
+
+            this.txtCodigo.setText("");
+            this.txtnombre.setText("");
+            this.chkEmpleados.setSelected(false);
+            this.chkUsuarios.setSelected(false);
+            this.chkInventario.setSelected(false);
+            this.chkPrestamos.setSelected(false);
+            this.txtBuscar.setText("");
+            
+
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < '0' || c > '9')) evt.consume();
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,8 +441,48 @@ public class Rol extends javax.swing.JFrame {
             }
         });
     }
+    
+    void mostrarDatos( String valor){
+        DefaultTableModel modelo  = new DefaultTableModel(); 
+        
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Permisos");
+        tbMarcas.setModel(modelo);
+        String sql = "";
+        if(valor.equals(""))
+        {
+        sql = "Select * from rol";
+        }
+        else{
+        sql = "Select * from rol where nombreRol like  '"+valor+"%' ";
+        }
+        String []datos = new String[3];
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            modelo.addRow(datos);
+            
+            }
+            tbMarcas.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnMostrarT;
     private javax.swing.JButton btnguardar;
     private javax.swing.JCheckBox chkEmpleados;
     private javax.swing.JCheckBox chkInventario;
@@ -271,6 +490,16 @@ public class Rol extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCodigo1;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JTable tbMarcas;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }
