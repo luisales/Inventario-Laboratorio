@@ -397,24 +397,8 @@ public class marca extends javax.swing.JFrame {
         
     }
     
-       /* 
-    eliminar click derecho
-    Conectar con=new Conectar();
-        Connection reg=con.getConnection();
-        try
-        {
-            int fila = tbMarcas.getSelectedRow();
-            String codigo ="";
-            codigo = tbMarcas.getValueAt(fila,0).toString();
-            PreparedStatement obj=reg.prepareStatement("Delete from marca Where codigoMarca='"+codigo+"'");
-            obj.executeUpdate();
-            mostrarDatos("");
-        }
-        catch(SQLException ex)
-        {
-            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
+        
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar1;
