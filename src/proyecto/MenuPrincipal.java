@@ -4,6 +4,15 @@ package proyecto;
 import proyecto.Clientes;
 import proyecto.Usuario;
 import proyecto.empleado;
+import proyecto.Inventario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,16 +51,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 22, 22, 22));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        PanelFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-cliente-de-empresa-64.png"))); // NOI18N
         jButton1.setText("Empleado");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -63,13 +76,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        PanelFondo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 35, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuario-64.png"))); // NOI18N
         jButton2.setText("Usuario");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setFocusPainted(false);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,45 +95,61 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        PanelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-cola-64.png"))); // NOI18N
         jButton3.setText("Clientes");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        PanelFondo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 232, -1, -1));
 
-        javax.swing.GroupLayout PanelFondoLayout = new javax.swing.GroupLayout(PanelFondo);
-        PanelFondo.setLayout(PanelFondoLayout);
-        PanelFondoLayout.setHorizontalGroup(
-            PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelFondoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3))
-            .addGroup(PanelFondoLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)))
-        );
-        PanelFondoLayout.setVerticalGroup(
-            PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelFondoLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(25, 25, 25))
-        );
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon2 (1).png"))); // NOI18N
+        jButton4.setText("Mantenimientos");
+        jButton4.setToolTipText("");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.setFocusPainted(false);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        PanelFondo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 170, 60));
 
-        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 409, 300));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imge.png"))); // NOI18N
+        jButton5.setText("Inventario");
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton5.setFocusPainted(false);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        PanelFondo.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 150, -1));
+
+        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,6 +189,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Inventario cli = new Inventario();
+       
+
+        cli.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,14 +226,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -199,5 +256,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }
