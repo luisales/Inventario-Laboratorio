@@ -27,7 +27,7 @@ public class marca extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         mostrarDatos("");
-       this.btnActualizar.setVisible(false);
+       this.btnActualizar.setEnabled(false);
        
     }
     
@@ -78,7 +78,9 @@ public class marca extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         lblIngresar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
@@ -99,6 +101,14 @@ public class marca extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbMarcas = new javax.swing.JTable();
 
+        jMenuItem3.setText("Ingresar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +117,14 @@ public class marca extends javax.swing.JFrame {
         });
         jPopupMenu1.add(jMenuItem1);
 
+        jMenuItem2.setText("Eliminar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -114,7 +132,7 @@ public class marca extends javax.swing.JFrame {
         lblIngresar.setText("Mantenimiento Marcas");
         getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", 0, 0, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -313,7 +331,8 @@ public class marca extends javax.swing.JFrame {
             this.txtNombre.setText("");
             this.txtDescripcion.setText("");
             this.txtBuscar.setText("");
-            this.btnActualizar.setVisible(false);
+            this.btnIngresar.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
             
             
         }
@@ -348,7 +367,10 @@ public class marca extends javax.swing.JFrame {
             this.txtNombre.setText(tbMarcas.getValueAt(fila,1).toString());
             this.txtDescripcion.setText(tbMarcas.getValueAt(fila,2).toString());
             
-            this.btnActualizar.setVisible(true);
+           
+            this.btnIngresar.setEnabled(false);
+            this.btnActualizar.setEnabled(true);
+            
             
         }
         else{
@@ -359,6 +381,32 @@ public class marca extends javax.swing.JFrame {
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbMarcas.getSelectedRow();
+            String codigo ="";
+            codigo = tbMarcas.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from marca Where codigoMarca="+codigo);
+            obj.executeUpdate();
+            mostrarDatos("");
+            this.btnIngresar.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+            
+        
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,23 +445,8 @@ public class marca extends javax.swing.JFrame {
         
     }
     
-       /* 
-    eliminar click derecho
-    Conectar con=new Conectar();
-        Connection reg=con.getConnection();
-        try
-        {
-            int fila = tbMarcas.getSelectedRow();
-            String codigo ="";
-            codigo = tbMarcas.getValueAt(fila,0).toString();
-            PreparedStatement obj=reg.prepareStatement("Delete from marca Where codigoMarca='"+codigo+"'");
-            obj.executeUpdate();
-            mostrarDatos("");
-        }
-        catch(SQLException ex)
-        {
-            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -421,6 +454,8 @@ public class marca extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnMostrarT;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;

@@ -9,10 +9,14 @@ package proyecto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +30,44 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
     public RegistroLaboratorio() {
         initComponents();
         this.setLocationRelativeTo(null);
+        mostrarDatos("");
+       this.btnActualizar.setEnabled(false);
+    }
+    
+     void mostrarDatos( String valor){
+        DefaultTableModel modelo  = new DefaultTableModel(); 
+        
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Capacidad");
+        tbLaboratorio.setModel(modelo);
+        String sql = "";
+        if(valor.equals(""))
+        {
+        sql = "Select * from laboratorio";
+        }
+        else{
+        sql = "Select * from laboratorio where nombreLaboratorio like  '"+valor+"%' ";
+        }
+        String []datos = new String[3];
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            modelo.addRow(datos);
+            
+            }
+            tbLaboratorio.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroLaboratorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -37,103 +79,190 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CantidadLabtxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        GuardarBtnRegLab = new javax.swing.JButton();
-        nombrelabtxt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        lblIngresar = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblCodigo = new javax.swing.JLabel();
+        lblCodigo1 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        txtCapacidad = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        lblNombre1 = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        btnMostrarT = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbLaboratorio = new javax.swing.JTable();
         RegresarBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Capacidad del laboratorio:");
-
-        GuardarBtnRegLab.setText("Guardar");
-        GuardarBtnRegLab.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Ingresar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarBtnRegLabActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
+        jPopupMenu1.add(jMenuItem3);
 
-        jLabel2.setText("Nombre laboratorio:");
+        jMenuItem1.setText("Modificar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
+        jMenuItem2.setText("Eliminar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblIngresar.setText("Mantenimiento Laboratorios");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setFocusable(false);
+        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo.setText("Codigo Marca:");
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+
+        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo1.setText("Codigo:");
+        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCodigo.setEnabled(false);
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 110, -1));
+
+        txtCapacidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCapacidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCapacidadKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 277, -1));
+
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
+
+        lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre1.setText("Capacidad:");
+        jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        lblNombre2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre2.setText("Nombre: ");
+        jPanel1.add(lblNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 277, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 520, 460));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMostrarT.setText("Mostrar Todo");
+        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre: ");
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        tbLaboratorio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbLaboratorio.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(tbLaboratorio);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
+
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegresarBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(CantidadLabtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(183, 183, 183)
-                                    .addComponent(nombrelabtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(RegresarBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(GuardarBtnRegLab)))
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nombrelabtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CantidadLabtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(54, 54, 54)
-                .addComponent(GuardarBtnRegLab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(RegresarBtn)
-                .addContainerGap())
-        );
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void GuardarBtnRegLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBtnRegLabActionPerformed
-        // TODO add your handling code here:
-        Conectar con=new Conectar();
-        Connection reg=con.getConnection();
-        
-         try{
-                PreparedStatement obj = reg.prepareStatement("INSERT INTO laboratorio (capacidadLaboratorio,nombreLaboratorio) values(?,?)");
-                
-                obj.setString(1,this.CantidadLabtxt.getText());
-                obj.setString(2,this.nombrelabtxt.getText());
-                
-                
-                obj.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Guardado con exito");
-            }
-              
-        
-        
-        catch(SQLException ex)
-        {
-            Logger.getLogger(RegistroLaboratorio.class.getName()).log(Level.SEVERE,null,ex);
-        }
-    }//GEN-LAST:event_GuardarBtnRegLabActionPerformed
 
     private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
         // TODO add your handling code here:
@@ -142,6 +271,167 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         men.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegresarBtnActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char c = evt.getKeyChar();
+
+        if((c < '0' || c > '9')) evt.consume();
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtCapacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCapacidadKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCapacidadKeyTyped
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+
+        String nombre = this.txtNombre.getText().toUpperCase();
+        String capacidad = this.txtCapacidad.getText().toUpperCase();
+
+        if(nombre.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo nombre");
+            return;
+        }
+        
+        if(capacidad.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo capacidad");
+            return;
+        }
+
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+
+        try
+        {
+            String nombrelaboratorio = "";
+            String sql = "select * FROM laboratorio where nombreLaboratorio ='" +nombrelaboratorio+"'";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {
+                nombrelaboratorio = rs.getString("nombreLaboratorio");
+            }
+
+            if(nombre.equals(nombrelaboratorio))
+            {
+                JOptionPane.showMessageDialog(null, "Laboratorio ya existente");
+            }
+            else
+            {
+                PreparedStatement obj=reg.prepareStatement("INSERT INTO laboratorio(nombreLaboratorio, capacidadLaboratorio) values(?,?)");
+                obj.setString(1,nombre);
+                obj.setString(2,this.txtCapacidad.getText());
+                obj.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Laboratorio Ingresado");
+
+                this.txtCodigo.setText("");
+                this.txtNombre.setText("");
+                this.txtCapacidad.setText("");
+            }
+
+            mostrarDatos("");
+
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(RegistroLaboratorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            PreparedStatement obj=reg.prepareStatement("UPDATE laboratorio SET nombreLaboratorio='"+this.txtNombre.getText()+"',capacidadLaboratorio='"+this.txtCapacidad.getText()+"'WHERE codigoLaboratorio='"+this.txtCodigo.getText()+"'");
+            obj.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado con exito");
+            mostrarDatos("");
+
+            this.txtCodigo.setText("");
+            this.txtNombre.setText("");
+            this.txtCapacidad.setText("");
+            this.txtBuscar.setText("");
+            this.btnIngresar.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(RegistroLaboratorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
+        mostrarDatos("");
+        this.txtBuscar.setText("");
+
+    }//GEN-LAST:event_btnMostrarTActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        int fila = tbLaboratorio.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.enable(true);
+            this.txtCodigo.setText(tbLaboratorio.getValueAt(fila,0).toString());
+            this.txtNombre.setText(tbLaboratorio.getValueAt(fila,1).toString());
+            this.txtCapacidad.setText(tbLaboratorio.getValueAt(fila,2).toString());
+
+            this.btnIngresar.setEnabled(false);
+            this.btnActualizar.setEnabled(true);
+            
+            
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbLaboratorio.getSelectedRow();
+            String codigo ="";
+            codigo = tbLaboratorio.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from laboratorio Where codigoLaboratorio="+codigo);
+            obj.executeUpdate();
+            mostrarDatos("");
+            this.btnIngresar.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +470,28 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CantidadLabtxt;
-    private javax.swing.JButton GuardarBtnRegLab;
     private javax.swing.JButton RegresarBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField nombrelabtxt;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnMostrarT;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCodigo1;
+    private javax.swing.JLabel lblIngresar;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
+    private javax.swing.JTable tbLaboratorio;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCapacidad;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
