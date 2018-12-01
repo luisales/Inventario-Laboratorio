@@ -84,7 +84,7 @@ public class empleado extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnbuscar = new javax.swing.JButton();
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Modificar bb :*");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -403,13 +403,38 @@ public class empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        
+        String nombre = this.txtnombre1.getText().toUpperCase(); 
+     
+        if(nombre.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo nombre");
+            return;
+        }
+        
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
 
         try
         {
+             String primerNombreEmpleado = "";
+             String sql = "select * FROM empleado where primerNombreEmpleado ='" +nombre+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next())
+             {
+                 primerNombreEmpleado = rs.getString("primerNombreEmpleado");
+             }
+            
+            if(nombre.equals(primerNombreEmpleado))
+            {
+            JOptionPane.showMessageDialog(null, "Empleado ya existente");
+            }
+            else
+            {
             PreparedStatement obj=reg.prepareStatement("INSERT INTO empleado(primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado,telefonoEmpleado, correoEmpleado, identidadEmpleado, codigoRol) values(?,?,?,?,?,?,?,?)");
-            obj.setString(1,this.txtnombre1.getText().toUpperCase());
+            obj.setString(1,nombre);
             obj.setString(2,this.txtnombre3.getText().toUpperCase());
             obj.setString(3,this.txtape1.getText().toUpperCase());
             obj.setString(4,this.txtape2.getText().toUpperCase());
@@ -418,8 +443,20 @@ public class empleado extends javax.swing.JFrame {
             obj.setString(7,this.txtid.getText().toUpperCase());
             obj.setString(8,this.txtrol.getText().toUpperCase());
             obj.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Guardado con exito");
+            JOptionPane.showMessageDialog(null, "Empleado Registrado.");
             
+            this.txtnombre1.setText("");
+            this.txtnombre3.setText("");
+            this.txtape1.setText("");
+            this.txtape2.setText("");
+            this.txttel.setText("");
+            this.txtcorreo1.setText("");
+            this.txtid.setText("");
+            this.txtrol.setText("");
+            
+            }
+            
+            mostrarDatos("");
             
         }
         catch(SQLException ex)
@@ -438,7 +475,6 @@ public class empleado extends javax.swing.JFrame {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        mostrarDatos("");
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed

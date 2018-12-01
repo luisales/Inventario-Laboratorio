@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,18 +25,45 @@ public class tipoPeriferico extends javax.swing.JFrame {
      */
     public tipoPeriferico() {
         initComponents();
-        
-         this.lblIngresar.setVisible(false);
-        this.lblModificar.setVisible(false);
-        this.lblCodigo.setVisible(false);
-        this.lblCapacidad.setVisible(false);
-        this.btnActualizar.setVisible(false);
-        this.btnIngresar.setVisible(false);
-        this.txtNombre.setVisible(false);
-        this.btnBuscar.setVisible(false);
-        this.txtCodigo.setVisible(false);
+        setLocationRelativeTo(null);
+        mostrarDatos("");
+       this.btnActualizar.setVisible(true);
     }
 
+    
+    void mostrarDatos( String valor){
+        DefaultTableModel modelo  = new DefaultTableModel(); 
+        
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        tbTipoPeriferico.setModel(modelo);
+        String sql = "";
+        if(valor.equals(""))
+        {
+        sql = "Select * from tipoperiferico";
+        }
+        else{
+        sql = "Select * from tipoperiferico where nombrePeriferico like  '"+valor+"%' ";
+        }
+        String []datos = new String[2];
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            datos[0] = rs.getString(1);
+            datos[1] = rs.getString(2);
+            modelo.addRow(datos);
+            
+            }
+            tbTipoPeriferico.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(tipoPeriferico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,52 +73,55 @@ public class tipoPeriferico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         lblIngresar = new javax.swing.JLabel();
-        lblModificar = new javax.swing.JLabel();
-        btnIngresar11 = new javax.swing.JButton();
-        btnActualizar11 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lblCodigo = new javax.swing.JLabel();
+        lblCodigo1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        lblCapacidad = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
+        lblNombre1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMostrarT = new javax.swing.JButton();
+        btnBuscar1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbTipoPeriferico = new javax.swing.JTable();
+
+        jMenuItem2.setText("Modificar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblIngresar.setText("Registrar tipo de Periférico");
-        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        lblIngresar.setText("Mantenimiento Tipo de Periférico");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        lblModificar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lblModificar.setText("Modificar tipo de Periférico");
-        getContentPane().add(lblModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
-
-        btnIngresar11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnIngresar11.setText("Modificar");
-        btnIngresar11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresar11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnIngresar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
-
-        btnActualizar11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnActualizar11.setText("Registrar");
-        btnActualizar11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizar11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnActualizar11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setFocusable(false);
+        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblCodigo.setText("Codigo Periferico:");
-        getContentPane().add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        lblCodigo.setText("Codigo Marca:");
+        jPanel1.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
 
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblCodigo1.setText("Codigo Tipo Periférico:");
+        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtCodigo.setEnabled(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -101,74 +132,92 @@ public class tipoPeriferico extends javax.swing.JFrame {
                 txtCodigoKeyTyped(evt);
             }
         });
-        getContentPane().add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 110, -1));
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 110, -1));
 
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 110, -1));
-
-        lblCapacidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblCapacidad.setText("Nombre Periferico:");
-        getContentPane().add(lblCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 200, -1));
-
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 277, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 190, -1));
 
-        btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 130, -1));
 
-        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, -1, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 130, -1));
+
+        lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblNombre1.setText("Nombre Tipo Periférico: ");
+        jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 520, 460));
+        jPanel1.getAccessibleContext().setAccessibleName("Datos Tipo de Periférico");
+        jPanel1.getAccessibleContext().setAccessibleDescription("");
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btnMostrarT.setText("Mostrar Todo");
+        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, 30));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        lblNombre.setText("Nombre: ");
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        tbTipoPeriferico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbTipoPeriferico.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(tbTipoPeriferico);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 500, 370));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnIngresar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar11ActionPerformed
-        this.lblIngresar.setVisible(false);
-        this.lblModificar.setVisible(true);
-        this.lblCodigo.setVisible(true);
-        this.lblCapacidad.setVisible(true);
-        this.btnActualizar.setVisible(true);
-        this.btnIngresar.setVisible(false);
-        this.btnBuscar.setVisible(true);
-        this.txtNombre.setVisible(true);
-        this.txtCodigo.setVisible(true);
-    }//GEN-LAST:event_btnIngresar11ActionPerformed
-
-    private void btnActualizar11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar11ActionPerformed
-
-        this.lblIngresar.setVisible(true);
-        this.lblModificar.setVisible(false);
-        this.lblCodigo.setVisible(false);
-        this.lblCapacidad.setVisible(true);
-        this.btnActualizar.setVisible(false);
-        this.btnIngresar.setVisible(true);
-        this.btnBuscar.setVisible(false);
-          this.txtNombre.setVisible(true);
-        this.txtCodigo.setVisible(false);
-    }//GEN-LAST:event_btnActualizar11ActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
@@ -180,43 +229,51 @@ public class tipoPeriferico extends javax.swing.JFrame {
         if((c < '0' || c > '9')) evt.consume();
     }//GEN-LAST:event_txtCodigoKeyTyped
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ResultSet rx = Conectar.getTabla("select * from tipoPeriferico where codigoTipoPeriferico='"+this.txtCodigo.getText()+"'");
-        try {
-            if(rx.next())
-            {
-                this.txtNombre.setText(rx.getString("nombrePeriferico"));
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(tipoPeriferico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        if(txtNombre.getText().equals(""))
+        String nombre = this.txtNombre.getText().toUpperCase();
+
+        if(nombre.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Llene el campo nombre");
             return;
         }
-        
+
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
 
         try
         {
-            
-                PreparedStatement obj=reg.prepareStatement("INSERT INTO tipoPeriferico(nombrePeriferico) values(?)");
-                obj.setString(1,this.txtNombre.getText().toUpperCase());
+            String nombrePeriferico = "";
+            String sql = "select * FROM tipoperiferico where nombrePeriferico ='" +nombre+"'";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {
+                nombrePeriferico = rs.getString("nombrePeriferico");
+            }
+
+            if(nombre.equals(nombrePeriferico))
+            {
+                JOptionPane.showMessageDialog(null, "Tipo de Periférico ya existente");
+            }
+            else
+            {
+                PreparedStatement obj=reg.prepareStatement("INSERT INTO tipoperiferico(nombrePeriferico) values(?)");
+                obj.setString(1,nombre);
                 obj.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Guardado con exito");
+                JOptionPane.showMessageDialog(null, "Tipo de Periférico Ingresado");
+
+                this.txtCodigo.setText("");
                 this.txtNombre.setText("");
-            
+            }
+
+            mostrarDatos("");
 
         }
         catch(SQLException ex)
@@ -232,16 +289,52 @@ public class tipoPeriferico extends javax.swing.JFrame {
         Connection reg=con.getConnection();
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE tipoPeriferico SET nombrePeriferico='"+this.txtNombre.getText().toUpperCase()+ "'WHERE codigoTipoPeriferico='"+this.txtCodigo.getText()+"'");
+            PreparedStatement obj=reg.prepareStatement("UPDATE tipoperiferico SET nombrePeriferico='"+this.txtNombre.getText()+"'WHERE codigoTipoPeriferico='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
+            mostrarDatos("");
+
+            this.txtCodigo.setText("");
+            this.txtNombre.setText("");
+            this.txtBuscar.setText("");
+            this.btnActualizar.setVisible(false);
+
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(tipoPeriferico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
+        mostrarDatos("");
+        this.txtBuscar.setText("");
+
+    }//GEN-LAST:event_btnMostrarTActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        int fila = tbTipoPeriferico.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.enable(true);
+            this.txtCodigo.setText(tbTipoPeriferico.getValueAt(fila,0).toString());
+            this.txtNombre.setText(tbTipoPeriferico.getValueAt(fila,1).toString());        
+            this.btnActualizar.setVisible(true);
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,14 +374,21 @@ public class tipoPeriferico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnActualizar11;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnIngresar11;
-    private javax.swing.JLabel lblCapacidad;
+    private javax.swing.JButton btnMostrarT;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblIngresar;
-    private javax.swing.JLabel lblModificar;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JTable tbTipoPeriferico;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
