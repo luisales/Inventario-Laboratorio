@@ -23,8 +23,8 @@ public class Conectar {
     //private static final String password ="pokemon182";
     private static final String password ="";
 
-    private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
-     //   private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
+    //private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
+        private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
 
 
     public Conectar()
