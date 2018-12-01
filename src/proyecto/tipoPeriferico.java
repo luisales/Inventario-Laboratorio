@@ -27,7 +27,8 @@ public class tipoPeriferico extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         mostrarDatos("");
-       this.btnActualizar.setVisible(true);
+       this.btnActualizar.setVisible(false);
+       this.btnIngresar.setVisible(true);
     }
 
     
@@ -74,6 +75,8 @@ public class tipoPeriferico extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         lblIngresar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -92,7 +95,23 @@ public class tipoPeriferico extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbTipoPeriferico = new javax.swing.JTable();
 
-        jMenuItem2.setText("Modificar");
+        jMenuItem1.setText("Modificar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Insertar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Eliminar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -321,7 +340,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         int fila = tbTipoPeriferico.getSelectedRow();
         if(fila >=0)
         {
@@ -329,11 +348,43 @@ public class tipoPeriferico extends javax.swing.JFrame {
             this.txtCodigo.setText(tbTipoPeriferico.getValueAt(fila,0).toString());
             this.txtNombre.setText(tbTipoPeriferico.getValueAt(fila,1).toString());        
             this.btnActualizar.setVisible(true);
-            
+            this.btnIngresar.setEnabled(false);           
         }
         else{
-        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        JOptionPane.showMessageDialog(null,"No seleccionó la fila");
         }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        this.btnActualizar.setEnabled(false);
+        this.btnIngresar.setEnabled(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        int fila = tbTipoPeriferico.getSelectedRow();
+        if(fila >=0)
+        {
+            Conectar con=new Conectar();
+            Connection reg=con.getConnection();
+            try
+            {
+                String codigo ="";
+                codigo = tbTipoPeriferico.getValueAt(fila,0).toString();
+                PreparedStatement obj=reg.prepareStatement("Delete from tipoperiferico Where codigoTipoPeriferico='"+codigo+"'");
+                obj.executeUpdate();
+                mostrarDatos("");
+            }
+            catch(SQLException ex)
+            {
+                Logger.getLogger(facultad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No selecciono fila");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
@@ -377,7 +428,9 @@ public class tipoPeriferico extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnMostrarT;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
