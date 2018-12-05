@@ -186,7 +186,7 @@ public class clase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        String nombre = this.txtNombre.getText().toUpperCase(); 
         if(txtNombre.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Llene el campo nombre");
@@ -198,13 +198,28 @@ public class clase extends javax.swing.JFrame {
 
         try
         {
+            String nombreMarca = "";
+             String sql = "select * FROM clase where nombreClase ='" +nombre+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next())
+             {
+                 nombreMarca = rs.getString("nombreClase");
+             }
             
+            if(nombre.equals(nombreMarca))
+            {
+            JOptionPane.showMessageDialog(null, "Clase ya existente");
+            }
+            else
+            {
                 PreparedStatement obj=reg.prepareStatement("INSERT INTO clase(nombreClase) values(?)");
                 obj.setString(1,this.txtNombre.getText().toUpperCase());
                 obj.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Guardado con exito");
                 this.txtNombre.setText("");
-            
+            }
 
         }
         catch(SQLException ex)
@@ -231,19 +246,38 @@ public class clase extends javax.swing.JFrame {
 
     private void btnActualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar1ActionPerformed
 
+        String nombre = this.txtNombre.getText().toUpperCase(); 
+        int total=0;  
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE clase SET nombreClase='"+this.txtNombre.getText().toUpperCase()+"'WHERE codigoClase='"+this.txtCodigo.getText()+"'");
-            obj.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Guardado con exito");
-            mostrarDatos("");
+            String nombreMarca = "";
+            String sql = "select * FROM clase where nombreClase ='" +nombre+"'"; 
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+             
+            while(rs.next())
+            {
+                nombreMarca = rs.getString("nombreClase");
+                total++;
+            }
+            if(nombre.equals(nombreMarca))
+            {
+            JOptionPane.showMessageDialog(null, "Clase ya existente");
+            }
+            else
+            {
+                PreparedStatement obj=reg.prepareStatement("UPDATE clase SET nombreClase='"+this.txtNombre.getText().toUpperCase()+"'WHERE codigoClase='"+this.txtCodigo.getText()+"'");
+                 obj.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Guardado con exito");
+                mostrarDatos("");
 
-            this.txtCodigo.setText("");
-            this.txtNombre.setText("");
-            this.txtBuscar.setText("");
-
+                this.txtCodigo.setText("");
+                this.txtNombre.setText("");
+                this.txtBuscar.setText("");
+                    
+            }
         }
         catch(SQLException ex)
         {
