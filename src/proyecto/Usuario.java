@@ -50,6 +50,7 @@ public class Usuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         empleados = new javax.swing.JTable();
+        RegresarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,6 +142,14 @@ public class Usuario extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
+
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,6 +254,14 @@ public class Usuario extends javax.swing.JFrame {
         men.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegresarBtn_UsuarioActionPerformed
+
+    private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal men = new MenuPrincipal();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtnActionPerformed
     
     private void mostrar()
     {
@@ -298,6 +315,7 @@ public class Usuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnguardar;
     private javax.swing.JTable empleados;
     private javax.swing.JButton jButton1;

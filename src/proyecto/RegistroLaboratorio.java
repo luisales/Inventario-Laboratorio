@@ -95,8 +95,6 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         lblNombre2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        btnMostrarT = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -208,27 +206,14 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostrarT.setText("Mostrar Todo");
-        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
-
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
-
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
             }
         });
         jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
@@ -375,16 +360,6 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
-        mostrarDatos("");
-        this.txtBuscar.setText("");
-
-    }//GEN-LAST:event_btnMostrarTActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        mostrarDatos(txtBuscar.getText());
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
@@ -433,6 +408,10 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+     mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -472,9 +451,7 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMostrarT;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

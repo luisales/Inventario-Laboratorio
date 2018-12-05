@@ -21,7 +21,7 @@ public class facultad extends javax.swing.JFrame {
     public facultad() {
         initComponents();
         this.btnActualizar.setEnabled(false);
-
+        setLocationRelativeTo(null);
         mostrarDatos("");
         
         
@@ -84,9 +84,8 @@ public class facultad extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         lblNombre1 = new javax.swing.JLabel();
+        RegresarBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btnMostrarT = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -117,9 +116,11 @@ public class facultad extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblIngresar.setText("Mantenimiento Facultad");
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Facultad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
@@ -163,7 +164,7 @@ public class facultad extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -172,36 +173,33 @@ public class facultad extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
 
         lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblNombre1.setText("Nombre: ");
         jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 460));
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostrarT.setText("Mostrar Todo");
-        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
             }
         });
         jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
@@ -223,36 +221,7 @@ public class facultad extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblIngresar)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(10, 10, 10)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(lblIngresar)
-                            .addGap(16, 16, 16)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 520, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -345,16 +314,6 @@ public class facultad extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
-        mostrarDatos("");
-        this.txtBuscar.setText("");
-
-    }//GEN-LAST:event_btnMostrarTActionPerformed
-
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        mostrarDatos(txtBuscar.getText());
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
@@ -410,6 +369,18 @@ public class facultad extends javax.swing.JFrame {
         this.btnIngresar.setEnabled(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+      mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
+        // TODO add your handling code here:
+        Mantenimientos men = new Mantenimientos();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -447,10 +418,9 @@ public class facultad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMostrarT;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

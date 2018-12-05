@@ -79,10 +79,10 @@ public class empleado extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         btnMostrarT = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbEmpleado = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         btnbuscar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbEmpleado = new javax.swing.JTable();
 
         jMenuItem2.setText("Modificar bb :*");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -292,6 +292,14 @@ public class empleado extends javax.swing.JFrame {
         });
         getContentPane().add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 170, -1, -1));
 
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+
         tbEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -303,23 +311,15 @@ public class empleado extends javax.swing.JFrame {
         tbEmpleado.setComponentPopupMenu(ModificarMenuItem);
         jScrollPane2.setViewportView(tbEmpleado);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, 450, 400));
-
-        btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnbuscar.setText("Buscar");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(372, Short.MAX_VALUE)
-                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38))
         );
         jPanel2Layout.setVerticalGroup(
@@ -327,7 +327,9 @@ public class empleado extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(btnbuscar)
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 520, 550));

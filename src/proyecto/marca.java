@@ -28,7 +28,7 @@ public class marca extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mostrarDatos("");
        this.btnActualizar.setEnabled(false);
-       
+       this.txtCodigo.setEnabled(false);
     }
     
     
@@ -94,12 +94,11 @@ public class marca extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         lblNombre1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnMostrarT = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbMarcas = new javax.swing.JTable();
+        RegresarBtn = new javax.swing.JButton();
 
         jMenuItem3.setText("Ingresar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -204,24 +203,6 @@ public class marca extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostrarT.setText("Mostrar Todo");
-        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
-
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
@@ -255,6 +236,14 @@ public class marca extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
+
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 575, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -354,17 +343,6 @@ public class marca extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
-        mostrarDatos("");
-        this.txtBuscar.setText("");
-        
-        
-    }//GEN-LAST:event_btnMostrarTActionPerformed
-
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-       mostrarDatos(txtBuscar.getText());
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         int fila = tbMarcas.getSelectedRow();
         if(fila >=0)
@@ -410,7 +388,8 @@ public class marca extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            
+        this.btnActualizar.setEnabled(false);
+        this.btnIngresar.setEnabled(true);            
         
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -422,6 +401,14 @@ public class marca extends javax.swing.JFrame {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
           mostrarDatos(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
+        // TODO add your handling code here:
+        Mantenimientos men = new Mantenimientos();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,10 +451,9 @@ public class marca extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMostrarT;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

@@ -88,12 +88,11 @@ public class tipoPeriferico extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         lblNombre1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnMostrarT = new javax.swing.JButton();
-        btnBuscar1 = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbTipoPeriferico = new javax.swing.JTable();
+        RegresarBtn = new javax.swing.JButton();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -190,28 +189,15 @@ public class tipoPeriferico extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        btnMostrarT.setText("Mostrar Todo");
-        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
-
         txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
             }
         });
         jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 160, 30));
@@ -234,6 +220,14 @@ public class tipoPeriferico extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 500, 370));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
+
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -326,16 +320,6 @@ public class tipoPeriferico extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
-        mostrarDatos("");
-        this.txtBuscar.setText("");
-
-    }//GEN-LAST:event_btnMostrarTActionPerformed
-
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        mostrarDatos(txtBuscar.getText());
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
@@ -387,6 +371,18 @@ public class tipoPeriferico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        mostrarDatos(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
+        // TODO add your handling code here:
+        Mantenimientos men = new Mantenimientos();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,10 +420,9 @@ public class tipoPeriferico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnMostrarT;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
