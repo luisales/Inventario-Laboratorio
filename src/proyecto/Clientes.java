@@ -24,8 +24,8 @@ public class Clientes extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(this);
-        
-        
+        this.txtcodigoIdCliente.setVisible(false);
+        this.jLabel9.setVisible(false);
         mostrarDatos("");
     }
 
@@ -40,6 +40,8 @@ public class Clientes extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,6 +83,22 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
         jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Ingresar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Eliminar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -567,12 +585,13 @@ public class Clientes extends javax.swing.JFrame {
         if(fila >=0)
         {
             this.btnActualizar.enable(true);
-            this.txtprimerNombre.setText(tbCliente.getValueAt(fila,0).toString());
-            this.txtprimerApellido.setText(tbCliente.getValueAt(fila,1).toString());
+            this.txtcodigoIdCliente.setText(tbCliente.getValueAt(fila,0).toString());
+            this.txtprimerNombre.setText(tbCliente.getValueAt(fila,1).toString());
 
             
             this.btnActualizar.setVisible(true);
-            
+            this.txtcodigoIdCliente.setVisible(true);
+            this.jLabel9.setVisible(true);
         }
         else{
         JOptionPane.showMessageDialog(null,"no selecciono fila");
@@ -586,6 +605,31 @@ public class Clientes extends javax.swing.JFrame {
     private void txtidClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidClienteKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidClienteKeyPressed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        this.txtcodigoIdCliente.setVisible(false);
+        this.jLabel9.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbCliente.getSelectedRow();
+            String codigo ="";
+            codigo = tbCliente.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from cliente Where codigoIdCliente='"+codigo+"'");
+            obj.executeUpdate();
+            mostrarDatos("");
+            this.tbCliente.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -658,6 +702,8 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;

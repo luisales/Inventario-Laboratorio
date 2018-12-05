@@ -20,11 +20,11 @@ public class Conectar {
     private static Connection conn;
     private static final String driver ="com.mysql.jdbc.Driver";
     private static final String user ="root";
-    private static final String password ="pokemon182";
-    //private static final String password ="123";
+    //private static final String password ="pokemon182";
+    private static final String password ="123";
 
-   //private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
-   private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
+   private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
+   //private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
 
 
     public Conectar()
