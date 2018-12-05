@@ -294,7 +294,7 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         try
         {
             String nombrelaboratorio = "";
-            String sql = "select * FROM laboratorio where nombreLaboratorio ='" +nombrelaboratorio+"'";
+            String sql = "select * FROM laboratorio where nombreLaboratorio ='" +nombre+"'";
             Statement st = reg.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -332,21 +332,41 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
+        String nombre = this.txtNombre.getText().toUpperCase();
+        String capacidad = this.txtCapacidad.getText().toUpperCase();
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE laboratorio SET nombreLaboratorio='"+this.txtNombre.getText()+"',capacidadLaboratorio='"+this.txtCapacidad.getText()+"'WHERE codigoLaboratorio='"+this.txtCodigo.getText()+"'");
-            obj.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Guardado con exito");
-            mostrarDatos("");
+            String nombrelaboratorio = "";
+            String sql = "select * FROM laboratorio where nombreLaboratorio ='" +nombre+"' AND codigoLaboratorio !='" +this.txtCodigo.getText()+"'";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-            this.txtCodigo.setText("");
-            this.txtNombre.setText("");
-            this.txtCapacidad.setText("");
-            this.txtBuscar.setText("");
-            this.btnIngresar.setEnabled(true);
-            this.btnActualizar.setEnabled(false);
+            while(rs.next())
+            {
+                nombrelaboratorio = rs.getString("nombreLaboratorio");
+            }
+
+            if(nombre.equals(nombrelaboratorio))
+            {
+                JOptionPane.showMessageDialog(null, "Laboratorio ya existente");
+            }
+            else
+            {
+                PreparedStatement obj=reg.prepareStatement("UPDATE laboratorio SET nombreLaboratorio='"+this.txtNombre.getText()+"',capacidadLaboratorio='"+this.txtCapacidad.getText()+"'WHERE codigoLaboratorio='"+this.txtCodigo.getText()+"'");
+                obj.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Guardado con exito");
+                mostrarDatos("");
+
+                this.txtCodigo.setText("");
+                this.txtNombre.setText("");
+                this.txtCapacidad.setText("");
+                this.txtBuscar.setText("");
+                this.btnIngresar.setEnabled(true);
+                this.btnActualizar.setEnabled(false);
+            }
+            
 
         }
         catch(SQLException ex)
