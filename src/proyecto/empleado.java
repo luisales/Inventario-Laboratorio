@@ -14,7 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * hola luis ya no  
@@ -174,6 +175,11 @@ public class empleado extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         txtcorreo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtcorreo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcorreo1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtcorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 294, -1));
 
         labelrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -577,6 +583,10 @@ public class empleado extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void txtcorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcorreo1ActionPerformed
 
     private void mostrar()
     {
