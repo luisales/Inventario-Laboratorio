@@ -291,15 +291,34 @@ public class facultad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        String nombre = this.txtNombre.getText().toUpperCase();
 
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE facultad SET nombreFacultad='"+this.txtNombre.getText().toUpperCase()+"'WHERE codigoFacultad='"+this.txtCodigo.getText()+"'");
+            String nombreFacultad = "";
+            String sql = "select * FROM facultad where nombreFacultad ='" +nombre+"'";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {
+                nombreFacultad = rs.getString("nombreFacultad");
+            }
+
+            if(nombre.equals(nombreFacultad))
+            {
+                JOptionPane.showMessageDialog(null, "Facultad ya existente");
+            }
+            else
+            {
+                 PreparedStatement obj=reg.prepareStatement("UPDATE facultad SET nombreFacultad='"+this.txtNombre.getText().toUpperCase()+"'WHERE codigoFacultad='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             mostrarDatos("");
+            }
+           
 
             this.txtCodigo.setText("");
             this.txtNombre.setText("");
