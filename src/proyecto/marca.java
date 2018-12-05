@@ -313,11 +313,33 @@ public class marca extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-       
+        String nombre = this.txtNombre.getText().toUpperCase(); 
+        String codigo = this.txtCodigo.getText().toUpperCase(); 
           Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
+            String nombreMarca = "";
+            String codigoMarca = "";
+             String sql = "select * FROM marca where nombreMarca ='" +nombre+"'"; 
+             Statement st = reg.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next())
+             {
+                 codigoMarca = rs.getString("codigoMarca");
+                 nombreMarca = rs.getString("nombreMarca");
+                 
+                  
+             }
+            
+            if(nombre.equals(nombreMarca) && Integer.parseInt(codigoMarca) != Integer.parseInt(codigo))
+            {
+            JOptionPane.showMessageDialog(null, "Marca ya existente");
+            }
+            else
+            {
+                
             PreparedStatement obj=reg.prepareStatement("UPDATE marca SET nombreMarca='"+this.txtNombre.getText()+"',descripcionMarca='"+this.txtDescripcion.getText()+"'WHERE codigoMarca='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
@@ -329,6 +351,8 @@ public class marca extends javax.swing.JFrame {
             this.txtBuscar.setText("");
             this.btnIngresar.setEnabled(true);
             this.btnActualizar.setEnabled(false);
+            
+            }
             
             
         }
@@ -368,7 +392,11 @@ public class marca extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       Conectar con=new Conectar();
+      int fila2 = tbMarcas.getSelectedRow();
+        if(fila2 >=0)
+        {
+        
+        Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
@@ -385,12 +413,23 @@ public class marca extends javax.swing.JFrame {
         {
             Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        }
+         else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        int fila = tbMarcas.getSelectedRow();
+        if(fila >=0)
+        {
         this.btnActualizar.setEnabled(false);
         this.btnIngresar.setEnabled(true);            
-        
+        }
+         else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
