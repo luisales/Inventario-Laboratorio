@@ -209,7 +209,7 @@ public class empleado extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, 21, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 21, -1));
 
         dataRol.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
