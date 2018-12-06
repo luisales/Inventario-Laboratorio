@@ -84,12 +84,12 @@ public class facultad extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         lblNombre1 = new javax.swing.JLabel();
-        RegresarBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbFacultad = new javax.swing.JTable();
+        RegresarBtn = new javax.swing.JButton();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +120,9 @@ public class facultad extends javax.swing.JFrame {
 
         lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblIngresar.setText("Mantenimiento Facultad");
-        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+        getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Facultad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,14 +179,6 @@ public class facultad extends javax.swing.JFrame {
         lblNombre1.setText("Nombre: ");
         jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        RegresarBtn.setText("Regresar");
-        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarBtnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 460));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -222,6 +214,15 @@ public class facultad extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 520, 530));
+
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
