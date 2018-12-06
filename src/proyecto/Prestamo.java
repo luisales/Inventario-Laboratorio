@@ -555,6 +555,7 @@ public class Prestamo extends javax.swing.JFrame {
         this.fechaFinal.setCalendar(null);
        }
         Dias="";
+        Refrescar();
     }//GEN-LAST:event_btnIngresarActionPerformed
     int Largo;
     private int Valores()
