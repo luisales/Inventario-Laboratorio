@@ -36,12 +36,10 @@ public class Usuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtcontra1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtusu = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtcontra2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
@@ -51,12 +49,11 @@ public class Usuario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         empleados = new javax.swing.JTable();
         RegresarBtn = new javax.swing.JButton();
+        txtcontra2 = new javax.swing.JPasswordField();
+        txtcontra1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtcontra1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        getContentPane().add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 186, 207, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Contraseña: ");
@@ -77,9 +74,6 @@ public class Usuario extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel8.setText("Registrar Usuario");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 35, -1, -1));
-
-        txtcontra2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        getContentPane().add(txtcontra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 258, 207, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Confirmar contraseña: ");
@@ -150,6 +144,8 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
+        getContentPane().add(txtcontra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 210, 40));
+        getContentPane().add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 210, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,8 +323,8 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtcontra1;
-    private javax.swing.JTextField txtcontra2;
+    private javax.swing.JPasswordField txtcontra1;
+    private javax.swing.JPasswordField txtcontra2;
     private javax.swing.JTextField txtusu;
     // End of variables declaration//GEN-END:variables
 }

@@ -632,6 +632,21 @@ public class Clientes extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
+        String email="^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +"[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+        Pattern pattern = Pattern.compile(email);
+        String correo = this.txtcorreoCliente.getText();
+        if(correo!=null)
+        {
+            Matcher matcher=pattern.matcher(correo);
+            if(matcher.matches())
+            {
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Correo no valido");
+                return;
+            }
+        }
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try

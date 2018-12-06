@@ -31,11 +31,10 @@ public class empleado extends javax.swing.JFrame {
         this.labelreg.setVisible(false);
         this.btnActualizar.setVisible(false);
         this.btnguardar.setVisible(true);
-        this.btnbuscar.setVisible(true);
         this.labelcod.setVisible(false);
         this.txtcodigo.setVisible(false);
         
-        mostrarDatos("");
+        mostrarDatos("","");
     }
 
     /**
@@ -49,6 +48,8 @@ public class empleado extends javax.swing.JFrame {
 
         ModificarMenuItem = new javax.swing.JPopupMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        Insertar = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         txtnombre1 = new javax.swing.JTextField();
         labelemp = new javax.swing.JLabel();
@@ -60,7 +61,6 @@ public class empleado extends javax.swing.JFrame {
         txtape1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txttel = new javax.swing.JTextField();
-        txtid = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtcorreo1 = new javax.swing.JTextField();
@@ -77,21 +77,38 @@ public class empleado extends javax.swing.JFrame {
         labelcod = new javax.swing.JLabel();
         RegresarBtn = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
-        lblNombre = new javax.swing.JLabel();
-        btnMostrarT = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btnbuscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbEmpleado = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
+        txtBuscar2 = new javax.swing.JTextField();
+        txtid = new javax.swing.JFormattedTextField();
 
-        jMenuItem2.setText("Modificar bb :*");
+        jMenuItem2.setText("Modificar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         ModificarMenuItem.add(jMenuItem2);
+
+        Insertar.setText("Insertar");
+        Insertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertarActionPerformed(evt);
+            }
+        });
+        ModificarMenuItem.add(Insertar);
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        ModificarMenuItem.add(Eliminar);
 
         ModificarMenuItem.getAccessibleContext().setAccessibleName("Modificar");
         ModificarMenuItem.getAccessibleContext().setAccessibleDescription("ModificarMenuItem");
@@ -162,9 +179,6 @@ public class empleado extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txttel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 250, -1));
-
-        txtid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 294, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Identidad:");
@@ -278,34 +292,6 @@ public class empleado extends javax.swing.JFrame {
         });
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 162, -1));
 
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 120, 160, 30));
-
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblNombre.setText("Nombre: ");
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, -1, -1));
-
-        btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostrarT.setText("Mostrar Todo");
-        btnMostrarT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 170, -1, -1));
-
-        btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnbuscar.setText("Buscar");
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
-            }
-        });
-
         tbEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -314,40 +300,102 @@ public class empleado extends javax.swing.JFrame {
 
             }
         ));
+        tbEmpleado.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbEmpleado.setComponentPopupMenu(ModificarMenuItem);
         jScrollPane2.setViewportView(tbEmpleado);
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre: ");
+
+        lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre1.setText("Apellido: ");
+
+        txtBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscar2ActionPerformed(evt);
+            }
+        });
+        txtBuscar2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscar2KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblNombre)
+                                .addGap(20, 20, 20)
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblNombre1)
+                                .addGap(20, 20, 20)
+                                .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(38, 38, 38))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre1)
+                    .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addComponent(btnbuscar)
-                .addGap(42, 42, 42)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 520, 550));
 
+        try {
+            txtid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-#####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 250, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        void mostrarDatos( String valor){
+        void mostrarDatos( String valor, String valor2){
         DefaultTableModel modelo  = new DefaultTableModel(); 
         
         modelo.addColumn("Código");
-        modelo.addColumn("Nombre");
+        modelo.addColumn("Primer Nombre");
+        modelo.addColumn("Segundo Nombre");
+        modelo.addColumn("Primer Apellido");
+        modelo.addColumn("Segundo Apellido");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Correo");
+        modelo.addColumn("Identidad");
+        
         tbEmpleado.setModel(modelo);
         String sql = "";
         if(valor.equals(""))
@@ -355,9 +403,9 @@ public class empleado extends javax.swing.JFrame {
         sql = "Select * from empleado";
         }
         else{
-        sql = "Select * from empleado where primerNombreEmpleado like  '"+valor+"%' ";
+        sql = "Select * from empleado where primerNombreEmpleado like  '"+valor+"%' and primerApellidoEmpleado like '"+valor2+"%' ";
         }
-        String []datos = new String[2];
+        String []datos = new String[9];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -368,6 +416,14 @@ public class empleado extends javax.swing.JFrame {
             while(rs.next()){
             datos[0] = rs.getString(1);
             datos[1] = rs.getString(2);
+            datos[2] = rs.getString(3);
+            datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            datos[5] = rs.getString(6);
+            datos[6] = rs.getString(7);
+            datos[7] = rs.getString(8);
+            datos[8] = rs.getString(9);
+            
             modelo.addRow(datos);
             
             }
@@ -385,13 +441,28 @@ public class empleado extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
+        String email="^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +"[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+        Pattern pattern = Pattern.compile(email);
+        String correo = this.txtcorreo1.getText();
+        if(correo!=null)
+        {
+            Matcher matcher=pattern.matcher(correo);
+            if(matcher.matches())
+            {
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Correo no valido");
+                return;
+            }
+        }
         try
         {
             PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"' WHERE codigoEmpleado='"+this.txtcodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             
-            mostrarDatos("");
+            mostrarDatos("", "");
             
             this.txtnombre1.setText("");
             this.txtnombre3.setText("");
@@ -419,7 +490,36 @@ public class empleado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llene el campo nombre");
             return;
         }
-        
+        if(this.txtape1.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo nombre");
+            return;
+        }
+        if(this.txtid.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo nombre");
+            return;
+        }
+        if(this.txtrol.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Llene el campo nombre");
+            return;
+        }
+        String email="^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +"[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+        Pattern pattern = Pattern.compile(email);
+        String correo = this.txtcorreo1.getText();
+        if(correo!=null)
+        {
+            Matcher matcher=pattern.matcher(correo);
+            if(matcher.matches())
+            {
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Correo no valido");
+                return;
+            }
+        }
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
 
@@ -464,7 +564,7 @@ public class empleado extends javax.swing.JFrame {
             
             }
             
-            mostrarDatos("");
+            mostrarDatos("","");
             
         }
         catch(SQLException ex)
@@ -484,10 +584,6 @@ public class empleado extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnguardarActionPerformed
-
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-       mostrarDatos(txtBuscar.getText());
-    }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void dataRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseClicked
 
@@ -555,12 +651,6 @@ public class empleado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_RegresarBtnActionPerformed
 
-    private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed
-        mostrarDatos("");
-        this.txtBuscar.setText("");
-
-    }//GEN-LAST:event_btnMostrarTActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
@@ -569,16 +659,22 @@ public class empleado extends javax.swing.JFrame {
         int fila = tbEmpleado.getSelectedRow();
         if(fila >=0)
         {
-            this.btnActualizar.enable(true);
+            this.btnActualizar.setEnabled(true);
             this.txtcodigo.setText(tbEmpleado.getValueAt(fila,0).toString());
             this.txtnombre1.setText(tbEmpleado.getValueAt(fila,1).toString());
+            this.txtnombre3.setText(tbEmpleado.getValueAt(fila,2).toString());
+            this.txtape1.setText(tbEmpleado.getValueAt(fila,3).toString());
+            this.txtape2.setText(tbEmpleado.getValueAt(fila,4).toString());
+            this.txttel.setText(tbEmpleado.getValueAt(fila,7).toString());
+            this.txtcorreo1.setText(tbEmpleado.getValueAt(fila,6).toString());
+            this.txtid.setText(tbEmpleado.getValueAt(fila,7).toString());
 
             
             this.btnActualizar.setVisible(true);
             
         }
         else{
-        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        JOptionPane.showMessageDialog(null,"No selecciono fila");
         }
         
         // TODO add your handling code here:
@@ -587,6 +683,62 @@ public class empleado extends javax.swing.JFrame {
     private void txtcorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcorreo1ActionPerformed
+
+    private void txtBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscar2ActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        mostrarDatos(txtBuscar.getText().toUpperCase(), txtBuscar2.getText().toUpperCase());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtBuscar2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscar2KeyReleased
+        mostrarDatos(txtBuscar.getText().toUpperCase(), txtBuscar2.getText().toUpperCase());
+    }//GEN-LAST:event_txtBuscar2KeyReleased
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+           int fila2 = tbEmpleado.getSelectedRow();
+        if(fila2 >=0)
+        {
+        
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbEmpleado.getSelectedRow();
+            String codigo ="";
+            codigo = tbEmpleado.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from Empleado Where codigoEmpleado="+codigo);
+            obj.executeUpdate();
+            mostrarDatos("","");
+            this.btnguardar.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        }
+         else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarActionPerformed
+       this.txtape1.setText("");
+       this.txtape2.setText("");
+       this.txtcodigo.setText("");
+       this.txtcorreo1.setText("");
+       this.txtid.setText("");
+       this.txttel.setText("");
+       this.txtnombre1.setText("");
+       this.txtnombre3.setText("");
+       this.txtrol.setText("");
+       
+        this.btnguardar.setEnabled(true);
+       this.btnActualizar.setEnabled(false);
+    }//GEN-LAST:event_InsertarActionPerformed
 
     private void mostrar()
     {
@@ -647,11 +799,11 @@ public class empleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Insertar;
     private javax.swing.JPopupMenu ModificarMenuItem;
     private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnMostrarT;
-    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JTable dataRol;
     private javax.swing.JButton jButton1;
@@ -673,13 +825,15 @@ public class empleado extends javax.swing.JFrame {
     private javax.swing.JLabel labelreg;
     private javax.swing.JLabel labelrol;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
     private javax.swing.JTable tbEmpleado;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscar2;
     private javax.swing.JTextField txtape1;
     private javax.swing.JTextField txtape2;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtcorreo1;
-    private javax.swing.JTextField txtid;
+    private javax.swing.JFormattedTextField txtid;
     private javax.swing.JTextField txtnombre1;
     private javax.swing.JTextField txtnombre3;
     private javax.swing.JTextField txtrol;
