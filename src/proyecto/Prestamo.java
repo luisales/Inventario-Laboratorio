@@ -91,8 +91,6 @@ public class Prestamo extends javax.swing.JFrame {
         cmbHoraInicial = new javax.swing.JComboBox<>();
         labelrol3 = new javax.swing.JLabel();
         labelrol4 = new javax.swing.JLabel();
-        fechaFinal = new com.toedter.calendar.JDateChooser();
-        fechaInicial = new com.toedter.calendar.JDateChooser();
         labelrol5 = new javax.swing.JLabel();
         chkJueves = new javax.swing.JCheckBox();
         chkLunes = new javax.swing.JCheckBox();
@@ -104,7 +102,6 @@ public class Prestamo extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         dataPrestamos = new javax.swing.JTable();
         btnIngresar = new javax.swing.JButton();
-        fechaBusqueda = new com.toedter.calendar.JDateChooser();
         btnIngresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -161,12 +158,6 @@ public class Prestamo extends javax.swing.JFrame {
         labelrol4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol4.setText("Hora Final:");
         jPanel2.add(labelrol4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
-
-        fechaFinal.setDateFormatString("yyyy-MM-dd");
-        jPanel2.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
-
-        fechaInicial.setDateFormatString("yyyy-MM-dd");
-        jPanel2.add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         labelrol5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol5.setText("Fecha Final:");
@@ -236,9 +227,6 @@ public class Prestamo extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
-
-        fechaBusqueda.setDateFormatString("yyyy-MM-dd");
-        jPanel2.add(fechaBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 60, -1, -1));
 
         btnIngresar1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnIngresar1.setText("Hoy");
@@ -547,9 +535,6 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbHoraInicial;
     private javax.swing.JTable dataLab;
     private javax.swing.JTable dataPrestamos;
-    private com.toedter.calendar.JDateChooser fechaBusqueda;
-    private com.toedter.calendar.JDateChooser fechaFinal;
-    private com.toedter.calendar.JDateChooser fechaInicial;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
