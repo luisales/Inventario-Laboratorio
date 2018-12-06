@@ -5,6 +5,9 @@
  */
 package proyecto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.Calendar;
 
 /**
  *
@@ -25,13 +29,13 @@ public class Prestamo extends javax.swing.JFrame {
     /**
      * Creates new form Prestamo
      */
-    int HoraI, HoraF;
-    String FechaI="", FechaF="";
+    int HoraI, HoraF, rows, CLaboratorio;
+    String FechaI="", FechaF="", Dias="";
+    
     public Prestamo() {
         initComponents();
         mostrar();
-        String sql = "";
-        
+        String sql = "";     
         try
         {                 
         Conectar con=new Conectar();
@@ -39,13 +43,14 @@ public class Prestamo extends javax.swing.JFrame {
         sql = "select count(*) as Count from laboratorio";
         Statement st = reg.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        int rows=0;
+        
         while(rs.next())
              {
                  rows = Integer.parseInt(rs.getString("Count"));
              }
+        String[] Laboratorios = new String[rows];
         DefaultTableModel modelo  = new DefaultTableModel(); 
-            System.out.println(rows);
+        Size(rows);
         for (int i=0; i<=rows;i++)
         {
         sql = "select nombreLaboratorio from laboratorio where codigoLaboratorio ='"+i+"'";
@@ -54,11 +59,11 @@ public class Prestamo extends javax.swing.JFrame {
         
         while(rs.next())
              {
-                 
-                 modelo.addColumn(rs.getString("nombreLaboratorio"));
-                 System.out.println(rs.getString("nombreLaboratorio"));   
+              
+                 modelo.addColumn(rs.getString("nombreLaboratorio"));               
              }
         dataPrestamos.setModel(modelo);
+       
         }
         }
             catch (SQLException ex) {
@@ -261,14 +266,17 @@ public class Prestamo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void Size(int z)
+    {
+        String[] Laboratorios = new String[z];
+    }
     private void dataLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataLabMouseClicked
         int fila=this.dataLab.getSelectedRow();
         if(fila>=0)
         {
-            this.txtLabNombre.setText(this.dataLab.getValueAt(fila, 0).toString());
+            CLaboratorio=Integer.parseInt(this.dataLab.getValueAt(fila, 0).toString());
+            this.txtLabNombre.setText(this.dataLab.getValueAt(fila, 1).toString());
         }
-
     }//GEN-LAST:event_dataLabMouseClicked
 
     private void chkMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMartesActionPerformed
@@ -276,7 +284,7 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_chkMartesActionPerformed
 
     private void chkMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMiercolesActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_chkMiercolesActionPerformed
 
     private void chkViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkViernesActionPerformed
@@ -321,15 +329,152 @@ public class Prestamo extends javax.swing.JFrame {
         x=2000; 
         return x;
     }
-            
+          
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
       
        HoraI=Hora(this.cmbHoraInicial.getSelectedItem().toString());
        HoraF=Hora(this.cmbHoraFinal.getSelectedItem().toString());
-       FechaI=this.fechaInicial.get.toString();
-        
+       String Dia = Integer.toString(fechaInicial.getCalendar().get(Calendar.DAY_OF_MONTH));
+       String Mes = Integer.toString(fechaInicial.getCalendar().get(Calendar.MONTH)+1);
+       String Anio = Integer.toString(fechaInicial.getCalendar().get(Calendar.YEAR));
+       FechaI=(Anio + "-" + Mes + "-" + Dia);
+       Dia = Integer.toString(fechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
+       Mes = Integer.toString(fechaFinal.getCalendar().get(Calendar.MONTH)+1);
+       Anio = Integer.toString(fechaFinal.getCalendar().get(Calendar.YEAR));
+       FechaF=(Anio + "-" + Mes + "-" + Dia);
+       if(chkLunes.isSelected())
+            Dias=Dias+"L";
+       if(chkMartes.isSelected())
+            Dias=Dias+"M";
+       if(chkMiercoles.isSelected())
+            Dias=Dias+"W";
+       if(chkJueves.isSelected())
+            Dias=Dias+"J";
+       if(chkViernes.isSelected())
+            Dias=Dias+"V";
+       if(chkSab.isSelected())
+            Dias=Dias+"S";
+       if(chkDomingo.isSelected())
+            Dias=Dias+"D";
+       Valores();
+       Dias="";
+       
     }//GEN-LAST:event_btnIngresarActionPerformed
+    int Largo;
+    private int Valores()
+    {
+        int i=0, x=0;
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        String sql;
+        
+        try
+        {     
+        sql= "select count(*) as Count from prestamo";   
+        Statement st = reg.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        
+        while(rs.next())
+             {
+              
+                Largo = Integer.parseInt(rs.getString("Count"));  
+             }
+       for (i=0; i<Largo;i++)
+        {
+        sql = "select codigoLaboratorio,fechaInicialPrestamo,fechaFinalPrestamo,horaInicialPrestamo, horaFinalPrestamo,diasPrestamo from prestamo where codigoPrestamo ='"+(i+1)+"'";
+        st = reg.createStatement();
+        rs = st.executeQuery(sql);
+        int CLab=0;
+        String HI="", HF="", FI="", FF="",D=""; 
+        while(rs.next())        
+             {
+              
+                 CLab=Integer.parseInt(rs.getString("codigoLaboratorio"));
+                 FI=rs.getString("fechaInicialPrestamo");
+                 FF=rs.getString("fechaFinalPrestamo");
+                 HI=rs.getString("horaInicialPrestamo");
+                 HF=rs.getString("horaFinalPrestamo");
+                 D=rs.getString("diasPrestamo");
+                 
+             }
+            
+        x=Validacion(CLab, HI, HF,FI, FF, D);
+            System.out.println(x);
+        }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex); 
+                }
+                
+        return 0;
+    }  
+    private int Validacion(int CLab, String HI,String HF, String FI, String FF,String D)
+    {
+        
+        int VHora, VFecha, VDia, VCLab;
+        if (CLaboratorio==CLab)
+        {
+            VCLab=1;          
+        }
+        else
+        {
+             VCLab=0;
 
+        }
+        if (HoraI>=Integer.parseInt(HF)||HoraF<=Integer.parseInt(HI))
+        {
+            VHora=0;
+        }
+        else
+        {
+            VHora=1;       
+         }
+        VFecha=compareDates(FechaI,FechaF,FI,FF); 
+        VDia=Dia(Dias, D);
+        if ((VCLab*VDia*VFecha*VHora==0))
+        return 0;  
+        else
+        return 1;
+    }
+    public static int Dia(String Cad, String D)
+    {
+
+        for (int x=0;x<Cad.length();x++)
+        {
+            if (D.contains(Cad.substring(0, x+1))==true)
+                
+            {
+                return 1;
+            }
+        }
+        return 0;
+    }
+    public static int compareDates(String d1,String d2,String d3,String d4)
+    {
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date a = sdf.parse(d1);
+            Date b = sdf.parse(d3);
+            Date c = sdf.parse(d2);
+            Date d = sdf.parse(d4);
+
+            /*HoraI, HoraF, rows;
+        HoraI a Hora F c HI b HF D
+    String FechaI="", FechaF="", Dias="";*/
+            if(a.after(d) ||c.before(b)){
+                
+                return 0;
+           
+            }
+            else
+            return 1;
+            
+        }
+        catch(ParseException ex){
+            ex.printStackTrace();
+            return 0;
+        }
+    }
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         
     }//GEN-LAST:event_btnIngresar1ActionPerformed
@@ -337,12 +482,11 @@ public class Prestamo extends javax.swing.JFrame {
     {
         DefaultTableModel modelo2 = new DefaultTableModel();
         ResultSet rx = Conectar.getTabla("select * from laboratorio");
-        modelo2.setColumnIdentifiers(new Object[]{"Nombre Lab","Capacidad Lab"});
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo Lab","Nombre Lab","Capacidad Lab"});
         try
         {
             while(rx.next()){
-                modelo2.addRow(new Object[]{rx.getString("nombreLaboratorio"), rx.getString("capacidadLaboratorio")});
-                
+                modelo2.addRow(new Object[]{rx.getString("codigoLaboratorio"),rx.getString("nombreLaboratorio"), rx.getString("capacidadLaboratorio")});         
             }
             this.dataLab.setModel(modelo2);
         }
