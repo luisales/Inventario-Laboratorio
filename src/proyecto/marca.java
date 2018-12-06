@@ -271,6 +271,7 @@ public class marca extends javax.swing.JFrame {
              while(rs.next())
              {
                  nombreMarca = rs.getString("nombreMarca");
+                 
              }
             
             if(nombre.equals(nombreMarca))
