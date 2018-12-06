@@ -103,6 +103,8 @@ public class Prestamo extends javax.swing.JFrame {
         dataPrestamos = new javax.swing.JTable();
         btnIngresar = new javax.swing.JButton();
         btnIngresar1 = new javax.swing.JButton();
+        fechaFinal = new com.toedter.calendar.JDateChooser();
+        fechaInicial = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,6 +238,12 @@ public class Prestamo extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 57, 30, 30));
+
+        fechaFinal.setDateFormatString("yyyy-MM-dd");
+        jPanel2.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+
+        fechaInicial.setDateFormatString("yyyy-MM-dd");
+        jPanel2.add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -535,6 +543,8 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbHoraInicial;
     private javax.swing.JTable dataLab;
     private javax.swing.JTable dataPrestamos;
+    private com.toedter.calendar.JDateChooser fechaFinal;
+    private com.toedter.calendar.JDateChooser fechaInicial;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
