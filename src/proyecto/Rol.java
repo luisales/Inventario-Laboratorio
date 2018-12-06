@@ -50,6 +50,8 @@ public class Rol extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         lblCodigo1 = new javax.swing.JLabel();
+        chkClientes = new javax.swing.JCheckBox();
+        chkMantenimientos = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
@@ -80,7 +82,7 @@ public class Rol extends javax.swing.JFrame {
                 btnguardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Nombre del rol:");
@@ -126,30 +128,49 @@ public class Rol extends javax.swing.JFrame {
         lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblCodigo1.setText("Codigo:");
 
+        chkClientes.setText("Registro Clientes");
+
+        chkMantenimientos.setText("Mantenimientos");
+        chkMantenimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkMantenimientosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(lblCodigo1)
-                .addGap(11, 11, 11)
-                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(chkEmpleados)
-                .addGap(17, 17, 17)
-                .addComponent(chkPrestamos))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(chkUsuarios)
-                .addGap(27, 27, 27)
-                .addComponent(chkInventario))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(lblCodigo1)
+                        .addGap(11, 11, 11)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(chkClientes)
+                                .addGap(30, 30, 30))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(chkUsuarios)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkPrestamos)
+                            .addComponent(chkInventario)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(chkEmpleados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chkMantenimientos)))
+                .addGap(170, 170, 170))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,14 +183,21 @@ public class Rol extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkEmpleados)
-                    .addComponent(chkPrestamos))
-                .addGap(7, 7, 7)
+                    .addComponent(chkMantenimientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkInventario)
+                    .addComponent(chkUsuarios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkUsuarios)
-                    .addComponent(chkInventario)))
+                    .addComponent(chkClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chkPrestamos)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 410, 210));
@@ -216,7 +244,7 @@ public class Rol extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
 
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -250,18 +278,7 @@ public class Rol extends javax.swing.JFrame {
           return; 
        }
       Conectar con=new Conectar();
-      Connection reg=con.getConnection();
-       
-       if(this.chkEmpleados.isSelected())
-           permisos=permisos+"A";
-       if(this.chkUsuarios.isSelected())
-           permisos=permisos+"B";
-       if(this.chkInventario.isSelected())
-           permisos=permisos+"C";
-       if(this.chkPrestamos.isSelected())
-           permisos=permisos+"D";
-            
-        
+      Connection reg=con.getConnection();    
 
         try
            {
@@ -284,13 +301,17 @@ public class Rol extends javax.swing.JFrame {
             else
                  {  
             if(this.chkEmpleados.isSelected())
-                permisos=permisos+"A";
-            if(this.chkUsuarios.isSelected())
-                permisos=permisos+"B";
-            if(this.chkInventario.isSelected())
-                permisos=permisos+"C";
-            if(this.chkPrestamos.isSelected())
-                permisos=permisos+"D";
+           permisos=permisos+"A";
+       if(this.chkUsuarios.isSelected())
+           permisos=permisos+"B";
+       if(this.chkClientes.isSelected())
+           permisos=permisos+"C";
+       if(this.chkMantenimientos.isSelected())
+           permisos=permisos+"D";
+        if(this.chkInventario.isSelected())
+           permisos=permisos+"E";
+        if(this.chkPrestamos.isSelected())
+           permisos=permisos+"F";
             
             PreparedStatement obj=reg.prepareStatement("INSERT INTO rol(nombreRol, permisosRol) values(?,?)");
             obj.setString(1,rol);
@@ -340,11 +361,14 @@ public class Rol extends javax.swing.JFrame {
            permisos=permisos+"A";
        if(this.chkUsuarios.isSelected())
            permisos=permisos+"B";
-       if(this.chkInventario.isSelected())
+       if(this.chkClientes.isSelected())
            permisos=permisos+"C";
-       if(this.chkPrestamos.isSelected())
+       if(this.chkMantenimientos.isSelected())
            permisos=permisos+"D";
-        
+        if(this.chkInventario.isSelected())
+           permisos=permisos+"E";
+        if(this.chkPrestamos.isSelected())
+           permisos=permisos+"F";
         
         
         try
@@ -397,6 +421,10 @@ public class Rol extends javax.swing.JFrame {
         men.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegresarBtnActionPerformed
+
+    private void chkMantenimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMantenimientosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkMantenimientosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,8 +502,10 @@ public class Rol extends javax.swing.JFrame {
     private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JCheckBox chkClientes;
     private javax.swing.JCheckBox chkEmpleados;
     private javax.swing.JCheckBox chkInventario;
+    private javax.swing.JCheckBox chkMantenimientos;
     private javax.swing.JCheckBox chkPrestamos;
     private javax.swing.JCheckBox chkUsuarios;
     private javax.swing.JLabel jLabel1;

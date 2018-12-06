@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,11 +32,49 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        
+        this.jButton1.setEnabled(false);
+        this.jButton2.setEnabled(false);
+        this.jButton3.setEnabled(false);
+        this.jButton4.setEnabled(false);
+        this.jButton5.setEnabled(false);
        // setSize(1000,650);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);  
+        String sql = ""; 
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        String per="";
+        sql = "Select a.permisosRol from rol a INNER JOIN empleado b on a.codigoRol=b.codigoRol WHERE b.codigoEmpleado='"+Login.codigo+"'";   
+
+        try {
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            per = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        
+        if(per.contains("A"))
+        {
+            this.jButton1.setEnabled(true);
+        }
+        if(per.contains("B"))
+        {
+            this.jButton2.setEnabled(true);
+        }
+        if(per.contains("C"))
+        {
+            this.jButton3.setEnabled(true);
+        }
+        if(per.contains("D"))
+        {
+            this.jButton4.setEnabled(true);
+        }
+        if(per.contains("E"))
+        {
+            this.jButton5.setEnabled(true);
+        }
     }
 
     /**
@@ -53,6 +92,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 22, 22, 22));
@@ -76,7 +117,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 35, -1, -1));
+        PanelFondo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-usuario-64.png"))); // NOI18N
         jButton2.setText("Usuario");
@@ -95,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        PanelFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-cola-64.png"))); // NOI18N
         jButton3.setText("Clientes");
@@ -108,7 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 232, -1, -1));
+        PanelFondo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon2 (1).png"))); // NOI18N
         jButton4.setText("Mantenimientos");
@@ -128,7 +169,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 170, 60));
+        PanelFondo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 170, 60));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imge.png"))); // NOI18N
         jButton5.setText("Inventario");
@@ -147,9 +188,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 150, -1));
+        PanelFondo.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 150, -1));
 
-        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 340));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("MENU PRINCIPAL");
+        PanelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar.png"))); // NOI18N
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton6.setFocusPainted(false);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        PanelFondo.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
+
+        getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,38 +228,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
         Usuario usu = new Usuario();
 
         usu.setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
         empleado emp = new empleado();
 
         emp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Mantenimientos a = new Mantenimientos();
-        a.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
@@ -210,6 +262,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cli.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        Login l=new Login();
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Mantenimientos a = new Mantenimientos();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -260,5 +332,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
