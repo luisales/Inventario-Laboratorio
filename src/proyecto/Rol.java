@@ -39,8 +39,15 @@ public class Rol extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jLabel8 = new javax.swing.JLabel();
         btnguardar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        txtBuscar = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbMarcas = new javax.swing.JTable();
+        btnActualizar = new javax.swing.JButton();
+        RegresarBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         chkEmpleados = new javax.swing.JCheckBox();
@@ -52,13 +59,7 @@ public class Rol extends javax.swing.JFrame {
         lblCodigo1 = new javax.swing.JLabel();
         chkClientes = new javax.swing.JCheckBox();
         chkMantenimientos = new javax.swing.JCheckBox();
-        jPanel2 = new javax.swing.JPanel();
-        txtBuscar = new javax.swing.JTextField();
-        lblNombre = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbMarcas = new javax.swing.JTable();
-        btnActualizar = new javax.swing.JButton();
-        RegresarBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,10 +72,6 @@ public class Rol extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel8.setText("Mantenimiento Rol");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 47, -1, -1));
-
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +80,61 @@ public class Rol extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
+
+        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNombre.setText("Nombre del rol: ");
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        tbMarcas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tbMarcas.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(tbMarcas);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 550));
+
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setEnabled(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn.setText("Regresar");
+        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, -1, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Nombre del rol:");
@@ -200,59 +252,28 @@ public class Rol extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 410, 210));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(242, Short.MAX_VALUE))
+        );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 550, 470));
 
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyReleased(evt);
-            }
-        });
-        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 160, 30));
-
-        lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblNombre.setText("Nombre del rol: ");
-        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
-        tbMarcas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tbMarcas.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane2.setViewportView(tbMarcas);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
-
-        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setEnabled(false);
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
-
-        RegresarBtn.setText("Regresar");
-        RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel8.setText("Mantenimiento Rol");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -407,7 +428,19 @@ public class Rol extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        int fila = this.tbMarcas.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.setEnabled(true);
+            this.txtCodigo.setText(tbMarcas.getValueAt(fila,0).toString());
+            this.txtnombre.setText(tbMarcas.getValueAt(fila,1).toString());      
+            this.btnActualizar.setVisible(true);
+            this.btnguardar.setEnabled(false);
+            
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"No selecciono fila");
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
@@ -513,6 +546,7 @@ public class Rol extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCodigo1;

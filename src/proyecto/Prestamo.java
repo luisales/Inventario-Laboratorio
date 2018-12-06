@@ -238,11 +238,7 @@ public class Prestamo extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 57, 30, 30));
-
-        fechaFinal.setDateFormatString("yyyy-MM-dd");
-        jPanel2.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
-
-        fechaInicial.setDateFormatString("yyyy-MM-dd");
+        jPanel2.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
         jPanel2.add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

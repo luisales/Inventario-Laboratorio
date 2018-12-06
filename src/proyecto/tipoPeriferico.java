@@ -27,7 +27,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         mostrarDatos("");
-       this.btnActualizar.setVisible(false);
+       this.btnActualizar.setEnabled(false);
        this.btnIngresar.setVisible(true);
     }
 
@@ -121,11 +121,11 @@ public class tipoPeriferico extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        lblIngresar.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblIngresar.setText("Mantenimiento Tipo de Periférico");
         getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Marca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,7 +136,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
 
         lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblCodigo1.setText("Codigo Tipo Periférico:");
-        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtCodigo.setEnabled(false);
@@ -150,7 +150,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
                 txtCodigoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 110, -1));
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 110, -1));
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -158,7 +158,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 190, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 190, -1));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -167,7 +167,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 130, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 130, -1));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -176,11 +176,11 @@ public class tipoPeriferico extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 130, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 130, -1));
 
         lblNombre1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lblNombre1.setText("Nombre Tipo Periférico: ");
-        jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 520, 460));
         jPanel1.getAccessibleContext().setAccessibleName("Datos Tipo de Periférico");
@@ -221,13 +221,14 @@ public class tipoPeriferico extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 520, 530));
 
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegresarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -310,7 +311,8 @@ public class tipoPeriferico extends javax.swing.JFrame {
             this.txtCodigo.setText("");
             this.txtNombre.setText("");
             this.txtBuscar.setText("");
-            this.btnActualizar.setVisible(false);
+            this.btnActualizar.setEnabled(false);
+            this.btnIngresar.setEnabled(true);
 
         }
         catch(SQLException ex)
@@ -328,7 +330,7 @@ public class tipoPeriferico extends javax.swing.JFrame {
         int fila = tbTipoPeriferico.getSelectedRow();
         if(fila >=0)
         {
-            this.btnActualizar.enable(true);
+            this.btnActualizar.setEnabled(true);
             this.txtCodigo.setText(tbTipoPeriferico.getValueAt(fila,0).toString());
             this.txtNombre.setText(tbTipoPeriferico.getValueAt(fila,1).toString());        
             this.btnActualizar.setVisible(true);
