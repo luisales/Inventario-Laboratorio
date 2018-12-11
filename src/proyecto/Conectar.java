@@ -20,8 +20,8 @@ public class Conectar {
     private static Connection conn;
     private static final String driver ="com.mysql.jdbc.Driver";
     private static final String user ="root";
-    private static final String password ="pokemon182";
-    private static final String password ="123";
+    //private static final String password ="pokemon182";
+    private static final String password ="";
 
    private static final String url ="jdbc:mysql://localhost:3306/laboratorios";
    //private static final String url = "jdbc:mysql://localhost/laboratorios?useSSL=false";
@@ -36,7 +36,7 @@ public class Conectar {
             conn=DriverManager.getConnection(url, user, password);
             if(conn!=null)
             {
-                System.out.println("Conexion hecha");
+               //System.out.println("Conexion hecha");
             }
         }
         catch(ClassNotFoundException | SQLException e)

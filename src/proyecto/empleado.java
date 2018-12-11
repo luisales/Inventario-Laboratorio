@@ -420,8 +420,10 @@ public class empleado extends javax.swing.JFrame {
         modelo.addColumn("Primer Apellido");
         modelo.addColumn("Segundo Apellido");
         modelo.addColumn("Telefono");
+        modelo.addColumn("extension");
         modelo.addColumn("Correo");
         modelo.addColumn("Identidad");
+        modelo.addColumn("Codigo Rol");
         
         tbEmpleado.setModel(modelo);
         String sql = "";
@@ -432,7 +434,7 @@ public class empleado extends javax.swing.JFrame {
         else{
         sql = "Select * from empleado where primerNombreEmpleado like  '"+valor+"%' and primerApellidoEmpleado like '"+valor2+"%' ";
         }
-        String []datos = new String[9];
+        String []datos = new String[10];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -450,6 +452,7 @@ public class empleado extends javax.swing.JFrame {
             datos[6] = rs.getString(7);
             datos[7] = rs.getString(8);
             datos[8] = rs.getString(9);
+            datos[9] =  rs.getString(10);
             
             modelo.addRow(datos);
             
@@ -682,10 +685,10 @@ public class empleado extends javax.swing.JFrame {
             this.txtnombre3.setText(tbEmpleado.getValueAt(fila,2).toString());
             this.txtape1.setText(tbEmpleado.getValueAt(fila,3).toString());
             this.txtape2.setText(tbEmpleado.getValueAt(fila,4).toString());
-            this.txttel.setText(tbEmpleado.getValueAt(fila,7).toString());
-            this.txtcorreo1.setText(tbEmpleado.getValueAt(fila,6).toString());
-            this.txtid.setText(tbEmpleado.getValueAt(fila,7).toString());
-
+            this.txttel.setText(tbEmpleado.getValueAt(fila,5).toString());
+            this.txtcorreo1.setText(tbEmpleado.getValueAt(fila,7).toString());
+            this.txtid.setText(tbEmpleado.getValueAt(fila,8).toString());
+            this.txtrol.setText(tbEmpleado.getValueAt(fila,9).toString());
             
             this.btnguardar.setEnabled(false);
             

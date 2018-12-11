@@ -5,6 +5,7 @@
  */
 package proyecto;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.Component;
 import java.text.ParseException;
@@ -28,8 +29,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 ;
@@ -43,19 +46,24 @@ public class Prestamo extends javax.swing.JFrame {
     /**
      * Creates new form Prestamo
      */
-    int HoraI, HoraF, rows, CLaboratorio,Clase, Cliente;
-    String FechaI="", FechaF="", Dias="", Comentario="";
+    int HoraI, HoraF, rows, CLaboratorio=0,Clase=0, Cliente=0;
+    String FechaI="", FechaF="", Dias="", Comentario="", validacionChk,FechaValidacion;
     public Prestamo() {
         initComponents();
         mostrar();
         Date date=new Date();
         DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-        
-        System.out.println(df.format(date));
         this.fechaHoy.setDate(date);
+        this.fechaInicial.setDate(date);
+        this.fechaFinal.setDate(date);
         mostrarDatos("","");
         mostrarDatos("");
-        
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) this.fechaFinal.getDateEditor();
+        editor.setEditable(false);
+        editor = (JTextFieldDateEditor) this.fechaInicial.getDateEditor();
+        editor.setEditable(false);
+        editor = (JTextFieldDateEditor) this.fechaHoy.getDateEditor();
+        editor.setEditable(false);
         Refrescar();
     }
     void mostrarDatos( String valor){
@@ -176,7 +184,7 @@ public class Prestamo extends javax.swing.JFrame {
         labelrol.setText("Fecha Inicial:");
         jPanel1.add(labelrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        cmbHoraFinal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", " ", " " }));
+        cmbHoraFinal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", " " }));
         jPanel1.add(cmbHoraFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 90, -1));
 
         labelrol1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -203,9 +211,19 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(labelrol5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
         chkJueves.setText("Jueves");
+        chkJueves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkJuevesActionPerformed(evt);
+            }
+        });
         jPanel1.add(chkJueves, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, -1, -1));
 
         chkLunes.setText("Lunes");
+        chkLunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLunesActionPerformed(evt);
+            }
+        });
         jPanel1.add(chkLunes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
 
         chkMiercoles.setText("Miercoles");
@@ -233,9 +251,19 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(chkViernes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
 
         chkSab.setText("Sabado");
+        chkSab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSabActionPerformed(evt);
+            }
+        });
         jPanel1.add(chkSab, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
 
         chkDomingo.setText("Domingo");
+        chkDomingo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkDomingoActionPerformed(evt);
+            }
+        });
         jPanel1.add(chkDomingo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
 
         dataPrestamos.setModel(new javax.swing.table.DefaultTableModel(
@@ -268,9 +296,27 @@ public class Prestamo extends javax.swing.JFrame {
         jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 690, -1, -1));
 
         fechaFinal.setDateFormatString("yyyy-MM-dd");
-        jPanel1.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+        fechaFinal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaFinalPropertyChange(evt);
+            }
+        });
+        jPanel1.add(fechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
         fechaInicial.setDateFormatString("yyyy-MM-dd");
+        fechaInicial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fechaInicialMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fechaInicialMousePressed(evt);
+            }
+        });
+        fechaInicial.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaInicialPropertyChange(evt);
+            }
+        });
         jPanel1.add(fechaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         labelrol6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -431,15 +477,15 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_dataLabMouseClicked
 
     private void chkMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMartesActionPerformed
-        // TODO add your handling code here:
+      validarDias();
     }//GEN-LAST:event_chkMartesActionPerformed
 
     private void chkMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMiercolesActionPerformed
-        
+     validarDias();
     }//GEN-LAST:event_chkMiercolesActionPerformed
 
     private void chkViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkViernesActionPerformed
-        // TODO add your handling code here:
+     validarDias();
     }//GEN-LAST:event_chkViernesActionPerformed
 
     private void dataPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataPrestamosMouseClicked
@@ -478,21 +524,63 @@ public class Prestamo extends javax.swing.JFrame {
         x=1900;
         if(Hora.equals("8:00 PM"))
         x=2000; 
+        if(Hora.equals("9:00 PM"))
+        x=2100; 
         return x;
     }
           
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        if (CLaboratorio==0)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione un Laboratorio");
+            return;
+        }
+        if (Clase==0)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione una Clase");
+            return;
+        }
+        if (Cliente==0)
+        {
+            JOptionPane.showMessageDialog(null, "Seleccione un Cliente");
+            return;
+        }
+        
         Dias="";
        HoraI=Hora(this.cmbHoraInicial.getSelectedItem().toString());
        HoraF=Hora(this.cmbHoraFinal.getSelectedItem().toString());
+       if (HoraI>HoraF||HoraI==HoraF)
+        {
+            JOptionPane.showMessageDialog(null, "La hora final no puede ser menor o igual a la hora inicial");
+            return;
+        }
+       
        String Dia = Integer.toString(fechaInicial.getCalendar().get(Calendar.DAY_OF_MONTH));
        String Mes = Integer.toString(fechaInicial.getCalendar().get(Calendar.MONTH)+1);
        String Anio = Integer.toString(fechaInicial.getCalendar().get(Calendar.YEAR));
+       int Tam=0;
+       Tam=Tam-fechaInicial.getCalendar().get(Calendar.DAY_OF_MONTH);
        FechaI=(Anio + "-" + Mes + "-" + Dia);
        Dia = Integer.toString(fechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH));
        Mes = Integer.toString(fechaFinal.getCalendar().get(Calendar.MONTH)+1);
        Anio = Integer.toString(fechaFinal.getCalendar().get(Calendar.YEAR));
-       FechaF=(Anio + "-" + Mes + "-" + Dia);
+       Tam=Tam+fechaFinal.getCalendar().get(Calendar.DAY_OF_MONTH);
+       FechaF=(Anio + "-" + Mes + "-" + Dia);   
+        String Retorno;
+        try {
+            System.out.println(Tam);
+        Retorno=verificarDias(Anio,Mes,Dia,Tam);
+            System.out.println(Retorno);
+        } catch (ParseException ex) {
+            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Date date=new Date();
+        DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+       if (compareDates(FechaI,FechaF)==0)
+        {
+            JOptionPane.showMessageDialog(null, "La fecha final no puede ser menor a la fecha inicial");
+            return;
+        }
        if(chkLunes.isSelected())
             Dias=Dias+"L";
        if(chkMartes.isSelected())
@@ -507,6 +595,11 @@ public class Prestamo extends javax.swing.JFrame {
             Dias=Dias+"S";
        if(chkDomingo.isSelected())
             Dias=Dias+"D";
+       if(Dias=="")
+       {
+           JOptionPane.showMessageDialog(null, "Ingrese por lo menos un día de la semana");
+            return;
+       }
        if (Valores()==1)
            JOptionPane.showMessageDialog(null, "Laboratorio Ocupado");
        else if (Valores()==0)
@@ -533,8 +626,10 @@ public class Prestamo extends javax.swing.JFrame {
         {
             Logger.getLogger(facultad.class.getName()).log(Level.SEVERE,null,ex);
         }
-        
-        JOptionPane.showMessageDialog(null, "Prestamo Guardado con exito");
+        Dias="";
+        CLaboratorio=0;
+        Clase=0;
+        Cliente=0;
         this.txtNombreC1.setText("");
         this.txtNombreC.setText("");
         this.txtApellidoC.setText("");
@@ -549,14 +644,85 @@ public class Prestamo extends javax.swing.JFrame {
         this.chkViernes.setSelected(false);
         this.chkSab.setSelected(false);
         this.chkDomingo.setSelected(false);
-        this.cmbHoraFinal.setSelectedIndex(1);
-        this.cmbHoraInicial.setSelectedIndex(1);
-        this.fechaInicial.setCalendar(null);
-        this.fechaFinal.setCalendar(null);
-       }
-        Dias="";
+        this.cmbHoraFinal.setSelectedIndex(0);
+        this.cmbHoraInicial.setSelectedIndex(0);
+        this.fechaInicial.setDate(date);
+        this.fechaFinal.setDate(date);
         Refrescar();
+       }     
     }//GEN-LAST:event_btnIngresarActionPerformed
+   public static int toIntExact(long value) {
+    if ((int)value != value) {
+        throw new ArithmeticException("Error");
+    }
+    return (int)value;
+}
+    private void validarDias()
+   {
+        String Dia = Integer.toString(fechaInicial.getCalendar().get(Calendar.DAY_OF_MONTH));
+       String Mes = Integer.toString(fechaInicial.getCalendar().get(Calendar.MONTH)+1);
+       String Anio = Integer.toString(fechaInicial.getCalendar().get(Calendar.YEAR));
+       int Tam=0;
+      long diff = this.fechaFinal.getDate().getTime() - this.fechaInicial.getDate().getTime();
+        Tam=toIntExact(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+        String Retorno="";  
+        try {
+       Retorno=verificarDias(Anio,Mes,Dia,Tam);
+            System.out.println(Retorno);
+        } catch (ParseException ex) {
+            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(Retorno);
+        if(Retorno.contains("D")==false)
+        {
+            this.chkDomingo.setEnabled(false);
+            this.chkDomingo.setSelected(false);
+        }
+        else
+         this.chkDomingo.setEnabled(true);
+        if(Retorno.contains("L")==false)
+        {
+            this.chkLunes.setEnabled(false);
+            this.chkLunes.setSelected(false);
+        }
+        else
+         this.chkLunes.setEnabled(true);
+        if(Retorno.contains("M")==false)
+        {
+            this.chkMartes.setEnabled(false);
+            this.chkMartes.setSelected(false);
+        }
+        else
+         this.chkMartes.setEnabled(true);
+        if(Retorno.contains("W")==false)
+        {
+            this.chkMiercoles.setEnabled(false);
+            this.chkMiercoles.setSelected(false);
+        }
+        else
+         this.chkMiercoles.setEnabled(true);
+        if(Retorno.contains("J")==false)
+        {
+            this.chkJueves.setEnabled(false);
+            this.chkJueves.setSelected(false);
+        }
+        else
+         this.chkJueves.setEnabled(true);
+        if(Retorno.contains("V")==false)
+        {
+            this.chkViernes.setEnabled(false);
+            this.chkViernes.setSelected(false);
+        }
+        else
+         this.chkViernes.setEnabled(true);
+        if(Retorno.contains("S")==false)
+        {
+            this.chkSab.setEnabled(false);
+            this.chkSab.setSelected(false);
+        }
+        else
+         this.chkSab.setEnabled(true);
+   }
     int Largo;
     private int Valores()
     {
@@ -607,6 +773,52 @@ public class Prestamo extends javax.swing.JFrame {
                 
         return 0;
     }  
+ 
+    private String verificarDias(String Anio,String Mes , String Dia,int x) throws ParseException
+    {
+        DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+         Date date =new Date();
+        String Retornable="";
+        String D="";
+        for(int i=0;i<=x;i++)
+          {
+            D=(Anio + "-" + Mes + "-" + (Integer.parseInt(Dia)+i));  
+              System.out.println(D);
+            date = format.parse(D);
+            if(i==7)
+                return Retornable;
+         if((date.getDay())==0)
+            {
+            Retornable=Retornable+"D";
+            }
+         if((date.getDay())==1)
+            {
+            Retornable=Retornable+"L";
+            } 
+         if((date.getDay())==2)
+            {
+            Retornable=Retornable+"M";
+            }     
+         if((date.getDay())==3)
+            {
+            Retornable=Retornable+"W";
+            }     
+         if((date.getDay())==4)
+            {
+            Retornable=Retornable+"J";
+            } 
+         if((date.getDay())==5)
+            {
+            Retornable=Retornable+"V";
+            }     
+          if((date.getDay())==6)
+            {
+            Retornable=Retornable+"S";
+            }     
+        }
+        return Retornable;
+    }
+  
     private int Validacion(int CLab, String HI,String HF, String FI, String FF,String D)
     {
         
@@ -670,12 +882,32 @@ public class Prestamo extends javax.swing.JFrame {
             return 0;
         }
     }
+    public static int compareDates(String d1,String d2)
+    {
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date a = sdf.parse(d1);
+            Date b = sdf.parse(d2);
+            if(a.after(b) ){
+                
+                return 0;
+           
+            }
+            else
+            return 1;
+            
+        }
+        catch(ParseException ex){
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+   
     private void dataClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataClaseMouseClicked
         int fila=this.dataClase.getSelectedRow();
         if(fila>=0)
         {
-             Clase=Integer.parseInt(this.dataClase.getValueAt(fila, 0).toString());
-             System.out.println(Clase);
+             Clase=Integer.parseInt(this.dataClase.getValueAt(fila, 0).toString());          
             this.txtClase1.setText(this.dataClase.getValueAt(fila, 1).toString());
         }
     }//GEN-LAST:event_dataClaseMouseClicked
@@ -685,7 +917,6 @@ public class Prestamo extends javax.swing.JFrame {
         if(fila>=0)
         {
             Cliente=Integer.parseInt(this.dataCliente.getValueAt(fila, 4).toString());
-            System.out.println(Cliente);
             this.txtNombreC1.setText(this.dataCliente.getValueAt(fila, 0).toString()+" "+this.dataCliente.getValueAt(fila, 2).toString());
         }
     }//GEN-LAST:event_dataClienteMouseClicked
@@ -723,8 +954,53 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void fechaHoyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaHoyMouseReleased
-        ;
+       
     }//GEN-LAST:event_fechaHoyMouseReleased
+
+    private void fechaInicialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaInicialMousePressed
+      
+    }//GEN-LAST:event_fechaInicialMousePressed
+
+    private void fechaInicialPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaInicialPropertyChange
+
+      this.chkDomingo.setSelected(false);
+            this.chkLunes.setSelected(false);
+            this.chkMartes.setSelected(false);
+            this.chkMiercoles.setSelected(false);
+            this.chkJueves.setSelected(false);
+            this.chkViernes.setSelected(false);
+            this.chkSab.setSelected(false);  
+    }//GEN-LAST:event_fechaInicialPropertyChange
+
+    private void chkLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLunesActionPerformed
+    validarDias();
+    }//GEN-LAST:event_chkLunesActionPerformed
+
+    private void chkJuevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkJuevesActionPerformed
+    validarDias();
+    }//GEN-LAST:event_chkJuevesActionPerformed
+
+    private void chkSabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSabActionPerformed
+    validarDias();
+    }//GEN-LAST:event_chkSabActionPerformed
+
+    private void chkDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDomingoActionPerformed
+    validarDias();
+    }//GEN-LAST:event_chkDomingoActionPerformed
+
+    private void fechaInicialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaInicialMouseExited
+        
+    }//GEN-LAST:event_fechaInicialMouseExited
+
+    private void fechaFinalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaFinalPropertyChange
+               this.chkDomingo.setSelected(false);
+            this.chkLunes.setSelected(false);
+            this.chkMartes.setSelected(false);
+            this.chkMiercoles.setSelected(false);
+            this.chkJueves.setSelected(false);
+            this.chkViernes.setSelected(false);
+            this.chkSab.setSelected(false);  
+    }//GEN-LAST:event_fechaFinalPropertyChange
     private void Refrescar()   
     {
        DefaultTableModel Prestamos  = new DefaultTableModel(); 
@@ -830,9 +1106,27 @@ public class Prestamo extends javax.swing.JFrame {
          }
         Prestamos.addRow(Fila);
      }
-     
+     Date date=new Date();
+        DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
     dataPrestamos.setModel(Prestamos);
-        
+    this.txtNombreC1.setText("");
+        this.txtNombreC.setText("");
+        this.txtApellidoC.setText("");
+        this.txtLabNombre.setText("");
+        this.txtClase.setText("");
+        this.txtClase1.setText("");
+        this.txtComentario.setText("Ingrese un Comentario...");     
+        this.chkLunes.setSelected(false);
+        this.chkMartes.setSelected(false);
+        this.chkMiercoles.setSelected(false);
+        this.chkJueves.setSelected(false);
+        this.chkViernes.setSelected(false);
+        this.chkSab.setSelected(false);
+        this.chkDomingo.setSelected(false);
+        this.cmbHoraFinal.setSelectedIndex(0);
+        this.cmbHoraInicial.setSelectedIndex(0);
+        this.fechaInicial.setDate(date);
+        this.fechaFinal.setDate(date);  
     }
 
     void mostrarDatos( String valor, String valor2){
