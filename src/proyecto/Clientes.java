@@ -31,6 +31,9 @@ public class Clientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.txtcodigoIdCliente.setEnabled(false);
         this.jLabel9.setEnabled(false);
+        this.jPanel1.setVisible(false);
+        this.txtcodigoFacultad.setEnabled(false);
+        this.btnActualizar.setEnabled(false);
         mostrarDatos("");
         
     }
@@ -67,7 +70,6 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRol = new javax.swing.JTable();
-        RegresarBtn_Clientes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnMostrarT = new javax.swing.JButton();
         btnbuscar = new javax.swing.JButton();
@@ -81,6 +83,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtidCliente = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        RegresarBtn_Clientes = new javax.swing.JButton();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,14 +250,8 @@ public class Clientes extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 310, -1));
 
-        RegresarBtn_Clientes.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        RegresarBtn_Clientes.setText("Regresar");
-        RegresarBtn_Clientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarBtn_ClientesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(RegresarBtn_Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, -1, -1));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnMostrarT.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnMostrarT.setText("Mostrar Todo");
@@ -262,6 +260,7 @@ public class Clientes extends javax.swing.JFrame {
                 btnMostrarTActionPerformed(evt);
             }
         });
+        jPanel2.add(btnMostrarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 72, -1, -1));
 
         btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnbuscar.setText("Buscar");
@@ -270,9 +269,11 @@ public class Clientes extends javax.swing.JFrame {
                 btnbuscarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 72, 148, -1));
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblNombre.setText("Nombre: ");
+        jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 27, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -280,6 +281,7 @@ public class Clientes extends javax.swing.JFrame {
                 txtBuscarActionPerformed(evt);
             }
         });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 24, 160, -1));
 
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -293,48 +295,9 @@ public class Clientes extends javax.swing.JFrame {
         tbCliente.setComponentPopupMenu(jPopupMenu1);
         jScrollPane2.setViewportView(tbCliente);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblNombre)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMostrarT)))
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(22, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnbuscar)
-                    .addComponent(btnMostrarT))
-                .addContainerGap(313, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(110, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-        );
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 356, 297));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 390, 420));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 390, 450));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -376,6 +339,30 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 20, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 726, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 445, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 730, 450));
+
+        RegresarBtn_Clientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn_Clientes.setText("Regresar");
+        RegresarBtn_Clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtn_ClientesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn_Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -821,6 +808,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

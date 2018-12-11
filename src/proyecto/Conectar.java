@@ -36,7 +36,7 @@ public class Conectar {
             conn=DriverManager.getConnection(url, user, password);
             if(conn!=null)
             {
-                System.out.println("Conexion hecha");
+               //System.out.println("Conexion hecha");
             }
         }
         catch(ClassNotFoundException | SQLException e)

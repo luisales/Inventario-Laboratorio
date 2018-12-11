@@ -132,7 +132,7 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
         lblIngresar.setText("Mantenimiento Laboratorios");
         getContentPane().add(lblIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del laboratorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -287,7 +287,12 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Llene el campo capacidad");
             return;
         }
-
+        
+        if(Integer.parseInt(this.txtCapacidad.getText())<10)
+        {
+            JOptionPane.showMessageDialog(null, "El laboratorio debe tener al menos una capacidad de 10");
+            return;
+        }
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
 

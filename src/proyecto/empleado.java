@@ -29,11 +29,11 @@ public class empleado extends javax.swing.JFrame {
         this.jPanel1.setVisible(false);
         this.labelmod.setVisible(false);
         this.labelreg.setVisible(false);
-        this.btnActualizar.setVisible(false);
+        this.btnActualizar.setEnabled(false);
         this.btnguardar.setVisible(true);
         this.labelcod.setVisible(false);
         this.txtcodigo.setVisible(false);
-        
+        this.txtrol.setEnabled(false);
         mostrarDatos("","");
     }
 
@@ -85,6 +85,7 @@ public class empleado extends javax.swing.JFrame {
         lblNombre1 = new javax.swing.JLabel();
         txtBuscar2 = new javax.swing.JTextField();
         txtid = new javax.swing.JFormattedTextField();
+        jPanel3 = new javax.swing.JPanel();
 
         jMenuItem2.setText("Modificar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +136,7 @@ public class empleado extends javax.swing.JFrame {
 
         labelemp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelemp.setText("Empleado");
-        getContentPane().add(labelemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+        getContentPane().add(labelemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Segundo nombre: ");
@@ -206,6 +207,11 @@ public class empleado extends javax.swing.JFrame {
         getContentPane().add(labelrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         txtrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtrol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrolActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 59, -1));
 
         jButton1.setText("jButton1");
@@ -231,6 +237,9 @@ public class empleado extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dataRolMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dataRolMouseEntered(evt);
+            }
         });
         jScrollPane3.setViewportView(dataRol);
 
@@ -253,11 +262,11 @@ public class empleado extends javax.swing.JFrame {
 
         labelmod.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelmod.setText("Modificar Empleado");
-        getContentPane().add(labelmod, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        getContentPane().add(labelmod, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         labelreg.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelreg.setText("Registrar Empleado");
-        getContentPane().add(labelreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        getContentPane().add(labelreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -280,13 +289,14 @@ public class empleado extends javax.swing.JFrame {
         labelcod.setText("Codigo de empleado: ");
         getContentPane().add(labelcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegresarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 575, -1, -1));
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, -1, -1));
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnguardar.setText("Guardar");
@@ -296,6 +306,8 @@ public class empleado extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 162, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         tbEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -344,7 +356,7 @@ public class empleado extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(32, Short.MAX_VALUE)
+                        .addContainerGap(28, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -373,10 +385,10 @@ public class empleado extends javax.swing.JFrame {
                     .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 100, 520, 550));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 520, 550));
 
         try {
             txtid.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-#####")));
@@ -385,6 +397,21 @@ public class empleado extends javax.swing.JFrame {
         }
         txtid.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 250, 40));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 716, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 720, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -398,8 +425,10 @@ public class empleado extends javax.swing.JFrame {
         modelo.addColumn("Primer Apellido");
         modelo.addColumn("Segundo Apellido");
         modelo.addColumn("Telefono");
+        modelo.addColumn("extension");
         modelo.addColumn("Correo");
         modelo.addColumn("Identidad");
+        modelo.addColumn("Codigo Rol");
         
         tbEmpleado.setModel(modelo);
         String sql = "";
@@ -410,7 +439,7 @@ public class empleado extends javax.swing.JFrame {
         else{
         sql = "Select * from empleado where primerNombreEmpleado like  '"+valor+"%' and primerApellidoEmpleado like '"+valor2+"%' ";
         }
-        String []datos = new String[9];
+        String []datos = new String[10];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -428,6 +457,7 @@ public class empleado extends javax.swing.JFrame {
             datos[6] = rs.getString(7);
             datos[7] = rs.getString(8);
             datos[8] = rs.getString(9);
+            datos[9] =  rs.getString(10);
             
             modelo.addRow(datos);
             
@@ -530,29 +560,14 @@ public class empleado extends javax.swing.JFrame {
 
         try
         {
-             String primerNombreEmpleado = "";
-             String sql = "select * FROM empleado where primerNombreEmpleado ='" +nombre+"'"; 
-             Statement st = reg.createStatement();
-             ResultSet rs = st.executeQuery(sql);
-             
-             while(rs.next())
-             {
-                 primerNombreEmpleado = rs.getString("primerNombreEmpleado");
-             }
-            
-            if(nombre.equals(primerNombreEmpleado))
-            {
-            JOptionPane.showMessageDialog(null, "Empleado ya existente");
-            }
-            else
-            {
+
             PreparedStatement obj=reg.prepareStatement("INSERT INTO empleado(primerNombreEmpleado, segundoNombreEmpleado, primerApellidoEmpleado, segundoApellidoEmpleado,telefonoEmpleado, correoEmpleado, identidadEmpleado, codigoRol) values(?,?,?,?,?,?,?,?)");
             obj.setString(1,nombre);
             obj.setString(2,this.txtnombre3.getText().toUpperCase());
             obj.setString(3,this.txtape1.getText().toUpperCase());
             obj.setString(4,this.txtape2.getText().toUpperCase());
             obj.setString(5,this.txttel.getText().toUpperCase());
-            obj.setString(6,this.txtcorreo1.getText().toUpperCase());
+            obj.setString(6,this.txtcorreo1.getText());
             obj.setString(7,this.txtid.getText().toUpperCase());
             obj.setString(8,this.txtrol.getText().toUpperCase());
             obj.executeUpdate();
@@ -567,7 +582,7 @@ public class empleado extends javax.swing.JFrame {
             this.txtid.setText("");
             this.txtrol.setText("");
             
-            }
+            
             
             mostrarDatos("","");
             
@@ -591,7 +606,12 @@ public class empleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void dataRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseClicked
-
+        int fila=this.dataRol.getSelectedRow();
+        if(fila>=0)
+        {
+            this.txtrol.setText(this.dataRol.getValueAt(fila, 0).toString());
+        }
+        this.jPanel1.setVisible(false);
     }//GEN-LAST:event_dataRolMouseClicked
 
     private void txttelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelKeyTyped
@@ -670,12 +690,13 @@ public class empleado extends javax.swing.JFrame {
             this.txtnombre3.setText(tbEmpleado.getValueAt(fila,2).toString());
             this.txtape1.setText(tbEmpleado.getValueAt(fila,3).toString());
             this.txtape2.setText(tbEmpleado.getValueAt(fila,4).toString());
-            this.txttel.setText(tbEmpleado.getValueAt(fila,7).toString());
-            this.txtcorreo1.setText(tbEmpleado.getValueAt(fila,6).toString());
-            this.txtid.setText(tbEmpleado.getValueAt(fila,7).toString());
-
+            this.txttel.setText(tbEmpleado.getValueAt(fila,5).toString());
+            this.txtcorreo1.setText(tbEmpleado.getValueAt(fila,7).toString());
+            this.txtid.setText(tbEmpleado.getValueAt(fila,8).toString());
+            this.txtrol.setText(tbEmpleado.getValueAt(fila,9).toString());
             
-            this.btnActualizar.setVisible(true);
+            this.btnguardar.setEnabled(false);
+            
             
         }
         else{
@@ -744,6 +765,14 @@ public class empleado extends javax.swing.JFrame {
         this.btnguardar.setEnabled(true);
        this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_InsertarActionPerformed
+
+    private void dataRolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataRolMouseEntered
+
+    private void txtrolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrolActionPerformed
 
     private void txttelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelActionPerformed
         // TODO add your handling code here:
@@ -826,6 +855,7 @@ public class empleado extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelcod;

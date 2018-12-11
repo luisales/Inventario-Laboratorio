@@ -26,6 +26,7 @@ public class Usuario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.jPanel1.setVisible(false);
+        this.txtcodigo.setEnabled(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +52,7 @@ public class Usuario extends javax.swing.JFrame {
         RegresarBtn = new javax.swing.JButton();
         txtcontra2 = new javax.swing.JPasswordField();
         txtcontra1 = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,6 +139,7 @@ public class Usuario extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
 
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +149,21 @@ public class Usuario extends javax.swing.JFrame {
         getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
         getContentPane().add(txtcontra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 210, 40));
         getContentPane().add(txtcontra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 210, 40));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 736, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 495, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 740, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -321,6 +339,7 @@ public class Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JPasswordField txtcontra1;

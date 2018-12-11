@@ -44,7 +44,6 @@ public class clase extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
-        RegresarBtn1 = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         btnActualizar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -52,6 +51,8 @@ public class clase extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbFacultad = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        RegresarBtn1 = new javax.swing.JButton();
 
         jMenuItem3.setText("Ingresar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +81,7 @@ public class clase extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Facultad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
         jPanel1.setFocusable(false);
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,14 +120,6 @@ public class clase extends javax.swing.JFrame {
         lblNombre1.setText("Nombre: ");
         jPanel1.add(lblNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        RegresarBtn1.setText("Regresar");
-        RegresarBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarBtn1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RegresarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, -1, -1));
-
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +138,7 @@ public class clase extends javax.swing.JFrame {
         });
         jPanel1.add(btnActualizar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 520, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 460));
         jPanel1.getAccessibleContext().setAccessibleName("Datos de la clase");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -181,6 +174,19 @@ public class clase extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 400));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 520, 530));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel8.setText("Mantenimiento Clase");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        RegresarBtn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn1.setText("Regresar");
+        RegresarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -421,6 +427,7 @@ public class clase extends javax.swing.JFrame {
     private javax.swing.JButton RegresarBtn1;
     private javax.swing.JButton btnActualizar1;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
