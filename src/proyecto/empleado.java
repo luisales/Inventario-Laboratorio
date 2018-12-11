@@ -202,6 +202,11 @@ public class empleado extends javax.swing.JFrame {
         getContentPane().add(labelrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
 
         txtrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtrol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrolActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 59, -1));
 
         jButton1.setText("jButton1");
@@ -756,6 +761,10 @@ public class empleado extends javax.swing.JFrame {
     private void dataRolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_dataRolMouseEntered
+
+    private void txtrolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrolActionPerformed
 
     private void mostrar()
     {
