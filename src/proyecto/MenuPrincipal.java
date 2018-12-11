@@ -37,6 +37,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.jButton3.setEnabled(false);
         this.jButton4.setEnabled(false);
         this.jButton5.setEnabled(false);
+        this.jButton7.setEnabled(false);
        // setSize(1000,650);
         this.setLocationRelativeTo(null);  
         String sql = ""; 
@@ -75,6 +76,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         {
             this.jButton5.setEnabled(true);
         }
+        if(per.contains("F"))
+        {
+            this.jButton7.setEnabled(true);
+        }
     }
 
     /**
@@ -94,6 +99,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 22, 22, 22));
@@ -188,7 +194,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelFondo.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 150, -1));
+        PanelFondo.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 150, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
@@ -210,6 +216,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         PanelFondo.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prestamos.png"))); // NOI18N
+        jButton7.setText("Prestamos");
+        jButton7.setBorder(null);
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton7.setFocusPainted(false);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        PanelFondo.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 150, -1));
 
         getContentPane().add(PanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 450));
 
@@ -283,6 +308,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Prestamo a= new Prestamo();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,6 +368,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,6 +26,7 @@ public class Rol extends javax.swing.JFrame {
     public Rol() {
         initComponents();
        this.setLocationRelativeTo(null);
+       mostrarDatos("");
     }
 
     /**

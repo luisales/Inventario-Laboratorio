@@ -294,7 +294,9 @@ public class Mantenimientos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10MouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        Periferico a = new Periferico();
+        a.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
