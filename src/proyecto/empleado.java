@@ -173,6 +173,11 @@ public class empleado extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         txttel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txttel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttelActionPerformed(evt);
+            }
+        });
         txttel.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txttelKeyTyped(evt);
@@ -739,6 +744,10 @@ public class empleado extends javax.swing.JFrame {
         this.btnguardar.setEnabled(true);
        this.btnActualizar.setEnabled(false);
     }//GEN-LAST:event_InsertarActionPerformed
+
+    private void txttelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttelActionPerformed
 
     private void mostrar()
     {
