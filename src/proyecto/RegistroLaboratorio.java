@@ -268,7 +268,27 @@ public class RegistroLaboratorio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void txtCapacidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCapacidadKeyTyped
-        // TODO add your handling code here:
+        char a=evt.getKeyChar();
+        if(Character.isLetter(a))
+        {
+           
+            getToolkit().beep(); 
+               
+            evt.consume(); 
+               
+            JOptionPane.showMessageDialog(null, "Ingrese solo Numeros");
+        }
+        else if((int)a>32 && (int)a<=47
+                ||(int)a>58 && (int)a<=64
+                ||(int)a>91 && (int)a<=96
+                ||(int)a>44 && (int)a<=47)
+        {
+            getToolkit().beep(); 
+               
+            evt.consume(); 
+               
+            JOptionPane.showMessageDialog(null, "Ingrese solo Numeros");
+        }
     }//GEN-LAST:event_txtCapacidadKeyTyped
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

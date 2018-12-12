@@ -362,6 +362,11 @@ public class Periferico extends javax.swing.JFrame {
 
         jCheckBox1.setText("NULO");
         jCheckBox1.setEnabled(false);
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 80, -1));
 
         RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -510,6 +515,7 @@ public class Periferico extends javax.swing.JFrame {
         String equipo=null;
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
+        String estado="";
         if(this.txtequipo.getText().equals(""))
         {
             equipo=null;
@@ -518,9 +524,17 @@ public class Periferico extends javax.swing.JFrame {
         {
             equipo=this.txtequipo.getText();
         }
+        
+        if(this.jCheckBox1.isSelected())
+        {
+            equipo=null;
+            estado="DISPONIBLE";
+        }
+        
+        
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE perifericos SET codigoMarca='"+this.txtmarca.getText()+"',codigoTipoPeriferico='"+this.txttipoperiferico.getText()+"',codigoEquipo='"+equipo+"' WHERE codigoPeriferico='"+this.txtCodigo.getText()+"'");
+            PreparedStatement obj=reg.prepareStatement("UPDATE perifericos SET codigoMarca='"+this.txtmarca.getText()+"',codigoTipoPeriferico='"+this.txttipoperiferico.getText()+"',codigoEquipo="+equipo+", estadoPeriferico='"+estado+"' WHERE codigoPeriferico='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             mostrarDatos("");
@@ -666,6 +680,10 @@ public class Periferico extends javax.swing.JFrame {
         this.btnActualizar.setEnabled(false);
         this.btnIngresar.setEnabled(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments

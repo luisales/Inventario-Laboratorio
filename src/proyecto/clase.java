@@ -289,6 +289,8 @@ public class clase extends javax.swing.JFrame {
         {
             Logger.getLogger(clase.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.btnActualizar1.setEnabled(false);
+        this.btnIngresar.setEnabled(true);
     }//GEN-LAST:event_btnActualizar1ActionPerformed
 
     private void RegresarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtn1ActionPerformed

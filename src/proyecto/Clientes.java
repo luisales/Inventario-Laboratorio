@@ -377,6 +377,7 @@ public class Clientes extends javax.swing.JFrame {
         modelo.addColumn("Segundo Apellido");
         modelo.addColumn("Codigo Facultad");
         modelo.addColumn("Telefono");
+        modelo.addColumn("extension");
         modelo.addColumn("Correo");
         modelo.addColumn("Identidad");
         tbCliente.setModel(modelo);
@@ -388,7 +389,7 @@ public class Clientes extends javax.swing.JFrame {
         else{
         sql = "Select * from cliente where primerNombreCliente like  '"+valor+"%' ";
         }
-        String []datos = new String[9];
+        String []datos = new String[10];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -406,6 +407,7 @@ public class Clientes extends javax.swing.JFrame {
             datos[6] = rs.getString(7);
             datos[7] = rs.getString(8);
             datos[8] = rs.getString(9);
+            datos[9] = rs.getString(10);
             modelo.addRow(datos);
             
             }
@@ -676,8 +678,8 @@ public class Clientes extends javax.swing.JFrame {
             this.txtsegundoApellido.setText(tbCliente.getValueAt(fila,4).toString());
             this.txtcodigoFacultad.setText(tbCliente.getValueAt(fila,5).toString());
             this.txttelefonoCliente.setText(tbCliente.getValueAt(fila,6).toString());
-            this.txtcorreoCliente.setText(tbCliente.getValueAt(fila,7).toString());
-            this.txtidCliente.setText(tbCliente.getValueAt(fila,8).toString());
+            this.txtcorreoCliente.setText(tbCliente.getValueAt(fila,8).toString());
+            this.txtidCliente.setText(tbCliente.getValueAt(fila,9).toString());
             
             this.btnActualizar.setVisible(true);
             this.txtcodigoIdCliente.setVisible(true);

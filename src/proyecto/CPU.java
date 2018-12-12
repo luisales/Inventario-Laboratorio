@@ -676,6 +676,7 @@ public class CPU extends javax.swing.JFrame {
         {
             Logger.getLogger(marca.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.btnguardar.setEnabled(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnMostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTActionPerformed

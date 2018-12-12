@@ -1550,7 +1550,7 @@ public class Prestamo extends javax.swing.JFrame {
         Fila[0]="12:00PM-1:00PM";   
         else
         Fila[0]=(j-6)+":00PM-"+(j-5)+":00PM";
-         int Cols=1;
+        int Cols=1;
         for(int i=0;i<CodigoLab.length;i++)
         {      
          

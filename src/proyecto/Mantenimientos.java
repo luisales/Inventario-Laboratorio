@@ -39,7 +39,6 @@ public class Mantenimientos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/facu.png"))); // NOI18N
         jButton5.setText("Facultad");
@@ -59,7 +58,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 45, 170, -1));
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/64088.png"))); // NOI18N
         jButton6.setText("Marca");
@@ -79,7 +77,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 45, 155, -1));
 
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +84,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 RegresarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 567, -1, -1));
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/44007.png"))); // NOI18N
         jButton7.setText("CPU");
@@ -107,7 +103,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 318, 170, -1));
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clase_318-59679.png"))); // NOI18N
         jButton8.setText("Clase");
@@ -127,7 +122,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 182, 170, -1));
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rol.png"))); // NOI18N
         jButton9.setText("Roles");
@@ -147,7 +141,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 182, 170, -1));
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/periferico.png"))); // NOI18N
         jButton10.setText("Perifericos");
@@ -167,7 +160,6 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 318, 170, -1));
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/periferico.png"))); // NOI18N
         jButton11.setText("Tipo de periferico");
@@ -187,11 +179,68 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 455, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Mantenimientos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 40));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(371, 371, 371)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addComponent(jLabel1))
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(189, 189, 189)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(201, 201, 201)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jButton11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(RegresarBtn)))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton5)
+                            .addComponent(jButton6))))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton7)
+                    .addComponent(jButton10))
+                .addGap(37, 37, 37)
+                .addComponent(jButton11)
+                .addGap(12, 12, 12)
+                .addComponent(RegresarBtn))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

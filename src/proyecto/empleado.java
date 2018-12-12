@@ -493,7 +493,7 @@ public class empleado extends javax.swing.JFrame {
         }
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"' WHERE codigoEmpleado='"+this.txtcodigo.getText()+"'");
+            PreparedStatement obj=reg.prepareStatement("UPDATE Empleado SET primerNombreEmpleado='"+this.txtnombre1.getText()+"',segundoNombreEmpleado='"+this.txtnombre3.getText()+"', primerApellidoEmpleado='"+this.txtape1.getText()+"',segundoApellidoEmpleado='"+this.txtape2.getText()+"',telefonoEmpleado='"+this.txttel.getText()+"', correoEmpleado='"+this.txtcorreo1.getText()+"', identidadEmpleado='"+this.txtid.getText()+"', codigoRol='"+this.txtrol.getText()+"' WHERE codigoEmpleado='"+this.txtcodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             
@@ -508,7 +508,8 @@ public class empleado extends javax.swing.JFrame {
             this.txtcorreo1.setText("");
             this.txtid.setText("");            
             this.txtBuscar.setText("");
-            this.btnActualizar.setVisible(false);
+            this.btnActualizar.setEnabled(false);
+            this.btnguardar.setEnabled(true);
         }
         catch(SQLException ex)
         {
