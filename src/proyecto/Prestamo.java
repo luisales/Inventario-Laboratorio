@@ -1143,14 +1143,14 @@ public class Prestamo extends javax.swing.JFrame {
             this.chkMiercoles.setSelected(false);
             this.chkJueves.setSelected(false);
             this.chkViernes.setSelected(false);
-            this.chkSab.setSelected(false);  
+            this.chkSab.setSelected(false); 
             this.chkDomingo.setEnabled(true);
-            this.chkLunes.setEnabled(true);
-            this.chkMartes.setEnabled(true);
-            this.chkMiercoles.setEnabled(true);
-            this.chkJueves.setEnabled(true);
-            this.chkViernes.setEnabled(true);
-            this.chkSab.setEnabled(true);
+               this.chkLunes.setEnabled(true);
+               this.chkMartes.setEnabled(true);
+               this.chkMiercoles.setEnabled(true);
+               this.chkJueves.setEnabled(true);
+               this.chkViernes.setEnabled(true);
+               this.chkSab.setEnabled(true);
     }//GEN-LAST:event_fechaInicialPropertyChange
 
     private void chkLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLunesActionPerformed
@@ -1174,7 +1174,16 @@ public class Prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_fechaInicialMouseExited
     
     private void fechaFinalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaFinalPropertyChange
-             this.chkDomingo.setSelected(false);
+               this.chkDomingo.setEnabled(true);
+               this.chkLunes.setEnabled(true);
+               this.chkMartes.setEnabled(true);
+               this.chkMiercoles.setEnabled(true);
+               this.chkJueves.setEnabled(true);
+               this.chkViernes.setEnabled(true);
+               this.chkSab.setEnabled(true);
+               
+               
+        this.chkDomingo.setSelected(false);
             this.chkLunes.setSelected(false);
             this.chkMartes.setSelected(false);
             this.chkMiercoles.setSelected(false);

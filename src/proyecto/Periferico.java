@@ -38,7 +38,6 @@ public class Periferico extends javax.swing.JFrame {
         modelo.addColumn("C.Marca");
         modelo.addColumn("C.TipoPerfiferico");
         modelo.addColumn("C.Equipo");
-        modelo.addColumn("Estado");
         tbPeriferico.setModel(modelo);
         String sql = "";
         if(valor.equals(""))
@@ -61,7 +60,6 @@ public class Periferico extends javax.swing.JFrame {
             datos[1] = rs.getString(2);
             datos[2] = rs.getString(3);
             datos[3] = rs.getString(4);
-            datos[4] = rs.getString(5);
             
             modelo.addRow(datos);
             
@@ -103,14 +101,14 @@ public class Periferico extends javax.swing.JFrame {
         jPanelt = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRoltipoperiferico = new javax.swing.JTable();
-        txtestado = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         RegresarBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPeriferico = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +136,7 @@ public class Periferico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtequipo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -147,23 +146,24 @@ public class Periferico extends javax.swing.JFrame {
                 txtequipoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtequipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 60, -1));
+        jPanel1.add(txtequipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 60, -1));
 
         jButton1.setText("jButton1");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 19, 35));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 19, 35));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Codigo de Equipo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
-        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        lblCodigo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblCodigo1.setText("Codigo Periférico:");
-        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel1.add(lblCodigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtCodigo.setEnabled(false);
@@ -177,11 +177,11 @@ public class Periferico extends javax.swing.JFrame {
                 txtCodigoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 110, -1));
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Codigo de Marca:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         txtmarca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtmarca.setEnabled(false);
@@ -190,7 +190,7 @@ public class Periferico extends javax.swing.JFrame {
                 txtmarcaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtmarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 60, -1));
+        jPanel1.add(txtmarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 60, -1));
 
         jButton2.setText("jButton1");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -203,11 +203,11 @@ public class Periferico extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 19, 35));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 19, 35));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Codigo de Tipo Periférico:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
         txttipoperiferico.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txttipoperiferico.setEnabled(false);
@@ -216,7 +216,7 @@ public class Periferico extends javax.swing.JFrame {
                 txttipoperifericoActionPerformed(evt);
             }
         });
-        jPanel1.add(txttipoperiferico, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 60, -1));
+        jPanel1.add(txttipoperiferico, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 60, -1));
 
         jButton3.setText("jButton1");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +224,7 @@ public class Periferico extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 19, 35));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 19, 35));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -233,7 +233,7 @@ public class Periferico extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 130, 35));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 130, 35));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -242,7 +242,7 @@ public class Periferico extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 130, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 130, -1));
 
         dataRolequipo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,7 +281,7 @@ public class Periferico extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanele, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 200, 80));
+        jPanel1.add(jPanele, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 200, 80));
 
         dataRolmarca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -319,7 +319,7 @@ public class Periferico extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanelm, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 200, 80));
+        jPanel1.add(jPanelm, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 200, 80));
 
         dataRoltipoperiferico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -358,24 +358,11 @@ public class Periferico extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanelt, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 200, 80));
+        jPanel1.add(jPanelt, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 200, 80));
 
-        txtestado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtestado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtestadoActionPerformed(evt);
-            }
-        });
-        txtestado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtestadoKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 130, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Estado:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jCheckBox1.setText("NULO");
+        jCheckBox1.setEnabled(false);
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 80, -1));
 
         RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         RegresarBtn.setText("Regresar");
@@ -418,29 +405,40 @@ public class Periferico extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 500, 420));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel8.setText("Mantenimiento Periferico");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RegresarBtn)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RegresarBtn)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8)
+                        .addGap(157, 157, 157)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel8)
+                        .addGap(31, 31, 31)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(RegresarBtn)
                 .addGap(26, 26, 26))
@@ -470,13 +468,7 @@ public class Periferico extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        String nombre = this.txtestado.getText().toUpperCase();
         String equipo = null;
-        if(nombre.equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Llene el campo estado");
-            return;
-        }
         if(this.txtequipo.getText().equals(""))
         {
             equipo=null;
@@ -495,7 +487,7 @@ public class Periferico extends javax.swing.JFrame {
                 obj.setString(1,this.txtmarca.getText());
                 obj.setString(2,this.txttipoperiferico.getText());
                 obj.setString(3, equipo);
-                obj.setString(4,nombre);
+                obj.setString(4,"DISPONIBLE");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Periférico Ingresado");
 
@@ -503,7 +495,6 @@ public class Periferico extends javax.swing.JFrame {
             this.txtmarca.setText("");
             this.txttipoperiferico.setText("");
             this.txtequipo.setText("");
-            this.txtestado.setText("");
 
             mostrarDatos("");
 
@@ -529,7 +520,7 @@ public class Periferico extends javax.swing.JFrame {
         }
         try
         {
-            PreparedStatement obj=reg.prepareStatement("UPDATE perifericos SET codigoMarca='"+this.txtmarca.getText()+"',codigoTipoPeriferico='"+this.txttipoperiferico.getText()+"',codigoEquipo='"+equipo+"',estadoPeriferico='"+this.txtestado.getText() +  "'WHERE codigoPeriferico='"+this.txtCodigo.getText()+"'");
+            PreparedStatement obj=reg.prepareStatement("UPDATE perifericos SET codigoMarca='"+this.txtmarca.getText()+"',codigoTipoPeriferico='"+this.txttipoperiferico.getText()+"',codigoEquipo='"+equipo+"' WHERE codigoPeriferico='"+this.txtCodigo.getText()+"'");
             obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             mostrarDatos("");
@@ -538,7 +529,6 @@ public class Periferico extends javax.swing.JFrame {
             this.txtmarca.setText("");
             this.txttipoperiferico.setText("");
             this.txtequipo.setText("");
-            this.txtestado.setText("");
             this.txtBuscar.setText("");
             this.btnActualizar.setEnabled(false);
             this.btnIngresar.setEnabled(true);
@@ -628,6 +618,8 @@ public class Periferico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.jButton1.setEnabled(true);
+        this.jCheckBox1.setEnabled(true);
         int fila = tbPeriferico.getSelectedRow();
         if(fila >=0)
         {
@@ -636,7 +628,6 @@ public class Periferico extends javax.swing.JFrame {
             this.txtCodigo.setText(tbPeriferico.getValueAt(fila,0).toString());
             this.txtmarca.setText(tbPeriferico.getValueAt(fila,1).toString());
             this.txttipoperiferico.setText(tbPeriferico.getValueAt(fila,2).toString());
-            this.txtestado.setText(tbPeriferico.getValueAt(fila,4).toString());
             this.txtequipo.setText(tbPeriferico.getValueAt(fila,3).toString());
         }
         else{
@@ -675,20 +666,6 @@ public class Periferico extends javax.swing.JFrame {
         this.btnActualizar.setEnabled(false);
         this.btnIngresar.setEnabled(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void txtestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtestadoActionPerformed
-
-    private void txtestadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtestadoKeyTyped
-        // TODO add your handling code here:
-        char validar=evt.getKeyChar();
-
-        if(Character.isDigit(validar)){
-            getToolkit().beep();
-            evt.consume();
-        }//validacion solo letras
-    }//GEN-LAST:event_txtestadoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -786,10 +763,11 @@ public class Periferico extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -809,7 +787,6 @@ public class Periferico extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtequipo;
-    private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtmarca;
     private javax.swing.JTextField txttipoperiferico;
     // End of variables declaration//GEN-END:variables

@@ -23,32 +23,43 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Equipo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Equipo
-     */
+    String mouse="",teclado="", monitor="", CodigoCPU="";
     public Equipo() {
         initComponents();
         this.txtcodigo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.Labtxt.setEnabled(false);
-        this.perifericotxt.setEnabled(false);
+        this.txtMonitor.setEnabled(false);
+        this.jPanel6.setVisible(false);
+        this.jPanel1.setVisible(false);
+        this.jPanel3.setVisible(false);
+        this.jPanel4.setVisible(false);
+        this.jPanel5.setVisible(false);
+        this.jPanel7.setVisible(false);
+        this.btnActualizar.setEnabled(false);
+        mostrarDatos("");
+        
     }
     void mostrarDatos( String valor){
         DefaultTableModel modelo  = new DefaultTableModel(); 
         
         modelo.addColumn("Codigo");
-        modelo.addColumn("Numero");
+        modelo.addColumn("Laboratorio");
+        modelo.addColumn("No.Asignado");
         modelo.addColumn("IP");
+        modelo.addColumn("CPU");
+        modelo.addColumn("Capacidad");
+        
         tbLaboratorio.setModel(modelo);
         String sql = "";
         if(valor.equals(""))
         {
-        sql = "Select * from equipo";
+        sql = "Select a.codigoEquipo, c.nombreLaboratorio, a.numeroAsignado, a.ipEquipo, b.codigoCpu, b.capacidadRamEquipo from equipo a inner join cpu b on a.codigoEquipo=b.codigoEquipo inner join laboratorio c on a.codigoLaboratorio=c.codigoLaboratorio";
         }
         else{
         sql = "Select * from equipo where numeroAsignado like  '"+valor+"%' ";
         }
-        String []datos = new String[3];
+        String []datos = new String[6];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -60,6 +71,9 @@ public class Equipo extends javax.swing.JFrame {
             datos[0] = rs.getString(1);
             datos[1] = rs.getString(2);
             datos[2] = rs.getString(3);
+            datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            datos[5] = rs.getString(6);
             modelo.addRow(datos);
             
             }
@@ -78,14 +92,16 @@ public class Equipo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         NumeroAsignadotxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        dataRol = new javax.swing.JTable();
+        dbMonitor = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        GuardarBtnEquipo = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
         iptxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         codigobtn = new javax.swing.JButton();
@@ -93,7 +109,7 @@ public class Equipo extends javax.swing.JFrame {
         RegresarBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         Labtxt = new javax.swing.JTextField();
-        perifericotxt = new javax.swing.JTextField();
+        txtMonitor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         perifericobtn = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
@@ -105,13 +121,65 @@ public class Equipo extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table2 = new javax.swing.JTable();
+        dbTeclado = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        txtTeclado = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtMouse = new javax.swing.JTextField();
+        perifericobtn1 = new javax.swing.JToggleButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        dbMouse = new javax.swing.JTable();
+        GuardarBtnEquipo = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        codigobtn1 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        dbLab = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        dbperifericos = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        txtCPU = new javax.swing.JTextField();
+        perifericobtn2 = new javax.swing.JToggleButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        dbCPU = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+
+        jMenuItem1.setText("Modificar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Ingresar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Eliminar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        NumeroAsignadotxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Numero de equipo:");
 
-        dataRol.setModel(new javax.swing.table.DefaultTableModel(
+        dbMonitor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -122,26 +190,13 @@ public class Equipo extends javax.swing.JFrame {
 
             }
         ));
-        dataRol.addMouseListener(new java.awt.event.MouseAdapter() {
+        dbMonitor.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbMonitor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataRolMouseClicked(evt);
+                dbMonitorMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(dataRol);
-
-        GuardarBtnEquipo.setText("Guardar");
-        GuardarBtnEquipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarBtnEquipoActionPerformed(evt);
-            }
-        });
-
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
+        jScrollPane3.setViewportView(dbMonitor);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,28 +207,23 @@ public class Equipo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(GuardarBtnEquipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(204, 204, 204)
                         .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(GuardarBtnEquipo)
-                        .addComponent(btnActualizar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        iptxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("IP Equipo:");
 
         codigobtn.setText("...");
@@ -183,6 +233,7 @@ public class Equipo extends javax.swing.JFrame {
             }
         });
 
+        RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,15 +241,22 @@ public class Equipo extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Laboratorio:");
 
-        perifericotxt.addActionListener(new java.awt.event.ActionListener() {
+        Labtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Labtxt.setEnabled(false);
+
+        txtMonitor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMonitor.setEnabled(false);
+        txtMonitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                perifericotxtActionPerformed(evt);
+                txtMonitorActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Periferico:");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setText("Monitor: ");
 
         perifericobtn.setText("...");
         perifericobtn.addActionListener(new java.awt.event.ActionListener() {
@@ -234,13 +292,22 @@ public class Equipo extends javax.swing.JFrame {
 
             }
         ));
+        tbLaboratorio.setComponentPopupMenu(jPopupMenu1);
+        tbLaboratorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbLaboratorioMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbLaboratorio);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 500, 200));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Codigo equipo:");
 
-        table2.setModel(new javax.swing.table.DefaultTableModel(
+        txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        dbTeclado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -248,12 +315,13 @@ public class Equipo extends javax.swing.JFrame {
 
             }
         ));
-        table2.addMouseListener(new java.awt.event.MouseAdapter() {
+        dbTeclado.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbTeclado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table2MouseClicked(evt);
+                dbTecladoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(table2);
+        jScrollPane1.setViewportView(dbTeclado);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -262,7 +330,7 @@ public class Equipo extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,101 +340,383 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setText("Teclado:");
+
+        txtTeclado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTeclado.setEnabled(false);
+        txtTeclado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTecladoActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel9.setText("Mouse: ");
+
+        txtMouse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMouse.setEnabled(false);
+        txtMouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMouseActionPerformed(evt);
+            }
+        });
+
+        perifericobtn1.setText("...");
+        perifericobtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perifericobtn1ActionPerformed(evt);
+            }
+        });
+
+        dbMouse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        dbMouse.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbMouse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dbMouseMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(dbMouse);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        GuardarBtnEquipo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        GuardarBtnEquipo.setText("Guardar");
+        GuardarBtnEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarBtnEquipoActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        codigobtn1.setText("...");
+        codigobtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigobtn1ActionPerformed(evt);
+            }
+        });
+
+        dbLab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        dbLab.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbLab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dbLabMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(dbLab);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Perifericos"));
+
+        dbperifericos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        dbperifericos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbperifericos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dbperifericosMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(dbperifericos);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("CPU:");
+
+        txtCPU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCPU.setEnabled(false);
+        txtCPU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPUActionPerformed(evt);
+            }
+        });
+
+        perifericobtn2.setText("...");
+        perifericobtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perifericobtn2ActionPerformed(evt);
+            }
+        });
+
+        dbCPU.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        dbCPU.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbCPU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dbCPUMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(dbCPU);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel12.setText("Mantenimiento Equipo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(jLabel4)))
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(iptxt)
-                            .addComponent(NumeroAsignadotxt)
-                            .addComponent(Labtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                            .addComponent(perifericotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcodigo))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(perifericobtn)
-                            .addComponent(codigobtn))
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(526, 526, 526))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(txtMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(codigobtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(txtTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel11)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(65, 65, 65)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(GuardarBtnEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(80, 80, 80)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RegresarBtn))
+                        .addContainerGap(124, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(RegresarBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel4)))
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(NumeroAsignadotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iptxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Labtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(codigobtn1)))
+                                .addGap(10, 10, 10)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17531, 17531, 17531))))
+                                .addGap(181, 181, 181)
+                                .addComponent(jLabel12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RegresarBtn)
-                .addGap(16, 16, 16))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NumeroAsignadotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(iptxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(Labtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(perifericotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel7)
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel1)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(codigobtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(perifericobtn)))))
+                                .addGap(35, 35, 35)
+                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(NumeroAsignadotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(iptxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Labtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(codigobtn1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigobtn))
+                        .addGap(11, 11, 11)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn))
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(80, 80, 80))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn1))
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn2))
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(GuardarBtnEquipo)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnActualizar))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(RegresarBtn))
         );
 
         pack();
@@ -376,53 +726,64 @@ public class Equipo extends javax.swing.JFrame {
         // TODO add your handling code here:
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
-        
+        String numeroAsignado = this.NumeroAsignadotxt.getText();
+        String codigo_equ="";
          try{
-                PreparedStatement obj = reg.prepareStatement("INSERT INTO equipo (numeroAsignado,ipEquipo,codigoLaboratorio) values(?,?,?)");
-                
-                obj.setString(1,this.NumeroAsignadotxt.getText());
-                obj.setString(2,this.iptxt.getText());
-                obj.setString(3,this.txtcodigo.getText());
-                
-                obj.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Guardado con exito");
+             
+             String numeroAsignado1 = "";
+            String sql = "select * FROM equipo where numeroAsignado ='" +numeroAsignado+"' AND codigoEquipo !='" +this.txtcodigo.getText()+"' AND codigoLaboratorio='" +this.Labtxt.getText()+"'";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next())
+            {
+                numeroAsignado1 = rs.getString("numeroAsignado");
             }
-              
-        
-        
+
+            if(numeroAsignado.equals(numeroAsignado1))
+            {
+                JOptionPane.showMessageDialog(null, "Numero ya asignado");
+            }
+            else{
+            PreparedStatement obj = reg.prepareStatement("INSERT INTO equipo (numeroAsignado,ipEquipo,codigoLaboratorio) values(?,?,?)");
+                
+            obj.setString(1,this.NumeroAsignadotxt.getText());
+            obj.setString(2,this.iptxt.getText());
+            obj.setString(3,this.Labtxt.getText());
+            obj.executeUpdate();
+            
+            ResultSet rx = Conectar.getTabla("select * from equipo where numeroAsignado='"+this.NumeroAsignadotxt.getText()+"'");
+            while(rx.next()){
+                codigo_equ=rx.getString("codigoEquipo");
+            }
+            
+            obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+codigo_equ+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMonitor.getText()+"'");
+            obj.executeUpdate();
+            obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+codigo_equ+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtTeclado.getText()+"'");
+            obj.executeUpdate();
+            obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+codigo_equ+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMouse.getText()+"'");
+            obj.executeUpdate();
+            obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo='"+codigo_equ+"', estadoCpu='OCUPADO' where codigoCpu='"+this.txtCPU.getText()+"'");
+            obj.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Guardado con exito");
+            }
+        }
         catch(SQLException ex)
         {
             Logger.getLogger(Equipo.class.getName()).log(Level.SEVERE,null,ex);
         }
     }//GEN-LAST:event_GuardarBtnEquipoActionPerformed
 
-    private void dataRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataRolMouseClicked
-        int fila=this.dataRol.getSelectedRow();
+    private void dbMonitorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbMonitorMouseClicked
+        int fila=this.dbMonitor.getSelectedRow();
         if(fila>=0)
         {
-            this.Labtxt.setText(this.dataRol.getValueAt(fila, 0).toString());
+            this.txtMonitor.setText(this.dbMonitor.getValueAt(fila, 0).toString());
         
         }
         
-        //this.jPanel1.setVisible(false);
-    }//GEN-LAST:event_dataRolMouseClicked
-
-    private void codigobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigobtnActionPerformed
-        // TODO add your handling code here:
-         DefaultTableModel modelo2 = new DefaultTableModel();
-        ResultSet rx = Conectar.getTabla("select * from laboratorio");
-        modelo2.setColumnIdentifiers(new Object[]{"Codigo Laboratorio","Nombre Laboratorio"});
-        try
-        {
-            while(rx.next()){
-                modelo2.addRow(new Object[]{rx.getString("codigoLaboratorio"), rx.getString("nombreLaboratorio")});
-            }
-            this.dataRol.setModel(modelo2);
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_codigobtnActionPerformed
+        this.jPanel1.setVisible(false);
+    }//GEN-LAST:event_dbMonitorMouseClicked
 
     private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
         // TODO add your handling code here:
@@ -433,25 +794,25 @@ public class Equipo extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarBtnActionPerformed
 
     private void perifericobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perifericobtnActionPerformed
-        // TODO add your handling code here:
+        this.jPanel4.setVisible(true);
         DefaultTableModel modelo2 = new DefaultTableModel();
-        ResultSet rx = Conectar.getTabla("select * from tipoperiferico");
-        modelo2.setColumnIdentifiers(new Object[]{"Codigo periferico","Nombre periferico"});
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoPeriferico,b.nombrePeriferico, c.nombreMarca, a.seriePeriferico FROM perifericos a INNER JOIN tipoperiferico b on a.codigoTipoPeriferico=b.codigoTipoPeriferico INNER JOIN marca c on a.codigoMarca=c.codigoMarca where b.nombrePeriferico='mouse' and a.estadoPeriferico='disponible'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Periferico","Marca","Serie"});
         try
         {
             while(rx.next()){
-                modelo2.addRow(new Object[]{rx.getString("codigoTipoPeriferico"), rx.getString("nombrePeriferico")});
+                modelo2.addRow(new Object[]{rx.getString("codigoPeriferico"),rx.getString("nombrePeriferico"), rx.getString("nombreMarca"), rx.getString("seriePeriferico")});
             }
-            this.table2.setModel(modelo2);
+            this.dbMouse.setModel(modelo2);
         }
         catch(Exception e){
             System.out.println(e);
         }
     }//GEN-LAST:event_perifericobtnActionPerformed
 
-    private void perifericotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perifericotxtActionPerformed
+    private void txtMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonitorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_perifericotxtActionPerformed
+    }//GEN-LAST:event_txtMonitorActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
@@ -462,25 +823,27 @@ public class Equipo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-
+        
         String numeroAsignado = this.NumeroAsignadotxt.getText();
         String ip = this.iptxt.getText().toUpperCase();
+        
+        String equipo = null;
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
         try
         {
-            String nombrelaboratorio = "";
-            String sql = "select * FROM equipo where numeroAsignado ='" +numeroAsignado+"' AND codigoEquipo !='" +this.txtcodigo.getText()+"'";
+            String numeroAsignado1 = "";
+            String sql = "select * FROM equipo where numeroAsignado ='" +numeroAsignado+"' AND codigoEquipo !='" +this.txtcodigo.getText()+"' AND codigoLaboratorio='" +this.Labtxt.getText()+"'";
             Statement st = reg.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             while(rs.next())
             {
-                numeroAsignado = rs.getString("numeroAsignado");
+                numeroAsignado1 = rs.getString("numeroAsignado");
             }
 
-            if(numeroAsignado.equals(numeroAsignado))
+            if(numeroAsignado.equals(numeroAsignado1))
             {
                 JOptionPane.showMessageDialog(null, "Numero ya asignado");
             }
@@ -488,6 +851,27 @@ public class Equipo extends javax.swing.JFrame {
             {
                 PreparedStatement obj=reg.prepareStatement("UPDATE equipo SET numeroAsignado='"+this.NumeroAsignadotxt.getText()+"',ipEquipo='"+this.iptxt.getText()+"'WHERE codigoEquipo='"+this.txtcodigo.getText()+"'");
                 obj.executeUpdate();
+                
+                
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+monitor+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+teclado+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+mouse+"'");
+                obj.executeUpdate();    
+                obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo="+equipo+", estadoCpu='DISPONIBLE' where codigoCpu='"+CodigoCPU+"'");
+                obj.executeUpdate();
+    
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMonitor.getText()+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtTeclado.getText()+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMouse.getText()+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoCpu='OCUPADO' where codigoCpu='"+this.txtCPU.getText()+"'");
+                obj.executeUpdate();
+                
+
                 JOptionPane.showMessageDialog(null, "Guardado con exito");
                 mostrarDatos("");
 
@@ -497,6 +881,7 @@ public class Equipo extends javax.swing.JFrame {
                 this.txtBuscar.setText("");
                // this.btnIngresar.setEnabled(true);
                 this.btnActualizar.setEnabled(false);
+                this.GuardarBtnEquipo.setEnabled(true);
             }
 
         }
@@ -506,15 +891,209 @@ public class Equipo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void table2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table2MouseClicked
+    private void dbTecladoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbTecladoMouseClicked
         // TODO add your handling code here:
-         int fila=this.table2.getSelectedRow();
+         int fila=this.dbTeclado.getSelectedRow();
         if(fila>=0)
         {
-            this.perifericotxt.setText(this.table2.getValueAt(fila, 0).toString());
+            this.txtTeclado.setText(this.dbTeclado.getValueAt(fila, 0).toString());
         
         }
-    }//GEN-LAST:event_table2MouseClicked
+        this.jPanel3.setVisible(false);
+    }//GEN-LAST:event_dbTecladoMouseClicked
+
+    private void txtTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTecladoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTecladoActionPerformed
+
+    private void txtMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMouseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMouseActionPerformed
+
+    private void perifericobtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perifericobtn1ActionPerformed
+        this.jPanel3.setVisible(true);
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoPeriferico,b.nombrePeriferico, c.nombreMarca, a.seriePeriferico FROM perifericos a INNER JOIN tipoperiferico b on a.codigoTipoPeriferico=b.codigoTipoPeriferico INNER JOIN marca c on a.codigoMarca=c.codigoMarca where b.nombrePeriferico='teclado' and a.estadoPeriferico='disponible'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Periferico","Marca","Serie"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoPeriferico"),rx.getString("nombrePeriferico"), rx.getString("nombreMarca"), rx.getString("seriePeriferico")});
+            }
+            this.dbTeclado.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_perifericobtn1ActionPerformed
+
+    private void dbMouseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbMouseMouseClicked
+         int fila=this.dbMouse.getSelectedRow();
+        if(fila>=0)
+        {
+            this.txtMouse.setText(this.dbMouse.getValueAt(fila, 0).toString());
+        
+        }
+        this.jPanel4.setVisible(false);
+    }//GEN-LAST:event_dbMouseMouseClicked
+
+    private void codigobtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigobtn1ActionPerformed
+        this.jPanel5.setVisible(true);
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("select * from laboratorio");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Nombre"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoLaboratorio"),rx.getString("nombreLaboratorio")});
+            }
+            this.dbLab.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_codigobtn1ActionPerformed
+
+    private void dbLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbLabMouseClicked
+        int fila=this.dbLab.getSelectedRow();
+        if(fila>=0)
+        {
+            this.Labtxt.setText(this.dbLab.getValueAt(fila, 0).toString());
+        
+        }
+        this.jPanel5.setVisible(false);
+    }//GEN-LAST:event_dbLabMouseClicked
+
+    private void codigobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigobtnActionPerformed
+        // TODO add your handling code here:
+        this.jPanel1.setVisible(true);
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoPeriferico,b.nombrePeriferico, c.nombreMarca, a.seriePeriferico FROM perifericos a INNER JOIN tipoperiferico b on a.codigoTipoPeriferico=b.codigoTipoPeriferico INNER JOIN marca c on a.codigoMarca=c.codigoMarca where b.nombrePeriferico='monitor' and a.estadoPeriferico='disponible'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Periferico","Marca","Serie"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoPeriferico"),rx.getString("nombrePeriferico"), rx.getString("nombreMarca"), rx.getString("seriePeriferico")});
+            }
+            this.dbMonitor.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_codigobtnActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        this.btnActualizar.setEnabled(false);
+        int fila = this.tbLaboratorio.getSelectedRow();
+        if(fila >=0)
+        {
+            this.btnActualizar.setEnabled(true);
+            this.txtcodigo.setText(tbLaboratorio.getValueAt(fila,0).toString());
+            this.Labtxt.setText(tbLaboratorio.getValueAt(fila,1).toString());
+            this.NumeroAsignadotxt.setText(tbLaboratorio.getValueAt(fila,2).toString());
+            this.iptxt.setText(tbLaboratorio.getValueAt(fila,3).toString());
+            this.txtCPU.setText(tbLaboratorio.getValueAt(fila,4).toString());
+            this.GuardarBtnEquipo.setEnabled(false);
+            
+            this.txtMouse.setText(dbperifericos.getValueAt(0,0).toString());
+            this.txtMonitor.setText(dbperifericos.getValueAt(1,0).toString());
+            this.txtTeclado.setText(dbperifericos.getValueAt(2,0).toString());
+            
+            mouse = this.txtMouse.getText();
+            teclado=this.txtTeclado.getText();
+            monitor=this.txtMonitor.getText();
+            CodigoCPU=this.txtCPU.getText();
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"no selecciono fila");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        Conectar con=new Conectar();
+        Connection reg=con.getConnection();
+        try
+        {
+            int fila = tbLaboratorio.getSelectedRow();
+            String codigo ="";
+            codigo = tbLaboratorio.getValueAt(fila,0).toString();
+            PreparedStatement obj=reg.prepareStatement("Delete from cliente Where codigoIdCliente='"+codigo+"'");
+            obj.executeUpdate();
+            mostrarDatos("");
+            this.tbLaboratorio.setEnabled(true);
+            this.btnActualizar.setEnabled(false);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void dbperifericosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbperifericosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dbperifericosMouseClicked
+
+    private void tbLaboratorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLaboratorioMouseClicked
+        String codigo_e="";
+        this.jPanel6.setVisible(true);
+        int fila=this.tbLaboratorio.getSelectedRow();
+        if(fila>=0)
+        {
+            codigo_e=(this.tbLaboratorio.getValueAt(fila, 0).toString());
+        
+        }
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoPeriferico,b.nombrePeriferico, c.nombreMarca, a.seriePeriferico FROM perifericos a INNER JOIN tipoperiferico b on a.codigoTipoPeriferico=b.codigoTipoPeriferico INNER JOIN marca c on a.codigoMarca=c.codigoMarca where a.codigoEquipo='"+codigo_e+"'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Periferico","Marca","Serie"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoPeriferico"),rx.getString("nombrePeriferico"), rx.getString("nombreMarca"), rx.getString("seriePeriferico")});
+            }
+            this.dbperifericos.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_tbLaboratorioMouseClicked
+
+    private void txtCPUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPUActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPUActionPerformed
+
+    private void perifericobtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perifericobtn2ActionPerformed
+        this.jPanel7.setVisible(true);
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoCpu, b.nombreMarca, a.serieCpu, a.cantidadRamEquipo, a.capacidadRamEquipo FROM cpu a INNER JOIN marca b on a.codigoMarca=b.codigoMarca where estadoCpu='disponible'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Marca","Serie", "Cantidad Ram", "Capacidad Ram"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoCpu"),rx.getString("nombreMarca"), rx.getString("serieCpu"), rx.getString("cantidadRamEquipo"),rx.getString("capacidadRamEquipo")});
+            }
+            this.dbCPU.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_perifericobtn2ActionPerformed
+
+    private void dbCPUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbCPUMouseClicked
+        int fila=this.dbCPU.getSelectedRow();
+        if(fila>=0)
+        {
+            this.txtCPU.setText(this.dbCPU.getValueAt(fila, 0).toString());
+        
+        }
+        this.jPanel7.setVisible(false);
+    }//GEN-LAST:event_dbCPUMouseClicked
 
     /**
      * @param args the command line arguments
@@ -559,27 +1138,54 @@ public class Equipo extends javax.swing.JFrame {
     private javax.swing.JButton RegresarBtn;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton codigobtn;
-    private javax.swing.JTable dataRol;
+    private javax.swing.JButton codigobtn1;
+    private javax.swing.JTable dbCPU;
+    private javax.swing.JTable dbLab;
+    private javax.swing.JTable dbMonitor;
+    private javax.swing.JTable dbMouse;
+    private javax.swing.JTable dbTeclado;
+    private javax.swing.JTable dbperifericos;
     private javax.swing.JTextField iptxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JToggleButton perifericobtn;
-    private javax.swing.JTextField perifericotxt;
-    private javax.swing.JTable table2;
+    private javax.swing.JToggleButton perifericobtn1;
+    private javax.swing.JToggleButton perifericobtn2;
     private javax.swing.JTable tbLaboratorio;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCPU;
+    private javax.swing.JTextField txtMonitor;
+    private javax.swing.JTextField txtMouse;
+    private javax.swing.JTextField txtTeclado;
     private javax.swing.JTextField txtcodigo;
     // End of variables declaration//GEN-END:variables
 }
