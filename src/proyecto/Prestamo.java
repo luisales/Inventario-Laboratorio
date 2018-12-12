@@ -47,15 +47,28 @@ public class Prestamo extends javax.swing.JFrame {
      * Creates new form Prestamo
      */
     int HoraI, HoraF, rows, CLaboratorio=0,Clase=0, Cliente=0;
-    String FechaI="", FechaF="", Dias="", Comentario="", validacionChk,FechaValidacion;
-    public Prestamo() {
-        initComponents();
+    String[] NombreLab;
+    int [] CodigoLab;
+    String FechaI="", FechaF="", Dias="", Comentario="", validacionChk,FechaValidacion, Hoy;
+    public Prestamo(){
+        initComponents();       
+        int j =Arrays();
+        NombreLab=new String[j+1];
+        CodigoLab=new int[j+1];
+        dataPrestamos.getTableHeader().setReorderingAllowed(false);
+        dataClase.getTableHeader().setReorderingAllowed(false);
+        dataCliente.getTableHeader().setReorderingAllowed(false);
+        dataLab.getTableHeader().setReorderingAllowed(false);
         mostrar();
         Date date=new Date();
         DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         this.fechaHoy.setDate(date);
         this.fechaInicial.setDate(date);
         this.fechaFinal.setDate(date);
+        String Dia = Integer.toString(fechaHoy.getCalendar().get(Calendar.DAY_OF_MONTH));
+       String Mes = Integer.toString(fechaHoy.getCalendar().get(Calendar.MONTH)+1);
+       String Anio = Integer.toString(fechaHoy.getCalendar().get(Calendar.YEAR));
+       Hoy=(Anio + "-" + Mes + "-" + Dia);
         mostrarDatos("","");
         mostrarDatos("");
         JTextFieldDateEditor editor = (JTextFieldDateEditor) this.fechaFinal.getDateEditor();
@@ -110,6 +123,8 @@ public class Prestamo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        Eliminar1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataLab = new javax.swing.JTable();
@@ -150,6 +165,25 @@ public class Prestamo extends javax.swing.JFrame {
         btnRefrescar = new javax.swing.JButton();
         fechaHoy = new com.toedter.calendar.JDateChooser();
         labelrol8 = new javax.swing.JLabel();
+        RegresarBtn_Clientes = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        dataLab2 = new javax.swing.JTable();
+        txtLabNombre2 = new javax.swing.JTextField();
+        labelrol9 = new javax.swing.JLabel();
+        labelrol10 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        dataBorrar = new javax.swing.JTable();
+        btnBorrar = new javax.swing.JButton();
+        labelemp = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        Eliminar1.setText("Eliminar");
+        Eliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Eliminar1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(Eliminar1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,11 +208,11 @@ public class Prestamo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(dataLab);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 270, 80));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 270, 80));
 
         txtLabNombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtLabNombre.setEnabled(false);
-        jPanel1.add(txtLabNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 140, 30));
+        jPanel1.add(txtLabNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 140, 30));
 
         labelrol.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol.setText("Fecha Inicial:");
@@ -189,7 +223,7 @@ public class Prestamo extends javax.swing.JFrame {
 
         labelrol1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol1.setText("Laboratorio:");
-        jPanel1.add(labelrol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel1.add(labelrol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         labelrol2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol2.setText("Días:");
@@ -204,7 +238,7 @@ public class Prestamo extends javax.swing.JFrame {
 
         lblDia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblDia.setText("*");
-        jPanel1.add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, -1, -1));
+        jPanel1.add(lblDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
 
         labelrol5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol5.setText("Fecha Final:");
@@ -277,6 +311,7 @@ public class Prestamo extends javax.swing.JFrame {
 
             }
         ));
+        dataPrestamos.setComponentPopupMenu(jPopupMenu1);
         dataPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dataPrestamosMouseClicked(evt);
@@ -284,7 +319,7 @@ public class Prestamo extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(dataPrestamos);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 490, 310));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, 490, 310));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnIngresar.setText("Reservar");
@@ -293,7 +328,7 @@ public class Prestamo extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 690, -1, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 690, -1, -1));
 
         fechaFinal.setDateFormatString("yyyy-MM-dd");
         fechaFinal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -433,7 +468,7 @@ public class Prestamo extends javax.swing.JFrame {
                 btnRefrescarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 21, -1));
+        jPanel1.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 21, -1));
 
         fechaHoy.setDateFormatString("yyyy-MM-dd");
         fechaHoy.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -441,24 +476,110 @@ public class Prestamo extends javax.swing.JFrame {
                 fechaHoyMouseReleased(evt);
             }
         });
-        jPanel1.add(fechaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(923, 80, 150, -1));
+        fechaHoy.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaHoyPropertyChange(evt);
+            }
+        });
+        jPanel1.add(fechaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 80, 150, -1));
 
         labelrol8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelrol8.setText("Hora Final:");
         jPanel1.add(labelrol8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+
+        RegresarBtn_Clientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn_Clientes.setText("Regresar");
+        RegresarBtn_Clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtn_ClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RegresarBtn_Clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 760, -1, -1));
+
+        dataLab2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        dataLab2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataLab2MouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(dataLab2);
+
+        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 570, 280, 80));
+
+        txtLabNombre2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtLabNombre2.setEnabled(false);
+        jPanel1.add(txtLabNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 530, 140, 30));
+
+        labelrol9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelrol9.setText("Borrar Prestamo");
+        jPanel1.add(labelrol9, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 460, -1, -1));
+
+        labelrol10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelrol10.setText("Laboratorio:");
+        jPanel1.add(labelrol10, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 530, -1, -1));
+
+        dataBorrar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        dataBorrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dataBorrarMouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(dataBorrar);
+
+        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 670, 500, 130));
+
+        btnBorrar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 610, -1, -1));
+
+        labelemp.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelemp.setText("Prestamos");
+        jPanel1.add(labelemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 570, 20, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -528,6 +649,43 @@ public class Prestamo extends javax.swing.JFrame {
         x=2100; 
         return x;
     }
+    private String Hora(int Hora)
+    {
+        String ret="";
+        if(Hora==600)
+            ret=("6:00 AM");
+        if(Hora==700)
+            ret=("7:00 AM");
+        if(Hora==800)
+            ret=("8:00 AM");
+        if(Hora==900)
+            ret=("9:00 AM");
+        if(Hora==1000)
+            ret=("10:00 AM");
+        if(Hora==1100)
+            ret=("11:00 AM");
+        if(Hora==1200)
+            ret=("12:00 PM");
+        if(Hora==1300)
+            ret=("1:00 PM");
+        if(Hora==1400)
+            ret=("2:00 PM");
+        if(Hora==1500)
+            ret=("3:00 PM");
+        if(Hora==1600)
+            ret=("4:00 PM");
+        if(Hora==1700)
+            ret=("5:00 PM"); 
+        if(Hora==1800)
+            ret=("6:00 PM");
+        if(Hora==1900)
+            ret=("7:00 PM");
+        if(Hora==2000)
+            ret=("8:00 PM");
+        if(Hora==2100)
+            ret=("9:00 PM");
+        return ret;
+    }
           
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         if (CLaboratorio==0)
@@ -568,9 +726,7 @@ public class Prestamo extends javax.swing.JFrame {
        FechaF=(Anio + "-" + Mes + "-" + Dia);   
         String Retorno;
         try {
-            System.out.println(Tam);
         Retorno=verificarDias(Anio,Mes,Dia,Tam);
-            System.out.println(Retorno);
         } catch (ParseException ex) {
             Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -672,7 +828,6 @@ public class Prestamo extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(Retorno);
         if(Retorno.contains("D")==false)
         {
             this.chkDomingo.setEnabled(false);
@@ -733,15 +888,14 @@ public class Prestamo extends javax.swing.JFrame {
         
         try
         {     
-        sql= "select count(*) as Count from prestamo";   
+        sql= "select Max(codigoPrestamo) as Top from prestamo";   
         Statement st = reg.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        
         while(rs.next())
-             {
-              
-                Largo = Integer.parseInt(rs.getString("Count"));  
+             {      
+                Largo = Integer.parseInt(rs.getString("Top"));  
              }
+       
        for (i=0; i<Largo;i++)
         {
         sql = "select codigoLaboratorio,fechaInicialPrestamo,fechaFinalPrestamo,horaInicialPrestamo, horaFinalPrestamo,diasPrestamo from prestamo where codigoPrestamo ='"+(i+1)+"'";
@@ -749,6 +903,9 @@ public class Prestamo extends javax.swing.JFrame {
         rs = st.executeQuery(sql);
         int CLab=0;
         String HI="", HF="", FI="", FF="",D=""; 
+         if (!rs.isBeforeFirst() ) {
+          }      
+       else{
         while(rs.next())        
              {
               
@@ -764,7 +921,7 @@ public class Prestamo extends javax.swing.JFrame {
         x=Validacion(CLab, HI, HF,FI, FF, D);
         if (x==1)      
             return 1;
-            
+           }
         }
         }
         catch (SQLException ex) {
@@ -783,7 +940,6 @@ public class Prestamo extends javax.swing.JFrame {
         for(int i=0;i<=x;i++)
           {
             D=(Anio + "-" + Mes + "-" + (Integer.parseInt(Dia)+i));  
-              System.out.println(D);
             date = format.parse(D);
             if(i==7)
                 return Retornable;
@@ -841,6 +997,8 @@ public class Prestamo extends javax.swing.JFrame {
             VHora=1;       
          }
         VFecha=compareDates(FechaI,FechaF,FI,FF); 
+         if (compareDates2(FechaF, Hoy)==1)
+            return 1;            
         VDia=Dia(Dias, D);
         if ((VCLab*VDia*VFecha*VHora==0))
         return 0;  
@@ -902,6 +1060,26 @@ public class Prestamo extends javax.swing.JFrame {
             return 0;
         }
     }
+    public static int compareDates2(String d1,String d2)
+    {
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date a = sdf.parse(d1);
+            Date b = sdf.parse(d2);
+            if(a.after(b)||a.equals(b)){
+                
+                return 0;
+           
+            }
+            else
+            return 1;
+            
+        }
+        catch(ParseException ex){
+            ex.printStackTrace();
+            return 0;
+        }
+    }
    
     private void dataClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataClaseMouseClicked
         int fila=this.dataClase.getSelectedRow();
@@ -949,10 +1127,6 @@ public class Prestamo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClase1KeyReleased
 
-    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-        Refrescar();
-    }//GEN-LAST:event_btnRefrescarActionPerformed
-
     private void fechaHoyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaHoyMouseReleased
        
     }//GEN-LAST:event_fechaHoyMouseReleased
@@ -970,6 +1144,13 @@ public class Prestamo extends javax.swing.JFrame {
             this.chkJueves.setSelected(false);
             this.chkViernes.setSelected(false);
             this.chkSab.setSelected(false);  
+            this.chkDomingo.setEnabled(true);
+            this.chkLunes.setEnabled(true);
+            this.chkMartes.setEnabled(true);
+            this.chkMiercoles.setEnabled(true);
+            this.chkJueves.setEnabled(true);
+            this.chkViernes.setEnabled(true);
+            this.chkSab.setEnabled(true);
     }//GEN-LAST:event_fechaInicialPropertyChange
 
     private void chkLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLunesActionPerformed
@@ -991,16 +1172,281 @@ public class Prestamo extends javax.swing.JFrame {
     private void fechaInicialMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaInicialMouseExited
         
     }//GEN-LAST:event_fechaInicialMouseExited
-
+    
     private void fechaFinalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaFinalPropertyChange
-               this.chkDomingo.setSelected(false);
+             this.chkDomingo.setSelected(false);
             this.chkLunes.setSelected(false);
             this.chkMartes.setSelected(false);
             this.chkMiercoles.setSelected(false);
             this.chkJueves.setSelected(false);
             this.chkViernes.setSelected(false);
             this.chkSab.setSelected(false);  
+            this.chkDomingo.setEnabled(true);
+            this.chkLunes.setEnabled(true);
+            this.chkMartes.setEnabled(true);
+            this.chkMiercoles.setEnabled(true);
+            this.chkJueves.setEnabled(true);
+            this.chkViernes.setEnabled(true);
+            this.chkSab.setEnabled(true);
     }//GEN-LAST:event_fechaFinalPropertyChange
+
+    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
+    Refrescar();
+    this.btnRefrescar.setEnabled(false);
+    }//GEN-LAST:event_btnRefrescarActionPerformed
+
+    private void fechaHoyPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaHoyPropertyChange
+     this.btnRefrescar.setEnabled(true);
+    }//GEN-LAST:event_fechaHoyPropertyChange
+
+    private void Eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Eliminar1ActionPerformed
+        int fila = dataPrestamos.getSelectedRow();
+        int columna = dataPrestamos.getSelectedColumn();
+        int CLab;
+        String HI="", HF="",  FF;
+
+        if(fila >=0)
+        {
+            if ( dataPrestamos.getValueAt(fila,0).equals("6:00AM-7:00AM"))
+            {
+                HI="600";
+                HF="700";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("7:00AM-8:00AM"))
+            {
+                HI="700";
+                HF="800";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("8:00AM-9:00AM"))
+            {
+                HI="800";
+                HF="900";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("9:00AM-10:00AM"))
+            {
+                HI="900";
+                HF="1000";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("10:00AM-11:00AM"))
+            {
+                HI="1000";
+                HF="1100";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("11:00AM-12:00PM"))
+            {
+                HI="1100";
+                HF="1200";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("12:00PM-1:00PM"))
+            {
+                HI="1200";
+                HF="1300";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("1:00PM-2:00PM"))
+            {
+                HI="1300";
+                HF="1400";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("2:00PM-3:00PM"))
+            {
+                HI="1400";
+                HF="1500";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("3:00PM-4:00PM"))
+            {
+                HI="1500";
+                HF="1600";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("4:00PM-6:00PM"))
+            {
+                HI="1600";
+                HF="1700";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("5:00PM-6:00PM"))
+            {
+                HI="1700";
+                HF="1800";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("6:00PM-7:00PM"))
+            {
+                HI="1800";
+                HF="1900";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("7:00PM-8:00PM"))
+            {
+                HI="1900";
+                HF="2000";
+            }
+            if ( dataPrestamos.getValueAt(fila,0).equals("8:00PM-9:00PM"))
+            {
+                HI="2000";
+                HF="2100";
+            }
+            if (columna<1)
+            {
+                JOptionPane.showMessageDialog(null,"Seleccione una columna de laboratorio");
+                return;
+            }
+            String D = Integer.toString(fechaHoy.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String M= Integer.toString(fechaHoy.getCalendar().get(Calendar.MONTH)+1);
+            String A= Integer.toString(fechaHoy.getCalendar().get(Calendar.YEAR));
+              FF=(A+ "-" + M + "-" + D);
+            Conectar con=new Conectar();
+            Connection reg=con.getConnection();
+            try
+            {
+                CLab=CodigoLab[columna-1];
+                PreparedStatement obj=reg.prepareStatement("Delete from prestamo Where fechaInicialPrestamo='"+FF+"'and horaInicialPrestamo='"+HI+"'and horaFinalPrestamo='"+HF+"'and codigoLaboratorio='"+CLab+"'");
+                obj.executeUpdate();
+                 Refrescar();   
+            }
+            catch(SQLException ex)
+            {
+                Logger.getLogger(facultad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No selecciono fila");
+        }
+    }//GEN-LAST:event_Eliminar1ActionPerformed
+
+    private void RegresarBtn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtn_ClientesActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal men = new MenuPrincipal();
+
+        men.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_RegresarBtn_ClientesActionPerformed
+    int CBorrar=0;
+    private void dataLab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataLab2MouseClicked
+      int fila=this.dataLab2.getSelectedRow();
+        if(fila>=0)
+        {
+            CBorrar=Integer.parseInt(this.dataLab2.getValueAt(fila, 0).toString());
+            this.txtLabNombre2.setText(this.dataLab2.getValueAt(fila, 1).toString());
+        }
+        try {        
+             DefaultTableModel Borrar  = new DefaultTableModel(); 
+            String sql;
+            Conectar con=new Conectar();
+            Connection reg=con.getConnection();
+            sql = "select codigoPrestamo,fechaInicialPrestamo, fechaFinalPrestamo,horaInicialPrestamo,horaFinalPrestamo from prestamo where codigoLaboratorio ='"+(CBorrar)+"'  ORDER BY codigoPrestamo DESC";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+
+            if (!rs.isBeforeFirst() ) {
+            }
+            else   {
+                Borrar.addColumn("Numero Prestamo");
+                Borrar.addColumn("Fecha Inicial");
+                Borrar.addColumn("Fecha Final");
+                Borrar.addColumn("Hora Inicial");
+                Borrar.addColumn("Hora Final");
+
+                while(rs.next())
+                {
+                    Borrar.addRow(new Object[]{rs.getString("codigoPrestamo"),rs.getString("fechaInicialPrestamo"), rs.getString("fechaFinalPrestamo"),Hora(Integer.parseInt(rs.getString("horaInicialPrestamo"))),Hora(Integer.parseInt(rs.getString("horaFinalPrestamo")))}); 
+                    
+                }
+                dataBorrar.setModel(Borrar);
+                 CBorrar=0;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_dataLab2MouseClicked
+   String CodigoBorrar="";
+    private void dataBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataBorrarMouseClicked
+       int fila=this.dataBorrar.getSelectedRow();
+       String codigo ="";
+        if(fila>=0)
+        {
+            CodigoBorrar=this.dataBorrar.getValueAt(fila, 0).toString();
+       
+        }
+        
+            
+                
+    }//GEN-LAST:event_dataBorrarMouseClicked
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+     if (CodigoBorrar.equals(""))
+     {
+         JOptionPane.showMessageDialog(null,"Seleccione un Prestamo");
+         return;
+     }
+        try
+        { 
+            Conectar con=new Conectar();
+            Connection reg=con.getConnection();
+            PreparedStatement obj=reg.prepareStatement("Delete from prestamo Where codigoPrestamo='"+CodigoBorrar+"'");
+            obj.executeUpdate();
+            mostrarDatos("");
+            records= false; 
+           this.dataLab2.setVisible(records);
+           this.dataLab2.setEnabled(records);
+           this.dataBorrar.setVisible(records);
+           this.dataBorrar.setEnabled(records);
+           this.txtLabNombre2.setText("");
+           DefaultTableModel model = new DefaultTableModel();
+            dataBorrar.setModel(model);
+           Refrescar();
+           JOptionPane.showMessageDialog(null, "Borrado con exito");
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.txtLabNombre2.setText("");
+        CodigoBorrar="";
+    }//GEN-LAST:event_btnBorrarActionPerformed
+    
+    boolean records=false;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+      if (records==false)
+      {
+        mostrar2();
+        records=true;
+        this.dataLab2.setVisible(records);
+        this.dataLab2.setEnabled(records);
+        this.dataBorrar.setVisible(records);
+        this.dataBorrar.setEnabled(records);
+      }
+      else if(records==true)
+      {
+         records= false; 
+         this.dataLab2.setVisible(records);
+         this.dataLab2.setEnabled(records);
+         this.dataBorrar.setVisible(records);
+        this.dataBorrar.setEnabled(records);
+        this.txtLabNombre2.setText("");
+      }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+   private int  Arrays()
+   {
+        try {
+            String sql="";
+            Conectar con=new Conectar();
+            Connection reg=con.getConnection();
+            sql= "select Count(codigoLaboratorio) as Top from laboratorio";
+            Statement st = reg.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next())
+            { 
+                x=  Integer.parseInt(rs.getString("Top"));  
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Prestamo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;
+   }
     private void Refrescar()   
     {
        DefaultTableModel Prestamos  = new DefaultTableModel(); 
@@ -1009,7 +1455,7 @@ public class Prestamo extends javax.swing.JFrame {
         {                 
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
-        sql = "select count(*) as Count from laboratorio";
+        sql = "select Max(codigoLaboratorio) as Count from laboratorio";
         Statement st = reg.createStatement();
         ResultSet rs = st.executeQuery(sql);
         
@@ -1017,23 +1463,29 @@ public class Prestamo extends javax.swing.JFrame {
              {
                  rows = Integer.parseInt(rs.getString("Count"));
              }
-        String[] Laboratorios = new String[rows];
         Size(rows);
         Prestamos.addColumn("Horario");
-        for (int i=0; i<=rows;i++)
+        int acum=1, acum2=0;
+        for (int i=0; i<rows;i++)
         {
-        sql = "select nombreLaboratorio from laboratorio where codigoLaboratorio ='"+i+"'";
+        sql = "select nombreLaboratorio from laboratorio where codigoLaboratorio ='"+(i+1)+"'";
         st = reg.createStatement();
         rs = st.executeQuery(sql);
+            //System.out.println(i);
+         if (!rs.isBeforeFirst() ) {
+          } 
+         else   {
         while(rs.next())
-             {
-              
-                 Prestamos.addColumn(rs.getString("nombreLaboratorio"));               
+             { 
+                 Prestamos.addColumn(rs.getString("nombreLaboratorio")); 
+                 NombreLab[acum2]=(rs.getString("nombreLaboratorio"));
+                 CodigoLab[acum2]=acum;
+                 acum2++;
              }
-        
-       
+                }
+         acum++;
         }
-        }
+    }
             catch (SQLException ex) {
             Logger.getLogger(empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1047,54 +1499,57 @@ public class Prestamo extends javax.swing.JFrame {
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==1)
      {
          Dias="D";
-         lblDia.setText("Domingo "+D+"/"+M+"/"+A);
+         lblDia.setText("Domingo "+A+"/"+M+"/"+D);
      }       
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==2)
       {
          Dias="L";
-         lblDia.setText("Lunes "+D+"/"+M+"/"+A);
+         lblDia.setText("Lunes "+A+"/"+M+"/"+D);
      }  
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==3)
       {
          Dias="M";
-         lblDia.setText("Martes "+D+"/"+M+"/"+A);
+         lblDia.setText("Martes "+A+"/"+M+"/"+D);
      }  
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==4)
      {
          Dias="W";
-         lblDia.setText("Miercoles "+D+"/"+M+"/"+A);
+         lblDia.setText("Miercoles "+A+"/"+M+"/"+D);
      }  
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==5)
      {
          Dias="J";
-         lblDia.setText("Jueves "+D+"/"+M+"/"+A);
+         lblDia.setText("Jueves "+A+"/"+M+"/"+D);
      }  
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==6)
      {
          Dias="V";
-         lblDia.setText("Viernes "+D+"/"+M+"/"+A);
+         lblDia.setText("Viernes "+A+"/"+M+"/"+D);
      }  
      if((fechaHoy.getCalendar().get(Calendar.DAY_OF_WEEK))==7)
      {
          Dias="S";
-         lblDia.setText("Sabado "+D+"/"+M+"/"+A);
+         lblDia.setText("Sabado "+A+"/"+M+"/"+D);
      }  
-     for(int j=0;j<15;j++)
+     for(int j=0;j<14;j++)
      { 
-         if(j<6)
+         if(j<5)
         Fila[0]=(j+6)+":00AM-"+(j+7)+":00AM";
-        else if (j==6)
+        else if (j==5)
         Fila[0]="11:00AM-12:00PM";
-        else if (j==7)
+        else if (j==6)
         Fila[0]="12:00PM-1:00PM";   
         else
         Fila[0]=(j-6)+":00PM-"+(j-5)+":00PM";
-        for(int i=0;i<rows;i++)
-        {
-          CLaboratorio=i+1;
+         int Cols=1;
+        for(int i=0;i<CodigoLab.length;i++)
+        {      
+         
              HoraI=(j+6)*100;
              HoraF=(j+7)*100;
-             
+         
+                 {
+             CLaboratorio=CodigoLab[i];
           if (Valores()==1)
              {
              Fila[i+1]="Ocupado";
@@ -1103,11 +1558,12 @@ public class Prestamo extends javax.swing.JFrame {
              {
              Fila[i+1]="Disponible";
              }
+          
+                 }
          }
         Prestamos.addRow(Fila);
      }
      Date date=new Date();
-        DateFormat df=new SimpleDateFormat("yyyy-MM-dd");
     dataPrestamos.setModel(Prestamos);
     this.txtNombreC1.setText("");
         this.txtNombreC.setText("");
@@ -1127,6 +1583,10 @@ public class Prestamo extends javax.swing.JFrame {
         this.cmbHoraInicial.setSelectedIndex(0);
         this.fechaInicial.setDate(date);
         this.fechaFinal.setDate(date);  
+        Dias="";
+        CLaboratorio=0;
+        Clase=0;
+        Cliente=0;
     }
 
     void mostrarDatos( String valor, String valor2){
@@ -1184,6 +1644,22 @@ public class Prestamo extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
+     private void mostrar2()
+    {
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("select * from laboratorio");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo Lab","Nombre Lab","Capacidad Lab"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoLaboratorio"),rx.getString("nombreLaboratorio"), rx.getString("capacidadLaboratorio")});         
+            }
+            this.dataLab2.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1217,6 +1693,9 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar1;
+    private javax.swing.JButton RegresarBtn_Clientes;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JCheckBox chkDomingo;
@@ -1228,33 +1707,43 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkViernes;
     private javax.swing.JComboBox<String> cmbHoraFinal;
     private javax.swing.JComboBox<String> cmbHoraInicial;
+    private javax.swing.JTable dataBorrar;
     private javax.swing.JTable dataClase;
     private javax.swing.JTable dataCliente;
     private javax.swing.JTable dataLab;
+    private javax.swing.JTable dataLab2;
     private javax.swing.JTable dataPrestamos;
     private com.toedter.calendar.JDateChooser fechaFinal;
     private com.toedter.calendar.JDateChooser fechaHoy;
     private com.toedter.calendar.JDateChooser fechaInicial;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JLabel labelemp;
     private javax.swing.JLabel labelrol;
     private javax.swing.JLabel labelrol1;
+    private javax.swing.JLabel labelrol10;
     private javax.swing.JLabel labelrol2;
     private javax.swing.JLabel labelrol3;
     private javax.swing.JLabel labelrol5;
     private javax.swing.JLabel labelrol6;
     private javax.swing.JLabel labelrol7;
     private javax.swing.JLabel labelrol8;
+    private javax.swing.JLabel labelrol9;
     private javax.swing.JLabel lblDia;
     private javax.swing.JTextField txtApellidoC;
     private javax.swing.JTextField txtClase;
     private javax.swing.JTextField txtClase1;
     private javax.swing.JTextArea txtComentario;
     private javax.swing.JTextField txtLabNombre;
+    private javax.swing.JTextField txtLabNombre2;
     private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNombreC1;
     // End of variables declaration//GEN-END:variables
