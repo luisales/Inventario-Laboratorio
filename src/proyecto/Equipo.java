@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Equipo extends javax.swing.JFrame {
 
-    String mouse="",teclado="", monitor="";
+    String mouse="",teclado="", monitor="", CodigoCPU="";
     public Equipo() {
         initComponents();
         this.txtcodigo.setEnabled(false);
@@ -35,6 +35,7 @@ public class Equipo extends javax.swing.JFrame {
         this.jPanel3.setVisible(false);
         this.jPanel4.setVisible(false);
         this.jPanel5.setVisible(false);
+        this.jPanel7.setVisible(false);
         this.btnActualizar.setEnabled(false);
         mostrarDatos("");
         
@@ -46,17 +47,19 @@ public class Equipo extends javax.swing.JFrame {
         modelo.addColumn("Laboratorio");
         modelo.addColumn("No.Asignado");
         modelo.addColumn("IP");
+        modelo.addColumn("CPU");
+        modelo.addColumn("Capacidad");
         
         tbLaboratorio.setModel(modelo);
         String sql = "";
         if(valor.equals(""))
         {
-        sql = "Select * from equipo";
+        sql = "Select a.codigoEquipo, c.nombreLaboratorio, a.numeroAsignado, a.ipEquipo, b.codigoCpu, b.capacidadRamEquipo from equipo a inner join cpu b on a.codigoEquipo=b.codigoEquipo inner join laboratorio c on a.codigoLaboratorio=c.codigoLaboratorio";
         }
         else{
         sql = "Select * from equipo where numeroAsignado like  '"+valor+"%' ";
         }
-        String []datos = new String[8];
+        String []datos = new String[6];
         
         Conectar con=new Conectar();
         Connection reg=con.getConnection();
@@ -69,6 +72,8 @@ public class Equipo extends javax.swing.JFrame {
             datos[1] = rs.getString(2);
             datos[2] = rs.getString(3);
             datos[3] = rs.getString(4);
+            datos[4] = rs.getString(5);
+            datos[5] = rs.getString(6);
             modelo.addRow(datos);
             
             }
@@ -135,6 +140,13 @@ public class Equipo extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         dbperifericos = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        txtCPU = new javax.swing.JTextField();
+        perifericobtn2 = new javax.swing.JToggleButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        dbCPU = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,14 +173,11 @@ public class Equipo extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NumeroAsignadotxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(NumeroAsignadotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 80, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Numero de equipo:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         dbMonitor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,14 +221,10 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 222, -1));
-
         iptxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(iptxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 150, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("IP Equipo:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         codigobtn.setText("...");
         codigobtn.addActionListener(new java.awt.event.ActionListener() {
@@ -227,8 +232,6 @@ public class Equipo extends javax.swing.JFrame {
                 codigobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(codigobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17450, 164, -1, -1));
 
         RegresarBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         RegresarBtn.setText("Regresar");
@@ -237,15 +240,12 @@ public class Equipo extends javax.swing.JFrame {
                 RegresarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Laboratorio:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         Labtxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Labtxt.setEnabled(false);
-        getContentPane().add(Labtxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 80, -1));
 
         txtMonitor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtMonitor.setEnabled(false);
@@ -254,11 +254,9 @@ public class Equipo extends javax.swing.JFrame {
                 txtMonitorActionPerformed(evt);
             }
         });
-        getContentPane().add(txtMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 80, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Monitor: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         perifericobtn.setText("...");
         perifericobtn.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +264,6 @@ public class Equipo extends javax.swing.JFrame {
                 perifericobtnActionPerformed(evt);
             }
         });
-        getContentPane().add(perifericobtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 320, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -305,14 +302,10 @@ public class Equipo extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 500, 200));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 520, 283));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel7.setText("Codigo equipo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         txtcodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 80, -1));
 
         dbTeclado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -347,11 +340,8 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, -1, -1));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel8.setText("Teclado:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, 20));
 
         txtTeclado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtTeclado.setEnabled(false);
@@ -360,11 +350,9 @@ public class Equipo extends javax.swing.JFrame {
                 txtTecladoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel9.setText("Mouse: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, -1, 20));
 
         txtMouse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtMouse.setEnabled(false);
@@ -373,7 +361,6 @@ public class Equipo extends javax.swing.JFrame {
                 txtMouseActionPerformed(evt);
             }
         });
-        getContentPane().add(txtMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 320, 80, -1));
 
         perifericobtn1.setText("...");
         perifericobtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -381,7 +368,6 @@ public class Equipo extends javax.swing.JFrame {
                 perifericobtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(perifericobtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
 
         dbMouse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -416,8 +402,6 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, -1, -1));
-
         GuardarBtnEquipo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         GuardarBtnEquipo.setText("Guardar");
         GuardarBtnEquipo.addActionListener(new java.awt.event.ActionListener() {
@@ -425,7 +409,6 @@ public class Equipo extends javax.swing.JFrame {
                 GuardarBtnEquipoActionPerformed(evt);
             }
         });
-        getContentPane().add(GuardarBtnEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 520, -1, -1));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -434,7 +417,6 @@ public class Equipo extends javax.swing.JFrame {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, 150, -1));
 
         codigobtn1.setText("...");
         codigobtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -442,7 +424,6 @@ public class Equipo extends javax.swing.JFrame {
                 codigobtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(codigobtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
 
         dbLab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -485,8 +466,6 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 222, -1));
-
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Perifericos"));
 
         dbperifericos.setModel(new javax.swing.table.DefaultTableModel(
@@ -522,7 +501,223 @@ public class Equipo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 310, -1, 260));
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("CPU:");
+
+        txtCPU.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCPU.setEnabled(false);
+        txtCPU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPUActionPerformed(evt);
+            }
+        });
+
+        perifericobtn2.setText("...");
+        perifericobtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perifericobtn2ActionPerformed(evt);
+            }
+        });
+
+        dbCPU.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        dbCPU.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        dbCPU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dbCPUMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(dbCPU);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel12.setText("Mantenimiento Equipo");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(txtMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(codigobtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(txtTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel11)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(perifericobtn2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(65, 65, 65)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(GuardarBtnEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(80, 80, 80)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RegresarBtn))
+                        .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel7))
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel4)))
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(NumeroAsignadotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iptxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Labtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(codigobtn1)))
+                                .addGap(10, 10, 10)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(181, 181, 181)
+                                .addComponent(jLabel12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel7)
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel1)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(NumeroAsignadotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(iptxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Labtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(codigobtn1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtMonitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigobtn))
+                        .addGap(11, 11, 11)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn))
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn1))
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(perifericobtn2))
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(GuardarBtnEquipo)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnActualizar))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(RegresarBtn))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -568,7 +763,8 @@ public class Equipo extends javax.swing.JFrame {
             obj.executeUpdate();
             obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+codigo_equ+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMouse.getText()+"'");
             obj.executeUpdate();
-            
+            obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo='"+codigo_equ+"', estadoCpu='OCUPADO' where codigoCpu='"+this.txtCPU.getText()+"'");
+            obj.executeUpdate();
             JOptionPane.showMessageDialog(null, "Guardado con exito");
             }
         }
@@ -657,20 +853,25 @@ public class Equipo extends javax.swing.JFrame {
                 obj.executeUpdate();
                 
                 
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+monitor+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+teclado+"'");
+                obj.executeUpdate();
+                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo="+equipo+", estadoPeriferico='DISPONIBLE' where codigoEquipo='"+mouse+"'");
+                obj.executeUpdate();    
+                obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo="+equipo+", estadoCpu='DISPONIBLE' where codigoCpu='"+CodigoCPU+"'");
+                obj.executeUpdate();
+    
                 obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMonitor.getText()+"'");
                 obj.executeUpdate();
                 obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtTeclado.getText()+"'");
                 obj.executeUpdate();
                 obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoPeriferico='OCUPADO' where codigoPeriferico='"+this.txtMouse.getText()+"'");
                 obj.executeUpdate();
-                
-                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+equipo+"', estadoPeriferico='DISPONIBLE' where codigoEquipo='"+monitor+"'");
-                obj.executeUpdate();
-                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+equipo+"', estadoPeriferico='DISPONIBLE' where codigoEquipo='"+teclado+"'");
-                obj.executeUpdate();
-                obj=reg.prepareStatement("UPDATE perifericos SET codigoEquipo='"+equipo+"', estadoPeriferico='DISPONIBLE' where codigoEquipo='"+mouse+"'");
+                obj=reg.prepareStatement("UPDATE cpu SET codigoEquipo='"+this.txtcodigo.getText()+"', estadoCpu='OCUPADO' where codigoCpu='"+this.txtCPU.getText()+"'");
                 obj.executeUpdate();
                 
+
                 JOptionPane.showMessageDialog(null, "Guardado con exito");
                 mostrarDatos("");
 
@@ -680,6 +881,7 @@ public class Equipo extends javax.swing.JFrame {
                 this.txtBuscar.setText("");
                // this.btnIngresar.setEnabled(true);
                 this.btnActualizar.setEnabled(false);
+                this.GuardarBtnEquipo.setEnabled(true);
             }
 
         }
@@ -792,6 +994,7 @@ public class Equipo extends javax.swing.JFrame {
             this.Labtxt.setText(tbLaboratorio.getValueAt(fila,1).toString());
             this.NumeroAsignadotxt.setText(tbLaboratorio.getValueAt(fila,2).toString());
             this.iptxt.setText(tbLaboratorio.getValueAt(fila,3).toString());
+            this.txtCPU.setText(tbLaboratorio.getValueAt(fila,4).toString());
             this.GuardarBtnEquipo.setEnabled(false);
             
             this.txtMouse.setText(dbperifericos.getValueAt(0,0).toString());
@@ -801,6 +1004,7 @@ public class Equipo extends javax.swing.JFrame {
             mouse = this.txtMouse.getText();
             teclado=this.txtTeclado.getText();
             monitor=this.txtMonitor.getText();
+            CodigoCPU=this.txtCPU.getText();
         }
         else{
         JOptionPane.showMessageDialog(null,"no selecciono fila");
@@ -860,6 +1064,37 @@ public class Equipo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbLaboratorioMouseClicked
 
+    private void txtCPUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPUActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPUActionPerformed
+
+    private void perifericobtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perifericobtn2ActionPerformed
+        this.jPanel7.setVisible(true);
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        ResultSet rx = Conectar.getTabla("SELECT a.codigoCpu, b.nombreMarca, a.serieCpu, a.cantidadRamEquipo, a.capacidadRamEquipo FROM cpu a INNER JOIN marca b on a.codigoMarca=b.codigoMarca where estadoCpu='disponible'");
+        modelo2.setColumnIdentifiers(new Object[]{"Codigo","Marca","Serie", "Cantidad Ram", "Capacidad Ram"});
+        try
+        {
+            while(rx.next()){
+                modelo2.addRow(new Object[]{rx.getString("codigoCpu"),rx.getString("nombreMarca"), rx.getString("serieCpu"), rx.getString("cantidadRamEquipo"),rx.getString("capacidadRamEquipo")});
+            }
+            this.dbCPU.setModel(modelo2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_perifericobtn2ActionPerformed
+
+    private void dbCPUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dbCPUMouseClicked
+        int fila=this.dbCPU.getSelectedRow();
+        if(fila>=0)
+        {
+            this.txtCPU.setText(this.dbCPU.getValueAt(fila, 0).toString());
+        
+        }
+        this.jPanel7.setVisible(false);
+    }//GEN-LAST:event_dbCPUMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -904,6 +1139,7 @@ public class Equipo extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton codigobtn;
     private javax.swing.JButton codigobtn1;
+    private javax.swing.JTable dbCPU;
     private javax.swing.JTable dbLab;
     private javax.swing.JTable dbMonitor;
     private javax.swing.JTable dbMouse;
@@ -912,6 +1148,8 @@ public class Equipo extends javax.swing.JFrame {
     private javax.swing.JTextField iptxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -929,6 +1167,7 @@ public class Equipo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -936,11 +1175,14 @@ public class Equipo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JToggleButton perifericobtn;
     private javax.swing.JToggleButton perifericobtn1;
+    private javax.swing.JToggleButton perifericobtn2;
     private javax.swing.JTable tbLaboratorio;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtCPU;
     private javax.swing.JTextField txtMonitor;
     private javax.swing.JTextField txtMouse;
     private javax.swing.JTextField txtTeclado;

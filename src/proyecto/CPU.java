@@ -31,6 +31,7 @@ public class CPU extends javax.swing.JFrame {
      */
     public CPU() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -69,6 +70,7 @@ public class CPU extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         dataRol = new javax.swing.JTable();
+        lblCodigo7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnMostrarT = new javax.swing.JButton();
         btnbuscar = new javax.swing.JButton();
@@ -76,6 +78,7 @@ public class CPU extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCliente = new javax.swing.JTable();
+        RegresarBtn1 = new javax.swing.JButton();
 
         jMenuItem1.setText("Modificar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +226,7 @@ public class CPU extends javax.swing.JFrame {
                 txtcodigoEquipoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtcodigoEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 236, 110, -1));
+        jPanel1.add(txtcodigoEquipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 110, -1));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +306,10 @@ public class CPU extends javax.swing.JFrame {
         jScrollPane3.setViewportView(dataRol);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 270, 80));
+
+        lblCodigo7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblCodigo7.setText("Codigo equipo:");
+        jPanel1.add(lblCodigo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 239, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, -1, 395));
         jPanel1.getAccessibleContext().setAccessibleName("Datos del CPU");
@@ -390,6 +397,15 @@ public class CPU extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(648, 11, -1, -1));
+
+        RegresarBtn1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        RegresarBtn1.setText("Regresar");
+        RegresarBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarBtn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegresarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -583,12 +599,13 @@ public class CPU extends javax.swing.JFrame {
         try
         {
 
-                PreparedStatement obj=reg.prepareStatement("INSERT INTO cpu(codigoEquipo,codigoMarca,serieCpu ,cantidadRamEquipo, capacidadRamEquipo) values(?,?,?,?,?)");
+                PreparedStatement obj=reg.prepareStatement("INSERT INTO cpu(codigoEquipo,codigoMarca,serieCpu ,cantidadRamEquipo, capacidadRamEquipo, estadoCpu) values(?,?,?,?,?,?)");
                 obj.setString(1,codigoEquipo);
                 obj.setString(2,this.txtcodigoMarca.getText());
                 obj.setString(3,this.txtserie.getText());
                 obj.setString(4,this.txtram1.getText());
                 obj.setString(5,this.txtram2.getText());
+                obj.setString(6,"DISPONIBLE");
                 obj.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Guardado con exito");
                 mostrarDatos("");
@@ -685,6 +702,14 @@ public class CPU extends javax.swing.JFrame {
     private void txtram2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtram2KeyPressed
          
     }//GEN-LAST:event_txtram2KeyPressed
+
+    private void RegresarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtn1ActionPerformed
+        // TODO add your handling code here:
+        Mantenimientos men = new Mantenimientos();
+
+        men.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegresarBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -799,6 +824,7 @@ public class CPU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegresarBtn1;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnMostrarT;
     private javax.swing.JButton btnbuscar;
@@ -823,6 +849,7 @@ public class CPU extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodigo4;
     private javax.swing.JLabel lblCodigo5;
     private javax.swing.JLabel lblCodigo6;
+    private javax.swing.JLabel lblCodigo7;
     private javax.swing.JLabel lblIngresar;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tbCliente;

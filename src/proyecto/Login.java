@@ -5,13 +5,19 @@
  */
 package proyecto;
 
+import java.awt.Component;
+import java.awt.Event;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -53,6 +59,11 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
 
         txtusuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtusuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtusuarioKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 230, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -60,6 +71,11 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         txtcontra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtcontra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcontraKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 230, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -133,6 +149,37 @@ public class Login extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_jButton1ActionPerformed
+
+     public void disablePasteAction(JComponent[] components){
+
+        for (JComponent campo : components){
+            InputMap map = campo.getInputMap();
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, Event.SHIFT_MASK), "null");
+        }
+
+    }
+
+    public void disableCopyAction(Component[] components){
+
+        for (Component campo : components){
+
+            if(campo instanceof JComponent){
+                InputMap map = ((JComponent)campo).getInputMap();
+                map.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK), "null");
+            }
+        }
+    }
+    
+    private void txtcontraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontraKeyPressed
+        InputMap map2 = txtcontra.getInputMap(txtcontra.WHEN_FOCUSED);
+        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+    }//GEN-LAST:event_txtcontraKeyPressed
+
+    private void txtusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyPressed
+        InputMap map2 = txtusuario.getInputMap(txtusuario.WHEN_FOCUSED);
+        map2.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+    }//GEN-LAST:event_txtusuarioKeyPressed
 
     /**
      * @param args the command line arguments
