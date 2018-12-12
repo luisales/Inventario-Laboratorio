@@ -36,10 +36,12 @@ public class Mantenimientos extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/facu.png"))); // NOI18N
         jButton5.setText("Facultad");
         jButton5.setToolTipText("");
         jButton5.setBorder(null);
@@ -57,8 +59,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 45, 170, -1));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/64088.png"))); // NOI18N
         jButton6.setText("Marca");
         jButton6.setToolTipText("");
         jButton6.setBorder(null);
@@ -76,6 +79,7 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 45, 155, -1));
 
         RegresarBtn.setText("Regresar");
         RegresarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,8 +87,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 RegresarBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(RegresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 567, -1, -1));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/44007.png"))); // NOI18N
         jButton7.setText("CPU");
         jButton7.setToolTipText("");
         jButton7.setBorder(null);
@@ -102,8 +107,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 318, 170, -1));
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clase_318-59679.png"))); // NOI18N
         jButton8.setText("Clase");
         jButton8.setToolTipText("");
         jButton8.setBorder(null);
@@ -121,8 +127,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 182, 170, -1));
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rol.png"))); // NOI18N
         jButton9.setText("Roles");
         jButton9.setToolTipText("");
         jButton9.setBorder(null);
@@ -140,8 +147,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 182, 170, -1));
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/periferico.png"))); // NOI18N
         jButton10.setText("Perifericos");
         jButton10.setToolTipText("");
         jButton10.setBorder(null);
@@ -159,8 +167,9 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 318, 170, -1));
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/131974.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/periferico.png"))); // NOI18N
         jButton11.setText("Tipo de periferico");
         jButton11.setToolTipText("");
         jButton11.setBorder(null);
@@ -178,57 +187,11 @@ public class Mantenimientos extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 455, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(RegresarBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton10))
-                .addGap(30, 30, 30)
-                .addComponent(jButton11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(RegresarBtn)
-                .addContainerGap())
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Mantenimientos");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -358,5 +321,6 @@ public class Mantenimientos extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
